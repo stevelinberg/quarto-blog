@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: docs
 
 website:
   title: "slinberg.net"
@@ -11,7 +12,8 @@ website:
   navbar:
     search: true
     right:
-      - about.qmd
+      - text: About
+        href: steve.qmd
       - text: "Meta"
         menu:
           - text: "Article listing"
