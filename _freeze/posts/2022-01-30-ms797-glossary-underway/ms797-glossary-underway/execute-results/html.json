@@ -1,0 +1,16 @@
+{
+  "hash": "1504568d66a911f70030c4fcb91ca5b8",
+  "result": {
+    "markdown": "---\ntitle: \"MS797 Glossary underway\"\ndescription: |\n  The other big glossary for this semester is underway.\nauthor:\n  - name: Steve Linberg\n    url: https://slinberg.net\ndate: 2022-01-30\noutput:\n  distill::distill_article:\n    self_contained: false\n---\n\n\n\n\nThe term's other major [glossary](../../academics/ms797-glossary/), for [MS797, Machine Learning for Social Science](../../academics/ms797), is up. At this point it's about halfway through chapter 3... lots to go. This was initially in a standalone repo, but I think it makes more sense to migrate it here.\n\nAgain, comments, clarifications or corrections are all welcome.\n",
+    "supporting": [
+      "ms797-glossary-underway_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

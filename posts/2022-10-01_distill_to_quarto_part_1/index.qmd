@@ -193,10 +193,10 @@ Save and render. For this post, we're done; it's in and looks good. The blog pag
 
 Don't forget: [commit early, commit often](https://deepsource.io/blog/git-best-practices/#3-commit-early-commit-often):
 
-```sh
+``` sh
 git add posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/
 git commit -m "migrate old post"
- ```
+```
 
 ### 5. Rinse and repeat
 
@@ -205,6 +205,83 @@ Now, do the same process with the rest of the posts. I don't have that many to m
 ::: callout-note
 Note: by not renaming the post directory, and by virtue of the fact that both Distill and Quarto use `/posts` as the top level for blog posts by default, the URLs for the posts won't change when we switch. It's rude to break your working URLs when migrating (even though the number of humans who correctly care about this is vanishingly small), so this is good news. If your posts directory will be called something else, or basically if anything changes, you should set up redirects for your old URLs so they point to the new ones.
 :::
+
+## (optional) Configure for Github Pages
+
+If you're hosting on Github pages, there are a couple of additional things to do:
+
+### 1. Set output to "docs"
+
+By default, the site will render to the directory "\_site". Github Pages, where I'm presently hosting slinberg.net, publishes from the "docs" directory, so we need to tell Quarto to do that.
+
+In `_quarto.yml`, add "output-dir: docs" to the `project` section, as shown:
+
+``` yml
+project:
+  type: website
+  output-dir: docs
+```
+
+Rebuild the whole site from the terminal, in the root directory:
+
+``` sh
+quarto render
+```
+
+Delete `_site` from your filesystem and repo, and add the "docs" directory:
+
+``` sh
+git rm -rf _site
+git commit -m "Remove old _site directory"
+git add docs
+git commit -m "Add docs directory"
+```
+
+### 2. Create and commit a .nojekyll file
+
+Github requires the presence of a file called `.nojekyll` to prevent rendering with Jekyll, Github's site generation tool. Again, from your site's root:
+
+``` sh
+touch .nojekyll
+git add .nojekyll
+git commit -m "Add .nojekyll file"
+```
+
+### 3. Create the CNAME file if you're using a custom domain
+
+If you are using a custom domain name (like slinberg.net), you must also create a file called `CNAME` in your site's root, with the domain name in plain text followed by a carriage return. Of course, you also have to own the domain and have it pointed at Github correctly, a topic we're not covering here. The domain name will not work correctly without this file.
+
+## Other conversion notes
+
+Other unordered odds and end from the porting process:
+
+### Hashpipe syntax
+
+One of the nice things about Quarto is much more readable chunk options via the "hashpipe" syntax (`#` = "hash", `|` = "pipe", so `#|` = "hashpipe" 🙄). For example, we can turn this heavy thing:
+
+```r
+{r echo=FALSE, fig.cap="Figure from 
+[The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi),
+p. 118", out.width=400}
+knitr::include_graphics("badgraphic.png")
+```
+
+Into this more readable construct:
+
+```r
+{r}
+#| echo: FALSE
+#| fig-cap: Figure from [The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi), p. 118
+#| out.with: 400
+knitr::include_graphics("badgraphic.png")
+```
+... in *theory*.
+
+In *practice*, as of this writing, there's a [bug](https://github.com/rstudio/rstudio/issues/11708) in Quarto that prevents this from working correctly in .qmd files, so... for the moment, we wait and keep it in the former style.
+
+### .Rmd files still render
+
+I was a little surprised to see that my non-converted blog posts, copied straight over from the Distill blog and prior to the cleanup for Quarto, still rendered just fine. I guess that's good, but I wasn't expecting it. I'm still going to clean them up.
 
 ## Appendix A: problems
 

@@ -1,0 +1,16 @@
+{
+  "hash": "61e72ea94591b07fac2b887a4be71f00",
+  "result": {
+    "markdown": "---\ntitle: \"PS753 Glossary underway\"\ndescription: |\n  Starting a section I've been planning for a while\nauthor:\n  - name: Steve Linberg\n    url: https://slinberg.net\ndate: 2022-01-29\noutput:\n  distill::distill_article:\n    self_contained: false\n---\n\n\n\n\nOne of the things I want to have in the `Academics` section of the site is glossaries of terms from some of my classes, with the hope that they will be useful to others (as well as myself), and to also make it possible for people to add/correct/amend them. The latter is now possible via GitHub, where the complete source for this site can be found (hit the GitHub icon in the menu in the top right).\n\nThe [glossary](../../academics/ps753-glossary/) for [PS753, Political and Social Networks](../../academics/ps753), is underway with terms from week 1.",
+    "supporting": [
+      "ps753-glossary-underway_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

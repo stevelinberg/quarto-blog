@@ -1,0 +1,14 @@
+---
+title: "Pythagorean Theorem"
+description: "How did I not know this"
+date: 2022-02-02
+categories: [math]
+---
+
+How did I make it to `$adulthood * 2` without knowing that our old friend, the Pythagorean Theorem ($a^2 + b^2 = c^2$), works in any number of dimensions?
+
+The Euclidean distance $d$ between the origin ($0, 0, \dots 0$) and a point defined by $n$ coordinates $x$ is just
+
+$$d = \sqrt{x_1^2 + x_2^2 + \dots + x_n^2}$$
+
+Add up all of the squares and take the square root. Dope-smack for me.

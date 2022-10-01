@@ -288,6 +288,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#commit" id="toc-commit" class="nav-link" data-scroll-target="#commit">4. Commit!</a></li>
   <li><a href="#rinse-and-repeat" id="toc-rinse-and-repeat" class="nav-link" data-scroll-target="#rinse-and-repeat">5. Rinse and repeat</a></li>
   </ul></li>
+  <li><a href="#optional-configure-for-github-pages" id="toc-optional-configure-for-github-pages" class="nav-link" data-scroll-target="#optional-configure-for-github-pages">(optional) Configure for Github Pages</a>
+  <ul class="collapse">
+  <li><a href="#set-output-to-docs" id="toc-set-output-to-docs" class="nav-link" data-scroll-target="#set-output-to-docs">1. Set output to “docs”</a></li>
+  <li><a href="#create-and-commit-a-.nojekyll-file" id="toc-create-and-commit-a-.nojekyll-file" class="nav-link" data-scroll-target="#create-and-commit-a-.nojekyll-file">2. Create and commit a .nojekyll file</a></li>
+  <li><a href="#create-the-cname-file-if-youre-using-a-custom-domain" id="toc-create-the-cname-file-if-youre-using-a-custom-domain" class="nav-link" data-scroll-target="#create-the-cname-file-if-youre-using-a-custom-domain">3. Create the CNAME file if you’re using a custom domain</a></li>
+  </ul></li>
+  <li><a href="#other-conversion-notes" id="toc-other-conversion-notes" class="nav-link" data-scroll-target="#other-conversion-notes">Other conversion notes</a>
+  <ul class="collapse">
+  <li><a href="#hashpipe-syntax" id="toc-hashpipe-syntax" class="nav-link" data-scroll-target="#hashpipe-syntax">Hashpipe syntax</a></li>
+  <li><a href="#rmd-files-still-render" id="toc-rmd-files-still-render" class="nav-link" data-scroll-target="#rmd-files-still-render">.Rmd files still render</a></li>
+  </ul></li>
   <li><a href="#appendix-a-problems" id="toc-appendix-a-problems" class="nav-link" data-scroll-target="#appendix-a-problems">Appendix A: problems</a>
   <ul class="collapse">
   <li><a href="#that-pesky-first-image" id="toc-that-pesky-first-image" class="nav-link" data-scroll-target="#that-pesky-first-image">That pesky first image</a></li>
@@ -463,6 +474,60 @@ Note
 </div>
 </section>
 </section>
+<section id="optional-configure-for-github-pages" class="level2">
+<h2 class="anchored" data-anchor-id="optional-configure-for-github-pages">(optional) Configure for Github Pages</h2>
+<p>If you’re hosting on Github pages, there are a couple of additional things to do:</p>
+<section id="set-output-to-docs" class="level3">
+<h3 class="anchored" data-anchor-id="set-output-to-docs">1. Set output to “docs”</h3>
+<p>By default, the site will render to the directory “_site”. Github Pages, where I’m presently hosting slinberg.net, publishes from the “docs” directory, so we need to tell Quarto to do that.</p>
+<p>In <code>_quarto.yml</code>, add “output-dir: docs” to the <code>project</code> section, as shown:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rebuild the whole site from the terminal, in the root directory:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Delete <code>_site</code> from your filesystem and repo, and add the “docs” directory:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">-rf</span> _site</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Remove old _site directory"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add docs</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add docs directory"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="create-and-commit-a-.nojekyll-file" class="level3">
+<h3 class="anchored" data-anchor-id="create-and-commit-a-.nojekyll-file">2. Create and commit a .nojekyll file</h3>
+<p>Github requires the presence of a file called <code>.nojekyll</code> to prevent rendering with Jekyll, Github’s site generation tool. Again, from your site’s root:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> .nojekyll</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .nojekyll</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add .nojekyll file"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="create-the-cname-file-if-youre-using-a-custom-domain" class="level3">
+<h3 class="anchored" data-anchor-id="create-the-cname-file-if-youre-using-a-custom-domain">3. Create the CNAME file if you’re using a custom domain</h3>
+<p>If you are using a custom domain name (like slinberg.net), you must also create a file called <code>CNAME</code> in your site’s root, with the domain name in plain text followed by a carriage return. Of course, you also have to own the domain and have it pointed at Github correctly, a topic we’re not covering here. The domain name will not work correctly without this file.</p>
+</section>
+</section>
+<section id="other-conversion-notes" class="level2">
+<h2 class="anchored" data-anchor-id="other-conversion-notes">Other conversion notes</h2>
+<p>Other unordered odds and end from the porting process:</p>
+<section id="hashpipe-syntax" class="level3">
+<h3 class="anchored" data-anchor-id="hashpipe-syntax">Hashpipe syntax</h3>
+<p>One of the nice things about Quarto is much more readable chunk options via the “hashpipe” syntax (<code>#</code> = “hash”, <code>|</code> = “pipe”, so <code>#|</code> = “hashpipe” 🙄). For example, we can turn this heavy thing:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>{r echo<span class="ot">=</span><span class="cn">FALSE</span>, fig.cap<span class="ot">=</span><span class="st">"Figure from </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">[The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi),</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">p. 118"</span>, out.width<span class="ot">=</span><span class="dv">400</span>}</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"badgraphic.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Into this more readable construct:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>{r}</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: FALSE</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Figure from [The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi), p. 118</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| out.with: 400</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"badgraphic.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>… in <em>theory</em>.</p>
+<p>In <em>practice</em>, as of this writing, there’s a <a href="https://github.com/rstudio/rstudio/issues/11708">bug</a> in Quarto that prevents this from working correctly in .qmd files, so… for the moment, we wait and keep it in the former style.</p>
+</section>
+<section id="rmd-files-still-render" class="level3">
+<h3 class="anchored" data-anchor-id="rmd-files-still-render">.Rmd files still render</h3>
+<p>I was a little surprised to see that my non-converted blog posts, copied straight over from the Distill blog and prior to the cleanup for Quarto, still rendered just fine. I guess that’s good, but I wasn’t expecting it. I’m still going to clean them up.</p>
+</section>
+</section>
 <section id="appendix-a-problems" class="level2">
 <h2 class="anchored" data-anchor-id="appendix-a-problems">Appendix A: problems</h2>
 <p>Rather than interrupt the basic narrative above, let’s stack the problems we hit along the way down here.</p>
@@ -470,23 +535,23 @@ Note
 <h3 class="anchored" data-anchor-id="that-pesky-first-image">That pesky first image</h3>
 <p>One of the basic concepts in blogs and blog listings is the all-important thumbnail image that is used on the listing page.</p>
 <p>There are basically two ways to implement this in Quarto: either explicitly specify it with the <code>image</code> atrribute in the YAML section of the post’s <code>index.qmd</code> file:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span><span class="kw">:</span><span class="at"> </span><span class="st">"image.jpg"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span><span class="kw">:</span><span class="at"> </span><span class="st">"image.jpg"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>or, omit this attribute, and in that case, Quarto will use the first image it finds in the post body (if any). The difference is: if you only want to use the image on the listing page, but not have it appear in the post itself, put it in the YAML header; if you want it to be used on both, then omit the YAML header and put it inline.</p>
 <p>The problem is that if you do the latter, and the image is right at the start of the post (a header image, in other words), it will not render correctly if it happens to be within the range of the preview text (which doesn’t appear to be visibly configurable in Quarto, but it’s more or less the first line or two); this is because it doesn’t convert the filename path to a global path. It does in the listing itself, which is odd. You can see the result here, from one of the sample posts; the original code is:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>This is the first post <span class="cf">in</span> a Quarto blog. Welcome<span class="sc">!</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>[](thumbnail.jpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>This is the first post <span class="cf">in</span> a Quarto blog. Welcome<span class="sc">!</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>[](thumbnail.jpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>But it we reverse it to put the image above the text:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>[](thumbnail.jpg)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>This is the first post <span class="cf">in</span> a Quarto blog. Welcome<span class="sc">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>[](thumbnail.jpg)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>This is the first post <span class="cf">in</span> a Quarto blog. Welcome<span class="sc">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We get this on the listing page:</p>
 <p><img src="busted-image.png" class="img-fluid"></p>
 <p>This is Quarto failing to adjust the image’s pathname in the listing, though it does render the image correctly to the right as part of the listing structure.</p>
 <p>This can be worked around with the simple but ugly hack of fully specifying the image’s pathname, as in:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>[](<span class="sc">/</span>posts<span class="sc">/</span>post<span class="sc">-</span>with<span class="sc">-</span>code<span class="sc">/</span>thumbnail.jpg)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>This is the first post <span class="cf">in</span> a Quarto blog. Welcome<span class="sc">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>[](<span class="sc">/</span>posts<span class="sc">/</span>post<span class="sc">-</span>with<span class="sc">-</span>code<span class="sc">/</span>thumbnail.jpg)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>This is the first post <span class="cf">in</span> a Quarto blog. Welcome<span class="sc">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>but</p>
 <ol type="a">
 <li>Gross, and</li>

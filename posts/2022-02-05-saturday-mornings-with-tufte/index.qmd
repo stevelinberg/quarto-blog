@@ -1,0 +1,23 @@
+---
+title: "Saturday mornings with Tufte"
+description: "The other half of data science skillbuilding"
+date: 2022-02-05
+preview: tuftebooks.jpg
+categories: [tufte, design]
+---
+
+It takes a lot of sustained effort to build, maintain, and grow robust quantitative skills. Data science is hard, and it's not enough to just have a wealth of formulas and statistical techniques committed to memory: data investigation requires instincts, which can only come as the hard-won results of a great deal of study, practice and inquiry.
+
+As the world re-aligns itself around the tsunami of data that is already hitting us, though, we all know that quant-fu is only half the battle. Being able to manipulate and interpret data fluently is absolutely essential, but no less so is the ability to present and communicate it effectively. Data presentation skills are meaningless (and dangerous) if built atop a weak quantitative foundation, but all the quantitative skills in the world won't save us if we can't make the results of our work understandable.
+
+![Saturday reading](tuftebooks.jpg)
+
+I'm taking a few hours every Saturday morning to read [Edward Tufte](https://www.edwardtufte.com)'s "[The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi)" and "[Beautiful Evidence](https://www.edwardtufte.com/tufte/books_be)". I'm not far enough in yet to articulate his vision or integrate his concepts into my own work, but it has the feeling of a correct path that I've learned to recognize from early forays in other fields. A lot of it is about decluttering, stripping away what is superfluous to leave only what is essential, which is one aspect of great art.
+
+![Sample page on time series](vdqi_spread.jpg)
+
+One of the things that I love about data science is that this principle is equally critical in both the quantitative and qualitative aspects of the field. Statistical and engineering skills help strip away unneeded or irrelevant data; information design skills help visually focus on the most important aspects of what remains, to deliver the message as clearly as possible.
+
+(And, right out of the gate on page 1 of *VDQI*, as the cool kids call it, is an idea for a short quantitative project that I'll take up in the next post.)
+
+![VDQI p1](vdqi_p1.jpg)

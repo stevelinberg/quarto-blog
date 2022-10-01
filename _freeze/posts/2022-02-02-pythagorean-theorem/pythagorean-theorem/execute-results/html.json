@@ -1,0 +1,14 @@
+{
+  "hash": "b2778cebf2ef35aa9a14e4a4a4726b97",
+  "result": {
+    "markdown": "---\ntitle: \"Pythagorean Theorem\"\ndescription: \"How did I not know this\"\ndate: 2022-02-02\ncategories: [math]\n---\n\n\nHow did I make it to `$adulthood * 2` without knowing that our old friend, the Pythagorean Theorem ($a^2 + b^2 = c^2$), works in any number of dimensions?\n\nThe Euclidean distance $d$ between the origin ($0, 0, \\dots 0$) and a point defined by $n$ coordinates $x$ is just\n\n$$d = \\sqrt{x_1^2 + x_2^2 + \\dots + x_n^2}$$\n\nAdd up all of the squares and take the square root. Dope-smack for me.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

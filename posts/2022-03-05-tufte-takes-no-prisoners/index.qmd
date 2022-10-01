@@ -3,6 +3,7 @@ title: "Tufte Takes No Prisoners"
 description: "Edward Tufte gets raw on chartjunk."
 date: 2022-03-05
 categories: [tufte, design]
+image: badgraphic.png
 ---
 
 The gloves come off in in "Chartjunk", chapter 5 of [Edward Tufte](https://www.edwardtufte.com)'s "[The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi)". Here I am, innocently beginning to think about a poster presentation I have coming up in a couple of months and to imagine design elements that will beautify the project and help make the information easier to understand, and then right in the first paragraph, Tufte drops this:

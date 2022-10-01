@@ -1,0 +1,135 @@
+---
+title: "Double-Checking Basic Stats"
+description: "Putting the magnifying glass on page 1 of Tufte's \"Visual Display of Quatitative Information\"."
+date: 2022-02-17
+draft: true
+image: tufte-anscombe-plots.png
+categories: [tufte, r, statistics]
+---
+
+```{r setup, echo=FALSE, include=FALSE}
+library(tidyverse)
+library(pander)
+library(cowplot) # for side-by-side plots from different data
+```
+
+Before taking the plunge into [Edward Tufte](https://www.edwardtufte.com)'s "[The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi)" , we're going to take a brief side trip into basic statistics to make sure we're on a solid conceptual footing.
+
+Sometimes people make mistakes, even when careful and well-intentioned. Worse, sometimes people use statistics and data to deliberately mislead. Fact-checking is hard, and tedious, and frequently unrewarding. We want to believe what people say and write. We want to look at charts and plots and believe that the underlying data is sound. Most of the time, hopefully, it is. However, part of our role as data scientists is to be ready, willing and able to check the data on any claim, no matter how trustworthy it appears.
+
+Right on page 1 of *VQDI*, Tufte gives us an opportunity to do just this. He shows [Anscombe's Quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet), a set of four small sets of data that share nearly identical summary statistics:
+
+![[The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi), p1](tufte-anscombe-data.png)
+
+...but that look quite different when plotted, to illustrate the point that visualizing data is a critical aspect of analysis:
+
+![[The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi), p2](tufte-anscombe-plots.png)
+
+Anscombe's Quartet is a brilliant project that shows many shortcomings of common statistical methods, and rewards deep study. In our case here, though, we're going to do something far less ambitious: simply verify (using [R](https://www.r-project.org/)) that the summary statistics Tufte shows with the data are accurate, and that we understand what they mean.
+
+My intent for this article is that it should be accessible to non-statisticians, non-mathematicians and non-programmers, though the R program code can be shown with the "Show code" disclosure triangles for those who are interested.
+
+## The data
+
+As luck would have it, the Anscombe dataset is built right into R, in the `datasets` library, so we don't have to retype anything:
+
+```{r}
+library(datasets)
+datasets::anscombe %>% 
+  select(x1, y1, x2, y2, x3, y3, x4, y4) %>%
+  pander()
+```
+
+<aside>Careful observers will note that the `x1`, `x2` and `x3` columns are identical, though the `y` columns vary, and that the `x4` column contains the same value for all but the 8th row.</aside>
+
+For our purpose here, we'll just look at the first data set; naturally, the verification process would be identical for any of the other data sets, or for any other (similar) data set.
+
+```{r}
+# extract the first dataset to a separate dataframe, rename columns x and y
+set_1 <- datasets::anscombe %>%
+  select(x = x1, y = y1)
+set_1 %>% pander()
+```
+
+## The claims
+
+The claim is that all four of the data sets share the following summary statistics:
+
+| Statistic                           | Value          |
+|-------------------------------------|----------------|
+| $N$                                 | 11             |
+| mean of $X$'s                       | 9.0            |
+| mean of $Y$'s                       | 7.5            |
+| equation of regression line         | $Y = 3 + 0.5X$ |
+| standard error of estimate of slope | 0.118          |
+| $t$                                 | 4.24           |
+| sum of squares $X - \bar{X}$        | 110.0          |
+| regression sum of squares           | 27.50          |
+| residual sum of squares of Y        | 13.75          |
+| correlation coefficient             | .82            |
+| $r^2$                               | .67            |
+
+Let's examine each of the claims in turn.
+
+### $N$, mean of $X$'s and $Y$'s
+
+Simple enough: `nrow()` counts rows, and `mean()` calculates means.
+
+```{r}
+set_1.xbar <- mean(set_1$x)
+set_1.ybar <- mean(set_1$y)
+set_1.n <- nrow(set_1)
+```
+
+| Statistic             | Value          |
+|-----------------------|----------------|
+| $N$ (row count)       | `r set_1.n`    |
+| mean of x ($\bar{x}$) | `r set_1.xbar` |
+| mean of y ($\bar{y}$) | `r set_1.ybar` |
+
+The mean of `y` is slightly higher than `7.5`, but that's a nit we can disregard; in nearly every real-world situation, there is no practical difference between `7.5` and `7.5009091`, and the purpose of the Anscombe data is to show the importance of visualization, not to achieve perfect mathematical precision. Not a lot more needs to be said here; these are the most basic of summary statistics, but nothing is ever so basic that checking it is a waste of time.
+
+### equation of regression line: $Y = 3 + 0.5X$
+
+OK, so what is a regression line? In general terms, it's a line of best fit, a straight line that get as close as possible to all of the points in the data set. If we look at the plot of the first set's points:
+
+```{r}
+set_1.baseplot <- ggplot(set_1, mapping = aes(x = x, y = y)) +
+  geom_point(color = "darkgreen", size = 3) +
+  scale_x_continuous(limits = c(0, 20)) +
+  theme_minimal() +
+  theme(axis.line = element_line(colour = "darkblue",
+                    size = 1, linetype = "solid"))
+
+set_1.baseplot
+```
+
+A regression line is a straight line through the graph that best represents, to the extent that a straight line can, the overall shape of the data. It consists of an *intercept* (the value of X where the line crosses the X axis, where Y is 0), and a *slope* (the "rise over the run", or how much each unit of increase in X, as we move left to right, increases or decreases the value / height of Y). It is expressed with the equation
+
+$$y = \beta_0 + \beta_1 \times x$$ where $\beta_0$ ("beta zero") is the intercept, and $\beta_1$ ("beta one") is the slope, or the change in $y$ for every change of one unit in $x$.
+
+Sounds easy enough, but if we did it by eye, trying to draw the line that best shows the middle of the data, how would we do it?
+
+The simplest guess might be to use the basic statistic
+
+We can then add an abline:
+
+```{r}
+set_1.baseplot_abline <- set_1.baseplot +
+    geom_abline(slope = 0.5, intercept = 3, color = "red")
+set_1.baseplot_abline
+```
+
+### standard error of estimate of slope = 0.118
+
+### $t$ = 4.24
+
+### sum of squares $X - \bar{X}$ = 110.0
+
+### regression sum of squares = 27.50
+
+### residual sum of squares of Y = 13.75
+
+### correlation coefficient = .82
+
+### $r^2$ = .67
