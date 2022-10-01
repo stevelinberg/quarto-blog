@@ -1,0 +1,132 @@
+---
+title: "Porting slinberg.net from Distill to Quarto"
+date: "2022-10-01"
+categories: [quarto, distill, blog]
+image: quarto.png
+---
+
+[Quarto](https://quarto.org): all the cool kids are doing it.
+
+Setting aside the *whys*, this is a narrative of the *hows* - narrating the conversion of this site from Distill to Quarto as I go. This process was done with RStudio version 2022.07.1[^1].
+
+[^1]: RStudio 2022.07.1+554 "Spotted Wakerobin" Release (7872775ebddc40635780ca1ed238934c3345c5de, 2022-07-22) for macOS Mozilla/5.0 (Macintosh; Intel Mac OS X 12_6\_0) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.12.10 Chrome/69.0.3497.128 Safari/537.36, to be precise
+
+## The process so far
+
+So far, the steps have been:
+
+1.  Use RStudio to create a new "Quarto Website" project, which I inspiringly named `quarto-blog`, which will also be the repository name
+2.  Separately download the standalone [Quarto CLI](https://quarto.org/docs/get-started/), for purposes yet to be determined
+3.  Read a couple of the present Distill-to-Quarto narratives, such as
+    -   [Karat Sidhu - Converting a distill website to Quarto](https://karatsidhu.medium.com/converting-a-distill-website-to-quarto-35f2422d0b53)
+    -   [Danielle Navarro - Porting a distill blog to quarto](https://blog.djnavarro.net/posts/2022-04-20_porting-to-quarto/)
+4.  Set a few of the basic options in the site's `_quarto.yml` file (`title`, `description`, `site-url`, etc)
+5.  Created this as-of-this-typing-unsaved document as a new Quarto Document inside the project
+6.  Check RStudio's `Render on Save` option in the file header, which quickly rebuilds the skeletal site on saves
+
+## Creating a (this) blog post
+
+So one immediate difference in terms of workflow is that the Quarto CLI doesn't have - as of version 1.1.251, anyway - commands for creating blog post files. In Distill, you would say `create_post("Foo")` in the RStudio console, and that would create a skeleton with some base infrastructure, some automatic date-fu, etc. It would be easy enough to build a quick utility for doing this, but I kind of like that a blog post appears to just be a file (OK, a directory with an `index.qmd` file) inside the top-level `posts` directory.
+
+So I'm going to save this file in the path `posts/2022-10-01_distill_to_quarto_part_1/index.qmd`, and that's all that's needed to make it a blog post. Yes, I'm typing out the date and title by hand, which is slightly more tedious than Distill, but I also know there's nothing special going on under the hood when I add this file.
+
+Why name the folder ...`distill_to_quarto_part_1` instead of just `distill_to_quarto`? Because I'm pretty sure I read somewhere that there's a context where blog post titles can be disambiguated from their date prefixes, and so I want the title to be unique enough to withstand that if I add another similarly-titled post in the future. Not feeling super confident about this decision so far, but there it is.
+
+(See [That pesky first image](#that-pesky-first-image) in Appendix A below for the first snag: the first, or "listing", image, and a pathname problem in Quarto.)
+
+## Getting the groovy table of contents
+
+The table of contents (to the left in desktop mode) automatically appears once you have headers in the document structure. The document's title is rendered as the `h1` tag above the body, but you need to have at least one `h2` tag for the table of contents to appear.
+
+To make this work in the `posts` directory (or presumably any directory), it needs to be specified in the directory's `_metadata.yml` file (so in this case, `posts/_metadata.yml`) like this:
+
+```yml
+# Default for table of contents
+toc: true
+toc-title: Table of contents
+toc-location: left
+```
+
+I believe that was there by default; it could be moved over to the right if you wanted something else in the left margin, like a site directory or something.
+
+### Github links
+
+At least in the default configuration, this is also where your github links configured for this specific page will appear. Unfortunately, that means they *won't* appear if your document lacks `h2` tags, and consequently the table of contents isn't built. I'd prefer to have these links appear regardless, and separate from the table of contents; putting that on my mental list of things to figure out.
+
+## Deleting the two sample posts
+
+Now that this document is saved, establishing the blog structure, let's nuke the two sample posts the site was initialized with; this, happily, is just a matter of deleting the directories `posts/post-with-code` and `welcome`.
+
+![](delete-posts.png)
+
+Just deleting the directories re-renders the site, and they're gone. Nice that there's nothing else to that.
+
+(Doing this did appear to confuse RStudio the next time I saved this file, though, and caused a new render process to start, stranding the prior preview tab in my browser and opening a new one. Still a few early-launch kinks to work out here, unsurprisingly...)
+
+PS. *WHOA!* that image is way too big. Let's scale it down. Change the ... do we still call this snippet rmarkdown? ... from this:
+
+```r
+![](delete-posts.png)
+```
+to this:
+
+```r
+![](delete-posts.png){width=50%}
+```
+
+![](delete-posts.png){width=50%}
+
+That's better. That was a screengrab from a high-res display, so downscaling it by 50% was the right approach.
+
+## Appendix A: problems
+
+Rather than interrupt the basic narrative above, let's stack the problems we hit along the way down here.
+
+### That pesky first image {#that-pesky-first-image}
+
+One of the basic concepts in blogs and blog listings is the all-important thumbnail image that is used on the listing page.
+
+There are basically two ways to implement this in Quarto: either explicitly specify it with the `image` atrribute in the YAML section of the post's `index.qmd` file:
+
+``` yml
+image: "image.jpg"
+```
+
+or, omit this attribute, and in that case, Quarto will use the first image it finds in the post body (if any). The difference is: if you only want to use the image on the listing page, but not have it appear in the post itself, put it in the YAML header; if you want it to be used on both, then omit the YAML header and put it inline.
+
+The problem is that if you do the latter, and the image is right at the start of the post (a header image, in other words), it will not render correctly if it happens to be within the range of the preview text (which doesn't appear to be visibly configurable in Quarto, but it's more or less the first line or two); this is because it doesn't convert the filename path to a global path. It does in the listing itself, which is odd. You can see the result here, from one of the sample posts; the original code is:
+
+``` r
+This is the first post in a Quarto blog. Welcome!
+
+![](thumbnail.jpg)
+```
+
+But it we reverse it to put the image above the text:
+
+``` r
+![](thumbnail.jpg)
+
+This is the first post in a Quarto blog. Welcome!
+```
+
+We get this on the listing page:
+
+![](busted-image.png)
+
+This is Quarto failing to adjust the image's pathname in the listing, though it does render the image correctly to the right as part of the listing structure.
+
+This can be worked around with the simple but ugly hack of fully specifying the image's pathname, as in:
+
+``` r
+![](/posts/post-with-code/thumbnail.jpg)
+
+This is the first post in a Quarto blog. Welcome!
+```
+
+but
+
+a.  Gross, and
+b.  You probably don't want an inline image from the body appearing in the listing preview anyway.
+
+Hopefully [this issue](https://github.com/quarto-dev/quarto-cli/issues/2042) will get resolved at some point.

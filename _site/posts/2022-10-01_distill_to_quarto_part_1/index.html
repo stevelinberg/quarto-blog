@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Steve Linberg">
+<meta name="dcterms.date" content="2022-10-01">
+
+<title>slinberg.net - Porting slinberg.net from Distill to Quarto</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">slinberg.net</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-meta" role="button" data-bs-toggle="dropdown" aria-expanded="false">Meta</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-meta">    
+        <li>
+    <a class="dropdown-item" href="../../meta_list.html">
+ <span class="dropdown-text">Article listing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../meta/distill-and-github-pages-setup/index.html">
+ <span class="dropdown-text">Distill and Github Pages Setup</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-academics" role="button" data-bs-toggle="dropdown" aria-expanded="false">Academics</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-academics">    
+        <li>
+    <a class="dropdown-item" href="../../academics_list.html">
+ <span class="dropdown-text">Article listing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../academics/ps753/">
+ <span class="dropdown-text">PS753 - Political and Social Networks, Spring 2022</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../academics/ms797/">
+ <span class="dropdown-text">MS797 - Machine Learning for Social Sciences, Spring 2022</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/stevelinberg"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/slinberg/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/stevelinberg"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://stackoverflow.com/users/13603796/stevelinberg"><i class="bi bi-stack-overflow" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:steve@slinberg.net"><i class="bi bi-envelope" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml"><i class="bi bi-rss" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Porting slinberg.net from Distill to Quarto</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">quarto</div>
+                <div class="quarto-category">distill</div>
+                <div class="quarto-category">blog</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <a href="https://slinberg.net">Steve Linberg</a> 
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://umass.edu">
+              University of Massachusetts Amherst
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 1, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-process-so-far" id="toc-the-process-so-far" class="nav-link active" data-scroll-target="#the-process-so-far">The process so far</a></li>
+  <li><a href="#creating-a-this-blog-post" id="toc-creating-a-this-blog-post" class="nav-link" data-scroll-target="#creating-a-this-blog-post">Creating a (this) blog post</a></li>
+  <li><a href="#getting-the-groovy-table-of-contents" id="toc-getting-the-groovy-table-of-contents" class="nav-link" data-scroll-target="#getting-the-groovy-table-of-contents">Getting the groovy table of contents</a>
+  <ul class="collapse">
+  <li><a href="#github-links" id="toc-github-links" class="nav-link" data-scroll-target="#github-links">Github links</a></li>
+  </ul></li>
+  <li><a href="#deleting-the-two-sample-posts" id="toc-deleting-the-two-sample-posts" class="nav-link" data-scroll-target="#deleting-the-two-sample-posts">Deleting the two sample posts</a></li>
+  <li><a href="#appendix-a-problems" id="toc-appendix-a-problems" class="nav-link" data-scroll-target="#appendix-a-problems">Appendix A: problems</a>
+  <ul class="collapse">
+  <li><a href="#that-pesky-first-image" id="toc-that-pesky-first-image" class="nav-link" data-scroll-target="#that-pesky-first-image">That pesky first image</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/stevelinberg/quarto-blog/edit/main/posts/2022-10-01_distill_to_quarto_part_1/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/stevelinberg/quarto-blog/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/stevelinberg/quarto-blog/blob/main/posts/2022-10-01_distill_to_quarto_part_1/index.qmd" class="toc-action">View source</a></p></div></div></nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p><a href="https://quarto.org">Quarto</a>: all the cool kids are doing it.</p>
+<p>Setting aside the <em>whys</em>, this is a narrative of the <em>hows</em> - narrating the conversion of this site from Distill to Quarto as I go. This process was done with RStudio version 2022.07.1<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<section id="the-process-so-far" class="level2">
+<h2 class="anchored" data-anchor-id="the-process-so-far">The process so far</h2>
+<p>So far, the steps have been:</p>
+<ol type="1">
+<li>Use RStudio to create a new “Quarto Website” project, which I inspiringly named <code>quarto-blog</code>, which will also be the repository name</li>
+<li>Separately download the standalone <a href="https://quarto.org/docs/get-started/">Quarto CLI</a>, for purposes yet to be determined</li>
+<li>Read a couple of the present Distill-to-Quarto narratives, such as
+<ul>
+<li><a href="https://karatsidhu.medium.com/converting-a-distill-website-to-quarto-35f2422d0b53">Karat Sidhu - Converting a distill website to Quarto</a></li>
+<li><a href="https://blog.djnavarro.net/posts/2022-04-20_porting-to-quarto/">Danielle Navarro - Porting a distill blog to quarto</a></li>
+</ul></li>
+<li>Set a few of the basic options in the site’s <code>_quarto.yml</code> file (<code>title</code>, <code>description</code>, <code>site-url</code>, etc)</li>
+<li>Created this as-of-this-typing-unsaved document as a new Quarto Document inside the project</li>
+<li>Check RStudio’s <code>Render on Save</code> option in the file header, which quickly rebuilds the skeletal site on saves</li>
+</ol>
+</section>
+<section id="creating-a-this-blog-post" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-this-blog-post">Creating a (this) blog post</h2>
+<p>So one immediate difference in terms of workflow is that the Quarto CLI doesn’t have - as of version 1.1.251, anyway - commands for creating blog post files. In Distill, you would say <code>create_post("Foo")</code> in the RStudio console, and that would create a skeleton with some base infrastructure, some automatic date-fu, etc. It would be easy enough to build a quick utility for doing this, but I kind of like that a blog post appears to just be a file (OK, a directory with an <code>index.qmd</code> file) inside the top-level <code>posts</code> directory.</p>
+<p>So I’m going to save this file in the path <code>posts/2022-10-01_distill_to_quarto_part_1/index.qmd</code>, and that’s all that’s needed to make it a blog post. Yes, I’m typing out the date and title by hand, which is slightly more tedious than Distill, but I also know there’s nothing special going on under the hood when I add this file.</p>
+<p>Why name the folder …<code>distill_to_quarto_part_1</code> instead of just <code>distill_to_quarto</code>? Because I’m pretty sure I read somewhere that there’s a context where blog post titles can be disambiguated from their date prefixes, and so I want the title to be unique enough to withstand that if I add another similarly-titled post in the future. Not feeling super confident about this decision so far, but there it is.</p>
+<p>(See <a href="#that-pesky-first-image">That pesky first image</a> in Appendix A below for the first snag: the first, or “listing”, image, and a pathname problem in Quarto.)</p>
+</section>
+<section id="getting-the-groovy-table-of-contents" class="level2">
+<h2 class="anchored" data-anchor-id="getting-the-groovy-table-of-contents">Getting the groovy table of contents</h2>
+<p>The table of contents (to the left in desktop mode) automatically appears once you have headers in the document structure. The document’s title is rendered as the <code>h1</code> tag above the body, but you need to have at least one <code>h2</code> tag for the table of contents to appear.</p>
+<p>To make this work in the <code>posts</code> directory (or presumably any directory), it needs to be specified in the directory’s <code>_metadata.yml</code> file (so in this case, <code>posts/_metadata.yml</code>) like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Default for table of contents</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">toc-title</span><span class="kw">:</span><span class="at"> Table of contents</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toc-location</span><span class="kw">:</span><span class="at"> left</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I believe that was there by default; it could be moved over to the right if you wanted something else in the left margin, like a site directory or something.</p>
+<section id="github-links" class="level3">
+<h3 class="anchored" data-anchor-id="github-links">Github links</h3>
+<p>At least in the default configuration, this is also where your github links configured for this specific page will appear. Unfortunately, that means they <em>won’t</em> appear if your document lacks <code>h2</code> tags, and consequently the table of contents isn’t built. I’d prefer to have these links appear regardless, and separate from the table of contents; putting that on my mental list of things to figure out.</p>
+</section>
+</section>
+<section id="deleting-the-two-sample-posts" class="level2">
+<h2 class="anchored" data-anchor-id="deleting-the-two-sample-posts">Deleting the two sample posts</h2>
+<p>Now that this document is saved, establishing the blog structure, let’s nuke the two sample posts the site was initialized with; this, happily, is just a matter of deleting the directories <code>posts/post-with-code</code> and <code>welcome</code>.</p>
+<p><img src="delete-posts.png" class="img-fluid"></p>
+<p>Just deleting the directories re-renders the site, and they’re gone. Nice that there’s nothing else to that.</p>
+<p>(Doing this did appear to confuse RStudio the next time I saved this file, though, and caused a new render process to start, stranding the prior preview tab in my browser and opening a new one. Still a few early-launch kinks to work out here, unsurprisingly…)</p>
+<p>PS. <em>WHOA!</em> that image is way too big. Let’s scale it down. Change the … do we still call this snippet rmarkdown? … from this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>[](delete<span class="sc">-</span>posts.png)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>to this:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>[](delete<span class="sc">-</span>posts.png){width<span class="ot">=</span><span class="dv">50</span>%}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="delete-posts.png" class="img-fluid" style="width:50.0%"></p>
+<p>That’s better. That was a screengrab from a high-res display, so downscaling it by 50% was the right approach.</p>
+</section>
+<section id="appendix-a-problems" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-a-problems">Appendix A: problems</h2>
+<p>Rather than interrupt the basic narrative above, let’s stack the problems we hit along the way down here.</p>
+<section id="that-pesky-first-image" class="level3">
+<h3 class="anchored" data-anchor-id="that-pesky-first-image">That pesky first image</h3>
+<p>One of the basic concepts in blogs and blog listings is the all-important thumbnail image that is used on the listing page.</p>
+<p>There are basically two ways to implement this in Quarto: either explicitly specify it with the <code>image</code> atrribute in the YAML section of the post’s <code>index.qmd</code> file:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span><span class="kw">:</span><span class="at"> </span><span class="st">"image.jpg"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or, omit this attribute, and in that case, Quarto will use the first image it finds in the post body (if any). The difference is: if you only want to use the image on the listing page, but not have it appear in the post itself, put it in the YAML header; if you want it to be used on both, then omit the YAML header and put it inline.</p>
+<p>The problem is that if you do the latter, and the image is right at the start of the post (a header image, in other words), it will not render correctly if it happens to be within the range of the preview text (which doesn’t appear to be visibly configurable in Quarto, but it’s more or less the first line or two); this is because it doesn’t convert the filename path to a global path. It does in the listing itself, which is odd. You can see the result here, from one of the sample posts; the original code is:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>This is the first post <span class="cf">in</span> a Quarto blog. Welcome<span class="sc">!</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>[](thumbnail.jpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But it we reverse it to put the image above the text:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>[](thumbnail.jpg)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>This is the first post <span class="cf">in</span> a Quarto blog. Welcome<span class="sc">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We get this on the listing page:</p>
+<p><img src="busted-image.png" class="img-fluid"></p>
+<p>This is Quarto failing to adjust the image’s pathname in the listing, though it does render the image correctly to the right as part of the listing structure.</p>
+<p>This can be worked around with the simple but ugly hack of fully specifying the image’s pathname, as in:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>[](<span class="sc">/</span>posts<span class="sc">/</span>post<span class="sc">-</span>with<span class="sc">-</span>code<span class="sc">/</span>thumbnail.jpg)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>This is the first post <span class="cf">in</span> a Quarto blog. Welcome<span class="sc">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>but</p>
+<ol type="a">
+<li>Gross, and</li>
+<li>You probably don’t want an inline image from the body appearing in the listing preview anyway.</li>
+</ol>
+<p>Hopefully <a href="https://github.com/quarto-dev/quarto-cli/issues/2042">this issue</a> will get resolved at some point.</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>RStudio 2022.07.1+554 “Spotted Wakerobin” Release (7872775ebddc40635780ca1ed238934c3345c5de, 2022-07-22) for macOS Mozilla/5.0 (Macintosh; Intel Mac OS X 12_6_0) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.12.10 Chrome/69.0.3497.128 Safari/537.36, to be precise<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
+  author = {Steve Linberg},
+  editor = {},
+  title = {Porting Slinberg.net from {Distill} to {Quarto}},
+  date = {2022-10-01},
+  url = {https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-linberg2022" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Steve Linberg. 2022. <span>“Porting Slinberg.net from Distill to
+Quarto.”</span> October 1, 2022. <a href="https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1">https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

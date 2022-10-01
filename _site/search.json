@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "quarto-blog",
+    "section": "",
+    "text": "quarto\n\n\ndistill\n\n\nblog\n\n\n\n\n\n\n\n\n\n\n\nOct 1, 2022\n\n\nSteve Linberg\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "1 + 1\n\n[1] 2\n\n\n\n\n\nReusehttps://creativecommons.org/licenses/by/4.0/CitationBibTeX citation:@online{linberg2022,\n  author = {Steve Linberg and Harlow Malloc},\n  editor = {},\n  title = {Post {With} {Code}},\n  date = {2022-09-30},\n  url = {https://slinberg.net/posts/post-with-code},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nSteve Linberg, and Harlow Malloc. 2022. “Post With Code.”\nSeptember 30, 2022. https://slinberg.net/posts/post-with-code."
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts.\n\n\n\nReusehttps://creativecommons.org/licenses/by/4.0/CitationBibTeX citation:@online{linberg2022,\n  author = {Steve Linberg and Tristan O’Malley},\n  editor = {},\n  title = {Welcome {To} {My} {Blog}},\n  date = {2022-09-27},\n  url = {https://slinberg.net/posts/welcome},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nSteve Linberg, and Tristan O’Malley. 2022. “Welcome To My\nBlog.” September 27, 2022. https://slinberg.net/posts/welcome."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "posts/2022-10-01_distill_to_quarto_part_1/index.html",
+    "href": "posts/2022-10-01_distill_to_quarto_part_1/index.html",
+    "title": "Porting slinberg.net from Distill to Quarto",
+    "section": "",
+    "text": "Quarto: all the cool kids are doing it.\nSetting aside the whys, this is a narrative of the hows - narrating the conversion of this site from Distill to Quarto as I go. This process was done with RStudio version 2022.07.11."
+  },
+  {
+    "objectID": "posts/2022-10-01_distill_to_quarto_part_1/index.html#appendix-a-problems",
+    "href": "posts/2022-10-01_distill_to_quarto_part_1/index.html#appendix-a-problems",
+    "title": "Porting slinberg.net from Distill to Quarto",
+    "section": "Appendix A: problems",
+    "text": "Appendix A: problems\nRather than interrupt the basic narrative above, let’s stack the problems we hit along the way down here.\n\nThat pesky first image\nOne of the basic concepts in blogs and blog listings is the all-important thumbnail image that is used on the listing page.\nThere are basically two ways to implement this in Quarto: either explicitly specify it with the image atrribute in the YAML section of the post’s index.qmd file:\nimage: \"image.jpg\"\nor, omit this attribute, and in that case, Quarto will use the first image it finds in the post body (if any). The difference is: if you only want to use the image on the listing page, but not have it appear in the post itself, put it in the YAML header; if you want it to be used on both, then omit the YAML header and put it inline.\nThe problem is that if you do the latter, and the image is right at the start of the post (a header image, in other words), it will not render correctly if it happens to be within the range of the preview text (which doesn’t appear to be visibly configurable in Quarto, but it’s more or less the first line or two); this is because it doesn’t convert the filename path to a global path. It does in the listing itself, which is odd. You can see the result here, from one of the sample posts; the original code is:\nThis is the first post in a Quarto blog. Welcome!\n\n![](thumbnail.jpg)\nBut it we reverse it to put the image above the text:\n![](thumbnail.jpg)\n\nThis is the first post in a Quarto blog. Welcome!\nWe get this on the listing page:\n\nThis is Quarto failing to adjust the image’s pathname in the listing, though it does render the image correctly to the right as part of the listing structure.\nThis can be worked around with the simple but ugly hack of fully specifying the image’s pathname, as in:\n![](/posts/post-with-code/thumbnail.jpg)\n\nThis is the first post in a Quarto blog. Welcome!\nbut\n\nGross, and\nYou probably don’t want an inline image from the body appearing in the listing preview anyway.\n\nHopefully this issue will get resolved at some point."
+  },
+  {
+    "objectID": "posts/2022-10-01_distill_to_quarto_part_1/index.html#the-process-so-far",
+    "href": "posts/2022-10-01_distill_to_quarto_part_1/index.html#the-process-so-far",
+    "title": "Porting slinberg.net from Distill to Quarto",
+    "section": "The process so far",
+    "text": "The process so far\nSo far, the steps have been:\n\nUse RStudio to create a new “Quarto Website” project, which I inspiringly named quarto-blog, which will also be the repository name\nSeparately download the standalone Quarto CLI, for purposes yet to be determined\nRead a couple of the present Distill-to-Quarto narratives, such as\n\nKarat Sidhu - Converting a distill website to Quarto\nDanielle Navarro - Porting a distill blog to quarto\n\nSet a few of the basic options in the site’s _quarto.yml file (title, description, site-url, etc)\nCreated this as-of-this-typing-unsaved document as a new Quarto Document inside the project\nCheck RStudio’s Render on Save option in the file header, which quickly rebuilds the skeletal site on saves"
+  },
+  {
+    "objectID": "posts/2022-10-01_distill_to_quarto_part_1/index.html#creating-a-this-blog-post",
+    "href": "posts/2022-10-01_distill_to_quarto_part_1/index.html#creating-a-this-blog-post",
+    "title": "Porting slinberg.net from Distill to Quarto",
+    "section": "Creating a (this) blog post",
+    "text": "Creating a (this) blog post\nSo one immediate difference in terms of workflow is that the Quarto CLI doesn’t have - as of version 1.1.251, anyway - commands for creating blog post files. In Distill, you would say create_post(\"Foo\") in the RStudio console, and that would create a skeleton with some base infrastructure, some automatic date-fu, etc. It would be easy enough to build a quick utility for doing this, but I kind of like that a blog post appears to just be a file (OK, a directory with an index.qmd file) inside the top-level posts directory.\nSo I’m going to save this file in the path posts/2022-10-01_distill_to_quarto_part_1/index.qmd, and that’s all that’s needed to make it a blog post. Yes, I’m typing out the date and title by hand, which is slightly more tedious than Distill, but I also know there’s nothing special going on under the hood when I add this file.\nWhy name the folder …distill_to_quarto_part_1 instead of just distill_to_quarto? Because I’m pretty sure I read somewhere that there’s a context where blog post titles can be disambiguated from their date prefixes, and so I want the title to be unique enough to withstand that if I add another similarly-titled post in the future. Not feeling super confident about this decision so far, but there it is.\n(See That pesky first image in Appendix A below for the first snag: the first, or “listing”, image, and a pathname problem in Quarto.)"
+  },
+  {
+    "objectID": "posts/2022-10-01_distill_to_quarto_part_1/index.html#getting-the-groovy-table-of-contents",
+    "href": "posts/2022-10-01_distill_to_quarto_part_1/index.html#getting-the-groovy-table-of-contents",
+    "title": "Porting slinberg.net from Distill to Quarto",
+    "section": "Getting the groovy table of contents",
+    "text": "Getting the groovy table of contents\nThe table of contents (to the left in desktop mode) automatically appears once you have headers in the document structure. The document’s title is rendered as the h1 tag above the body, but you need to have at least one h2 tag for the table of contents to appear.\nTo make this work in the posts directory (or presumably any directory), it needs to be specified in the directory’s _metadata.yml file (so in this case, posts/_metadata.yml) like this:\n# Default for table of contents\ntoc: true\ntoc-title: Table of contents\ntoc-location: left\nI believe that was there by default; it could be moved over to the right if you wanted something else in the left margin, like a site directory or something.\n\nGithub links\nAt least in the default configuration, this is also where your github links configured for this specific page will appear. Unfortunately, that means they won’t appear if your document lacks h2 tags, and consequently the table of contents isn’t built. I’d prefer to have these links appear regardless, and separate from the table of contents; putting that on my mental list of things to figure out."
+  },
+  {
+    "objectID": "posts/2022-10-01_distill_to_quarto_part_1/index.html#deleting-the-two-sample-posts",
+    "href": "posts/2022-10-01_distill_to_quarto_part_1/index.html#deleting-the-two-sample-posts",
+    "title": "Porting slinberg.net from Distill to Quarto",
+    "section": "Deleting the two sample posts",
+    "text": "Deleting the two sample posts\nNow that this document is saved, establishing the blog structure, let’s nuke the two sample posts the site was initialized with; this, happily, is just a matter of deleting the directories posts/post-with-code and welcome.\n\nJust deleting the directories re-renders the site, and they’re gone. Nice that there’s nothing else to that.\n(Doing this did appear to confuse RStudio the next time I saved this file, though, and caused a new render process to start, stranding the prior preview tab in my browser and opening a new one. Still a few early-launch kinks to work out here, unsurprisingly…)\nPS. WHOA! that image is way too big. Let’s scale it down. Change the … do we still call this snippet rmarkdown? … from this:\n![](delete-posts.png)\nto this:\n![](delete-posts.png){width=50%}\n\nThat’s better. That was a screengrab from a high-res display, so downscaling it by 50% was the right approach."
+  }
+]

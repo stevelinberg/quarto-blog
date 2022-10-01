@@ -1,0 +1,51 @@
+project:
+  type: website
+
+website:
+  title: "slinberg.net"
+  description: Steve Linberg's blog
+  site-url: https://slinberg.net
+  repo-url: https://github.com/stevelinberg/quarto-blog
+  repo-actions: [edit, issue, source]
+  reader-mode: true
+  navbar:
+    search: true
+    right:
+      - about.qmd
+      - text: "Meta"
+        menu:
+          - text: "Article listing"
+            href: meta_list.html
+          - text: "Distill and Github Pages Setup"
+            href: meta/distill-and-github-pages-setup/index.html
+      - text: "Academics"
+        menu:
+          - text: "Article listing"
+            href: academics_list.html
+          - text: "PS753 - Political and Social Networks, Spring 2022"
+            href: academics/ps753/
+          - text: "MS797 - Machine Learning for Social Sciences, Spring 2022"
+            href: academics/ms797/
+      - icon: twitter
+        href: https://twitter.com/stevelinberg
+      - icon: linkedin
+        href: https://www.linkedin.com/in/slinberg/
+      - icon: github
+        href: https://github.com/stevelinberg
+      - icon: stack-overflow
+        href: https://stackoverflow.com/users/13603796/stevelinberg
+      - icon: envelope
+        href: mailto:steve@slinberg.net
+      - icon: rss
+        href: index.xml
+    feed:
+      items: 20
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    css: styles.css    
+editor: visual
+
