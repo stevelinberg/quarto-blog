@@ -1,11 +1,34 @@
 ---
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: true
 page-layout: full
-title-block-banner: false
+toc: false
 ---
+
+::: grid
+::: g-col-4
+![](2022-sfl-photo-400x400.jpg){width="200"}
+:::
+
+::: g-col-8
+# Steve Linberg
+
+bliff bloo
+:::
+
+::: g-col-6
+# Recent blog posts and highlights
+
+Some selections from my academic work from the DACSS program at Umass Amherst
+
+Get a listing here
+:::
+
+::: g-col-6
+# Academic work
+
+Some selections from my academic work from the DACSS program at Umass Amherst
+
+## [Text as Data](academics/797TA/)
+
+Spring 2021: stuff from TaD, including the Parler project
+:::
+:::

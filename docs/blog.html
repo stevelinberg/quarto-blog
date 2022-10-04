@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>slinberg.net</title>
+<title>slinberg.net – blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -60,10 +62,40 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-reading-time','listing-description','listing-categories','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
-</head>
+<link rel="alternate" type="application/rss+xml" title="slinberg.net" href="blog.xml"></head>
 
 <body class="nav-fixed">
 
@@ -85,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./steve.html">About</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html">Blog</a>
+    <a class="nav-link active" href="./blog.html" aria-current="page">Blog</a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/stevelinberg"><i class="bi bi-twitter" role="img">
@@ -135,38 +167,273 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#all-blog-posts" id="toc-all-blog-posts" class="nav-link active" data-scroll-target="#all-blog-posts">All blog posts</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/stevelinberg/quarto-blog/edit/main/blog.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/stevelinberg/quarto-blog/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/stevelinberg/quarto-blog/blob/main/blog.qmd" class="toc-action">View source</a></p></div></div></nav>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="blog">blog <span class="quarto-category-count">(2)</span></div><div class="category" data-category="design">design <span class="quarto-category-count">(3)</span></div><div class="category" data-category="distill">distill <span class="quarto-category-count">(1)</span></div><div class="category" data-category="math">math <span class="quarto-category-count">(1)</span></div><div class="category" data-category="omnifocus">omnifocus <span class="quarto-category-count">(1)</span></div><div class="category" data-category="quarto">quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="tufte">tufte <span class="quarto-category-count">(3)</span></div></div></div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 
 
-<div class="grid">
-<div class="g-col-4">
-<p><img src="2022-sfl-photo-400x400.jpg" class="img-fluid" width="200"></p>
+<section id="all-blog-posts" class="level1">
+<h1>All blog posts</h1>
+<p>Use the filter box below to filter by keyword or category.</p>
+
+
+
+</section>
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="listing-actions-group">
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
 </div>
-<section id="steve-linberg" class="level1 g-col-8">
-<h1>Steve Linberg</h1>
-<p>bliff bloo</p>
-</section>
-<section id="recent-blog-posts-and-highlights" class="level1 g-col-6">
-<h1>Recent blog posts and highlights</h1>
-<p>Some selections from my academic work from the DACSS program at Umass Amherst</p>
-<p>Get a listing here</p>
-</section>
-<section id="academic-work" class="level1 g-col-6">
-<h1>Academic work</h1>
-<p>Some selections from my academic work from the DACSS program at Umass Amherst</p>
-<section id="text-as-data" class="level2">
-<h2 class="anchored" data-anchor-id="text-as-data"><a href="academics/797TA/">Text as Data</a></h2>
-<p>Spring 2021: stuff from TaD, including the Parler project</p>
-</section>
-</section>
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="quarto,distill,blog" data-listing-date-sort="1664596800000" data-listing-file-modified-sort="1664662894714" data-listing-reading-time-sort="11.55">
+<div class="thumbnail">
+<p><a href="./posts/2022-10-01_distill_to_quarto_part_1/index.html"> <img src="./posts/2022-10-01_distill_to_quarto_part_1/quarto.png" class="thumnail-image"> </a></p>
 </div>
+<div class="body">
+<a href="./posts/2022-10-01_distill_to_quarto_part_1/index.html">
+<h3 class="no-anchor listing-title">
+Porting slinberg.net from Distill to Quarto
+</h3>
+<div class="listing-subtitle">
 
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('quarto'); return false;">
+quarto
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('distill'); return false;">
+distill
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('blog'); return false;">
+blog
+</div>
+</div>
+<a href="./posts/2022-10-01_distill_to_quarto_part_1/index.html">
+<div class="listing-description">
+Quarto: all the cool kids are doing it.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2022-10-01_distill_to_quarto_part_1/index.html">
+<div class="listing-date">
+Oct 1, 2022
+</div>
+<div class="listing-reading-time">
+11 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="blog,omnifocus" data-listing-date-sort="1648872000000" data-listing-file-modified-sort="1664644615220" data-listing-reading-time-sort="3.94">
+<div class="thumbnail">
+<p><a href="./posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html"> <img src="https://www.omnigroup.com/assets/img/icons/omnifocus-web@2x.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html">
+<h3 class="no-anchor listing-title">
+Quickie for importing tasks to OmniFocus 3
+</h3>
+<div class="listing-subtitle">
 
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('blog'); return false;">
+blog
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('omnifocus'); return false;">
+omnifocus
+</div>
+</div>
+<a href="./posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html">
+<div class="listing-description">
+<p>Copy and paste formatted text to mass-create tasks.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html">
+<div class="listing-date">
+Apr 2, 2022
+</div>
+<div class="listing-reading-time">
+3 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="tufte,design" data-listing-date-sort="1646456400000" data-listing-file-modified-sort="1664662372111" data-listing-reading-time-sort="2.95">
+<div class="thumbnail">
+<p><a href="./posts/2022-03-05-tufte-takes-no-prisoners/index.html"> <img src="./posts/2022-03-05-tufte-takes-no-prisoners/badgraphic.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2022-03-05-tufte-takes-no-prisoners/index.html">
+<h3 class="no-anchor listing-title">
+Tufte Takes No Prisoners
+</h3>
+<div class="listing-subtitle">
 
-</main> <!-- /main -->
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('tufte'); return false;">
+tufte
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('design'); return false;">
+design
+</div>
+</div>
+<a href="./posts/2022-03-05-tufte-takes-no-prisoners/index.html">
+<div class="listing-description">
+<p>Edward Tufte gets raw on chartjunk.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2022-03-05-tufte-takes-no-prisoners/index.html">
+<div class="listing-date">
+Mar 5, 2022
+</div>
+<div class="listing-reading-time">
+2 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="tufte,design" data-listing-date-sort="1645246800000" data-listing-file-modified-sort="1664663168387" data-listing-reading-time-sort="3.045">
+<div class="thumbnail">
+<p><a href="./posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html"> <img src="./posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/nyt_curve.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html">
+<h3 class="no-anchor listing-title">
+Playfair and the “Flatten the Curve” Graphic
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('tufte'); return false;">
+tufte
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('design'); return false;">
+design
+</div>
+</div>
+<a href="./posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html">
+<div class="listing-description">
+<p>The importance of simplicity in statistical graphics</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html">
+<div class="listing-date">
+Feb 19, 2022
+</div>
+<div class="listing-reading-time">
+3 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="tufte,design" data-listing-date-sort="1644037200000" data-listing-file-modified-sort="1664663662312" data-listing-reading-time-sort="1.605">
+<div class="thumbnail">
+<p><a href="./posts/2022-02-05-saturday-mornings-with-tufte/index.html"> <img src="./posts/2022-02-05-saturday-mornings-with-tufte/tuftebooks.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2022-02-05-saturday-mornings-with-tufte/index.html">
+<h3 class="no-anchor listing-title">
+Saturday mornings with Tufte
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('tufte'); return false;">
+tufte
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('design'); return false;">
+design
+</div>
+</div>
+<a href="./posts/2022-02-05-saturday-mornings-with-tufte/index.html">
+<div class="listing-description">
+<p>The other half of data science skillbuilding</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2022-02-05-saturday-mornings-with-tufte/index.html">
+<div class="listing-date">
+Feb 5, 2022
+</div>
+<div class="listing-reading-time">
+1 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5" data-categories="math" data-listing-date-sort="1643778000000" data-listing-file-modified-sort="1664663823703" data-listing-reading-time-sort="0.35">
+<div class="thumbnail">
+<a href="./posts/2022-02-02-pythagorean-theorem/index.html">
+<div class="thumbnail-image">
+
+</div>
+</a><p><a href="./posts/2022-02-02-pythagorean-theorem/index.html"></a></p>
+</div>
+<div class="body">
+<a href="./posts/2022-02-02-pythagorean-theorem/index.html">
+<h3 class="no-anchor listing-title">
+Pythagorean Theorem
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('math'); return false;">
+math
+</div>
+</div>
+<a href="./posts/2022-02-02-pythagorean-theorem/index.html">
+<div class="listing-description">
+<p>How did I not know this</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2022-02-02-pythagorean-theorem/index.html">
+<div class="listing-date">
+Feb 2, 2022
+</div>
+<div class="listing-reading-time">
+0 min
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

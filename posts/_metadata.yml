@@ -5,15 +5,10 @@
 freeze: true
 
 # Enable banner style title blocks
-title-block-banner: true
+title-block-banner: false
 
 # Enable CC licence appendix
 license: "CC BY"
-
-# Default for table of contents
-toc: true
-toc-title: Table of contents
-toc-location: left
 
 # Default knitr options
 execute:
@@ -25,8 +20,9 @@ execute:
 author:
   - name: Steve Linberg
     url: https://slinberg.net
-    affiliation: University of Massachusetts Amherst
-    affiliation-url: https://umass.edu
+#    affiliation: University of Massachusetts Amherst
+#    affiliation-url: https://umass.edu
 
 # Default fields for citation
 citation: true
+

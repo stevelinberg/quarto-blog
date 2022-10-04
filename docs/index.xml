@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>slinberg.net</title>
+<link>https://slinberg.net/index.html</link>
+<atom:link href="https://slinberg.net/index.xml" rel="self" type="application/rss+xml"/>
+<description>Steve Linberg's blog</description>
+<generator>quarto-1.1.251</generator>
+<lastBuildDate>Sat, 01 Oct 2022 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Porting slinberg.net from Distill to Quarto</title>
+  <dc:creator>Steve Linberg</dc:creator>
+  <link>https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p><a href="https://quarto.org">Quarto</a>: all the cool kids are doing it.</p>
+<p>Setting aside the <em>whys</em>, this is a narrative of the <em>hows</em> - narrating the conversion of this site from Distill to Quarto as I go. This process was done with RStudio version 2022.07.1<sup>1</sup>.</p>
+<section id="the-process-so-far" class="level2">
+<h2 class="anchored" data-anchor-id="the-process-so-far">The process so far</h2>
+<p>Up to this point, the steps have been:</p>
+<ol type="1">
+<li>Use RStudio to create a new “Quarto Website” project, which I inspiringly named <code>quarto-blog</code>, which will also be the Github repository name</li>
+<li>Separately download the standalone <a href="https://quarto.org/docs/get-started/">Quarto CLI</a>, for purposes yet to be determined</li>
+<li>Read a couple of the early Distill-to-Quarto narratives, such as
+<ul>
+<li><a href="https://karatsidhu.medium.com/converting-a-distill-website-to-quarto-35f2422d0b53">Karat Sidhu - Converting a distill website to Quarto</a></li>
+<li><a href="https://blog.djnavarro.net/posts/2022-04-20_porting-to-quarto/">Danielle Navarro - Porting a distill blog to quarto</a></li>
+</ul></li>
+<li>Set a few of the basic options in the site’s <code>_quarto.yml</code> file (<code>title</code>, <code>description</code>, <code>site-url</code>, etc)</li>
+<li>Created this as-of-this-typing-unsaved blog post as a new Quarto Document inside the project</li>
+<li>Check RStudio’s <code>Render on Save</code> option in the file header, which quickly rebuilds the skeletal site on saves (of this file)</li>
+</ol>
+</section>
+<section id="creating-a-this-blog-post" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-this-blog-post">Creating a (this) blog post</h2>
+<p>So one immediate difference in terms of workflow is that the Quarto CLI doesn’t have - as of version 1.1.251, anyway - commands for creating blog post files. In Distill, you would say <code>create_post("Foo")</code> in the RStudio console, and that would create a skeleton with some base infrastructure, some automatic date-fu, etc. It would be easy enough to build a quick utility for doing this, but I kind of like that a blog post appears to just be a file (OK, a directory with an <code>index.qmd</code> file) inside the top-level <code>posts</code> directory.</p>
+<p>So I’m going to save this file in the path <code>posts/2022-10-01_distill_to_quarto_part_1/index.qmd</code>, and that’s all that’s needed to make it a blog post. Yes, I’m typing out the date and title by hand, which is slightly more tedious than Distill, but I also know there’s nothing special going on under the hood when I add this file.</p>
+<p>Why name the folder …<code>distill_to_quarto_part_1</code> instead of just <code>distill_to_quarto</code>? Because I’m pretty sure I read somewhere that there’s a context where blog post titles can be disambiguated from their date prefixes, and so I want the title to be unique enough to withstand that if I add another similarly-titled post in the future. Not feeling super confident about this decision so far, but there it is.</p>
+<p>(See That pesky first image in Appendix A below for the first snag: the first, or “listing”, image, and a pathname problem in Quarto.)</p>
+</section>
+<section id="getting-the-groovy-table-of-contents" class="level2">
+<h2 class="anchored" data-anchor-id="getting-the-groovy-table-of-contents">Getting the groovy table of contents</h2>
+<p>The table of contents (to the left in desktop mode) automatically appears once you have headers in the document structure. Each document’s (or post’s) title is rendered as an <code>h1</code> tag above the body, but you need to have at least one <code>h2</code> tag for the table of contents to appear.</p>
+<p>To make this work in the <code>posts</code> directory (or presumably any directory), it needs to be specified in the directory’s <code>_metadata.yml</code> file (so in this case, <code>posts/_metadata.yml</code>) like this:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># Default for table of contents</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">toc</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="ch" style="color: #20794D;">true</span></span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;">toc-title</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> Table of contents</span></span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;">toc-location</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> left</span></span></code></pre></div>
+<p>I believe that was there by default; it could be moved over to the right if you wanted something else in the left margin, like a site directory or something.</p>
+<section id="github-links" class="level3">
+<h3 class="anchored" data-anchor-id="github-links">Github links</h3>
+<p>At least in the default configuration, this is also where your github links configured for this specific page will appear. Unfortunately, that means they <em>won’t</em> appear if your document lacks <code>h2</code> tags, and consequently the table of contents isn’t built. I’d prefer to have these links appear regardless, and separate from the table of contents; putting that on my mental list of things to figure out.</p>
+</section>
+</section>
+<section id="deleting-the-two-sample-posts" class="level2">
+<h2 class="anchored" data-anchor-id="deleting-the-two-sample-posts">Deleting the two sample posts</h2>
+<p>Now that this document is saved, establishing the blog structure, let’s nuke the two sample posts the site was initialized with; this, happily, is just a matter of deleting the directories <code>posts/post-with-code</code> and <code>welcome</code>.</p>
+<p><img src="https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1/delete-posts.png" class="img-fluid"></p>
+<p>Just deleting the directories re-renders the site, and they’re gone. Nice that there’s nothing else to that.</p>
+<p>(Doing this did appear to confuse RStudio the next time I saved this file, though, and caused a new render process to start, stranding the prior preview tab in my browser and opening a new one. Still a few early-launch kinks to work out here, unsurprisingly…)</p>
+<p>PS. <em>WHOA!</em> that image is way too big. Let’s scale it down. Change the … do we still call this snippet rmarkdown? … from this:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="sc" style="color: #5E5E5E;">!</span>[](delete<span class="sc" style="color: #5E5E5E;">-</span>posts.png)</span></code></pre></div>
+<p>to this:</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="sc" style="color: #5E5E5E;">!</span>[](delete<span class="sc" style="color: #5E5E5E;">-</span>posts.png){width<span class="ot" style="color: #003B4F;">=</span><span class="dv" style="color: #AD0000;">50</span>%}</span></code></pre></div>
+<p><img src="https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1/delete-posts.png" class="img-fluid" style="width:50.0%"></p>
+<p>That’s better. That was a screengrab from a high-res display, so downscaling it by 50% was the right approach.</p>
+</section>
+<section id="create-the-missing-repo-and-push" class="level2">
+<h2 class="anchored" data-anchor-id="create-the-missing-repo-and-push">Create the missing repo and push</h2>
+<p>This is all going fine, but I haven’t actually created the GitHub repo yet, so now it’s time to do that. Once I’m happy with how it looks, I’ll need to update the publishing process to unhook the <code>distill-blog</code> project from my domain and replace it with this one, but for now I just want to be able to push the project.</p>
+<p>Created the public project as “quarto-blog”, and now from the terminal:</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><span class="fu" style="color: #4758AB;">git</span> remote add origin git@github.com:stevelinberg/quarto-blog.git</span>
+<span id="cb4-2"><span class="fu" style="color: #4758AB;">git</span> add .</span>
+<span id="cb4-3"><span class="fu" style="color: #4758AB;">git</span> commit <span class="at" style="color: #657422;">-m</span> <span class="st" style="color: #20794D;">"Initial commit"</span></span>
+<span id="cb4-4"><span class="fu" style="color: #4758AB;">git</span> push <span class="at" style="color: #657422;">-u</span> origin main</span></code></pre></div>
+</section>
+<section id="migrating-a-post-from-the-distill-blog" class="level2">
+<h2 class="anchored" data-anchor-id="migrating-a-post-from-the-distill-blog">Migrating a post from the Distill blog</h2>
+<p>Posts are just directories, so we’ll copy the last old post from the distill project into the <code>posts</code> directory and see what we need to do to make it work.</p>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="fu" style="color: #4758AB;">cp</span> <span class="at" style="color: #657422;">-r</span> ../distill-blog/_posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3 posts/</span></code></pre></div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note: if you’re a command-line wonk like me and not dragging-and-dropping in a UI, be careful not to include the trailing slash on the Distill post directory in the above command, or it will dump the contents of the old post’s directory into your <code>posts</code> directory, which is not what you want at all.</p>
+</div>
+</div>
+<p>PS. groovy warning box above! Quarto is built on <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">Bootstrap 5</a> (at present), which means we get yummy candy like that for free:</p>
+<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="sc" style="color: #5E5E5E;">:::</span>{.callout<span class="sc" style="color: #5E5E5E;">-</span>important}</span>
+<span id="cb6-2">Note<span class="sc" style="color: #5E5E5E;">:</span> <span class="cf" style="color: #003B4F;">if</span> you<span class="st" style="color: #20794D;">'re...</span></span>
+<span id="cb6-3"><span class="st" style="color: #20794D;">:::</span></span></code></pre></div>
+<p>Anyway, now we’ve got the directory for a single Distill post copied into the Quarto <code>posts</code> directory, and we need to convert it so Quarto will render it. What do we need to do?</p>
+<section id="delete-the-extraneous-files" class="level3">
+<h3 class="anchored" data-anchor-id="delete-the-extraneous-files">1. Delete the extraneous files</h3>
+<p>Here’s what we’ve got:</p>
+<p><img src="https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1/old-post-files.png" class="img-fluid" style="width:50.0%"></p>
+<p>This will vary a bit by post content, but of these, the two we want are the <code>.Rmd</code> file, which is the original blog post content from Distill, and the supporting <code>png</code> image. The <code>.html</code> file can go, and the <code>…_files</code> directory (full of Javascript files) can go.</p>
+<p>Then we rename the .Rmd file to <code>index.qmd</code>, and we have this:</p>
+<p><img src="https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1/updated-post-files.png" class="img-fluid" style="width:50.0%"></p>
+</section>
+<section id="update-the-posts-yaml-header" class="level3">
+<h3 class="anchored" data-anchor-id="update-the-posts-yaml-header">2. Update the post’s YAML header</h3>
+<p>The old YAML header for the Distill blog looks like this:</p>
+<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><span class="pp" style="color: #AD0000;">---</span></span>
+<span id="cb7-2"><span class="fu" style="color: #4758AB;">title</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="st" style="color: #20794D;">"Quickie for importing tasks to OmniFocus 3"</span></span>
+<span id="cb7-3"><span class="fu" style="color: #4758AB;">description</span><span class="kw" style="color: #003B4F;">: </span><span class="ch" style="color: #20794D;">|</span></span>
+<span id="cb7-4">  Copy and paste formatted text to mass-create tasks.</span>
+<span id="cb7-5"><span class="fu" style="color: #4758AB;">author</span><span class="kw" style="color: #003B4F;">:</span></span>
+<span id="cb7-6"><span class="at" style="color: #657422;">  </span><span class="kw" style="color: #003B4F;">-</span><span class="at" style="color: #657422;"> </span><span class="fu" style="color: #4758AB;">name</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> Steve Linberg</span></span>
+<span id="cb7-7"><span class="at" style="color: #657422;">    </span><span class="fu" style="color: #4758AB;">url</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> https://slinberg.net</span></span>
+<span id="cb7-8"><span class="fu" style="color: #4758AB;">date</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> 2022-04-02</span></span>
+<span id="cb7-9"><span class="fu" style="color: #4758AB;">output</span><span class="kw" style="color: #003B4F;">:</span></span>
+<span id="cb7-10"><span class="at" style="color: #657422;">  distill:</span><span class="fu" style="color: #4758AB;">:distill_article</span><span class="kw" style="color: #003B4F;">:</span></span>
+<span id="cb7-11"><span class="at" style="color: #657422;">    </span><span class="fu" style="color: #4758AB;">self_contained</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="ch" style="color: #20794D;">false</span></span>
+<span id="cb7-12"><span class="fu" style="color: #4758AB;">preview</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> https://www.omnigroup.com/assets/img/icons/omnifocus-web@2x.png</span></span>
+<span id="cb7-13"><span class="fu" style="color: #4758AB;">categories</span><span class="kw" style="color: #003B4F;">:</span></span>
+<span id="cb7-14"><span class="at" style="color: #657422;">  </span><span class="kw" style="color: #003B4F;">-</span><span class="at" style="color: #657422;"> omnifocus</span></span>
+<span id="cb7-15"><span class="pp" style="color: #AD0000;">---</span></span></code></pre></div>
+<p>Some of this will work in Quarto, some stuff has to be changed or removed. The current, very simple header for this post is:</p>
+<div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><span class="fu" style="color: #4758AB;">title</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="st" style="color: #20794D;">"Porting slinberg.net from Distill to Quarto"</span></span>
+<span id="cb8-2"><span class="fu" style="color: #4758AB;">date</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="st" style="color: #20794D;">"2022-10-01"</span></span>
+<span id="cb8-3"><span class="fu" style="color: #4758AB;">categories</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="kw" style="color: #003B4F;">[</span><span class="at" style="color: #657422;">quarto</span><span class="kw" style="color: #003B4F;">,</span><span class="at" style="color: #657422;"> distill</span><span class="kw" style="color: #003B4F;">,</span><span class="at" style="color: #657422;"> blog</span><span class="kw" style="color: #003B4F;">]</span></span>
+<span id="cb8-4"><span class="fu" style="color: #4758AB;">image</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> quarto.png</span></span></code></pre></div>
+<p>So we can keep <code>title</code> and <code>date</code> in the original header. I don’t remember why the optional <code>description</code> attribute led with a vertical bar and a newline; the <code>author</code> tag can be deleted, as it will inherit the default values from <code>posts/_metadata.yml</code>; the <code>output</code> section can be deleted, the <code>preview</code> attribute can get quoted and renamed to <code>image</code>, and the <code>categories</code> tag gets pulled up to a single line, a square-bracketed list of categories. I’m adding “blog” as a category to blog posts, so far, since it will give another option for filtering blog posts as separate from static content on the site; not totally sure this will be needed, but going with it for the moment.</p>
+<p>The updated YAML header now looks like this:</p>
+<div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><span class="pp" style="color: #AD0000;">---</span></span>
+<span id="cb9-2"><span class="fu" style="color: #4758AB;">title</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="st" style="color: #20794D;">"Quickie for importing tasks to OmniFocus 3"</span></span>
+<span id="cb9-3"><span class="fu" style="color: #4758AB;">description</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="st" style="color: #20794D;">"Copy and paste formatted text to mass-create tasks."</span></span>
+<span id="cb9-4"><span class="fu" style="color: #4758AB;">date</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="st" style="color: #20794D;">"2022-04-02"</span></span>
+<span id="cb9-5"><span class="fu" style="color: #4758AB;">image</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="st" style="color: #20794D;">"https://www.omnigroup.com/assets/img/icons/omnifocus-web@2x.png"</span></span>
+<span id="cb9-6"><span class="fu" style="color: #4758AB;">categories</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="kw" style="color: #003B4F;">[</span><span class="at" style="color: #657422;">blog</span><span class="kw" style="color: #003B4F;">,</span><span class="at" style="color: #657422;"> omnifocus</span><span class="kw" style="color: #003B4F;">]</span></span>
+<span id="cb9-7"><span class="pp" style="color: #AD0000;">---</span></span></code></pre></div>
+<p>The <code>description</code> attribute, if present, will be used instead of a content preview on the listing page.</p>
+</section>
+<section id="nuke-the-knitr-setup-block" class="level3">
+<h3 class="anchored" data-anchor-id="nuke-the-knitr-setup-block">3. Nuke the <code>knitr</code> setup block</h3>
+<p>(For the life of me, I cannot remember, figure out, or google how to quote markdown within markdown, so to make this render I’m changing the backticks to single-quotes:)</p>
+<div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="st" style="color: #20794D;">'''{r setup, include=FALSE}</span></span>
+<span id="cb10-2"><span class="st" style="color: #20794D;">knitr::opts_chunk$set(echo = FALSE)</span></span>
+<span id="cb10-3"><span class="st" style="color: #20794D;">'''</span></span></code></pre></div>
+<p>Delete that block, and any other extraneous <code>knitr</code> stuff unless you know why you need it.</p>
+<p>Save and render. For this post, we’re done; it’s in and looks good. The blog page now looks like this:</p>
+<p><img src="https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1/post-import.png" class="img-fluid" style="width:50.0%"></p>
+</section>
+<section id="commit" class="level3">
+<h3 class="anchored" data-anchor-id="commit">4. Commit!</h3>
+<p>Don’t forget: <a href="https://deepsource.io/blog/git-best-practices/#3-commit-early-commit-often">commit early, commit often</a>:</p>
+<div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><span class="fu" style="color: #4758AB;">git</span> add posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/</span>
+<span id="cb11-2"><span class="fu" style="color: #4758AB;">git</span> commit <span class="at" style="color: #657422;">-m</span> <span class="st" style="color: #20794D;">"migrate old post"</span></span></code></pre></div>
+</section>
+<section id="rinse-and-repeat" class="level3">
+<h3 class="anchored" data-anchor-id="rinse-and-repeat">5. Rinse and repeat</h3>
+<p>Now, do the same process with the rest of the posts. I don’t have that many to move, so doing it manually isn’t too tedious, but it could be scripted for a lot of content if needed.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note: by not renaming the post directory, and by virtue of the fact that both Distill and Quarto use <code>/posts</code> as the top level for blog posts by default, the URLs for the posts won’t change when we switch. It’s rude to break your working URLs when migrating (even though the number of humans who correctly care about this is vanishingly small), so this is good news. If your posts directory will be called something else, or basically if anything changes, you should set up redirects for your old URLs so they point to the new ones.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="optional-configure-for-github-pages" class="level2">
+<h2 class="anchored" data-anchor-id="optional-configure-for-github-pages">(optional) Configure for Github Pages</h2>
+<p>If you’re hosting on Github pages, there are a couple of additional things to do:</p>
+<section id="set-output-to-docs" class="level3">
+<h3 class="anchored" data-anchor-id="set-output-to-docs">1. Set output to “docs”</h3>
+<p>By default, the site will render to the directory “_site”. Github Pages, where I’m presently hosting slinberg.net, publishes from the “docs” directory, so we need to tell Quarto to do that.</p>
+<p>In <code>_quarto.yml</code>, add “output-dir: docs” to the <code>project</code> section, as shown:</p>
+<div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><span class="fu" style="color: #4758AB;">project</span><span class="kw" style="color: #003B4F;">:</span></span>
+<span id="cb12-2"><span class="at" style="color: #657422;">  </span><span class="fu" style="color: #4758AB;">type</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> website</span></span>
+<span id="cb12-3"><span class="at" style="color: #657422;">  </span><span class="fu" style="color: #4758AB;">output-dir</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> docs</span></span></code></pre></div>
+<p>Rebuild the whole site from the terminal, in the root directory:</p>
+<div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><span class="ex" style="color: null;">quarto</span> render</span></code></pre></div>
+<p>Delete <code>_site</code> from your filesystem and repo, and add the “docs” directory:</p>
+<div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><span class="fu" style="color: #4758AB;">git</span> rm <span class="at" style="color: #657422;">-rf</span> _site</span>
+<span id="cb14-2"><span class="fu" style="color: #4758AB;">git</span> commit <span class="at" style="color: #657422;">-m</span> <span class="st" style="color: #20794D;">"Remove old _site directory"</span></span>
+<span id="cb14-3"><span class="fu" style="color: #4758AB;">git</span> add docs</span>
+<span id="cb14-4"><span class="fu" style="color: #4758AB;">git</span> commit <span class="at" style="color: #657422;">-m</span> <span class="st" style="color: #20794D;">"Add docs directory"</span></span></code></pre></div>
+</section>
+<section id="create-and-commit-a-.nojekyll-file" class="level3">
+<h3 class="anchored" data-anchor-id="create-and-commit-a-.nojekyll-file">2. Create and commit a .nojekyll file</h3>
+<p>Github requires the presence of a file called <code>.nojekyll</code> to prevent rendering with Jekyll, Github’s site generation tool. Again, from your site’s root:</p>
+<div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><span class="fu" style="color: #4758AB;">touch</span> .nojekyll</span>
+<span id="cb15-2"><span class="fu" style="color: #4758AB;">git</span> add .nojekyll</span>
+<span id="cb15-3"><span class="fu" style="color: #4758AB;">git</span> commit <span class="at" style="color: #657422;">-m</span> <span class="st" style="color: #20794D;">"Add .nojekyll file"</span></span></code></pre></div>
+</section>
+<section id="create-the-cname-file-if-youre-using-a-custom-domain" class="level3">
+<h3 class="anchored" data-anchor-id="create-the-cname-file-if-youre-using-a-custom-domain">3. Create the CNAME file if you’re using a custom domain</h3>
+<p>If you are using a custom domain name (like slinberg.net), you must also create a file called <code>CNAME</code> in your site’s root, with the domain name in plain text followed by a carriage return. Of course, you also have to own the domain and have it pointed at Github correctly, a topic we’re not covering here. The domain name will not work correctly without this file.</p>
+</section>
+</section>
+<section id="other-conversion-notes" class="level2">
+<h2 class="anchored" data-anchor-id="other-conversion-notes">Other conversion notes</h2>
+<p>Other unordered odds and end from the porting process:</p>
+<section id="hashpipe-syntax" class="level3">
+<h3 class="anchored" data-anchor-id="hashpipe-syntax">Hashpipe syntax</h3>
+<p>One of the nice things about Quarto is much more readable chunk options via the “hashpipe” syntax (<code>#</code> = “hash”, <code>|</code> = “pipe”, so <code>#|</code> = “hashpipe” 🙄). For example, we can turn this heavy thing:</p>
+<div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">{r echo<span class="ot" style="color: #003B4F;">=</span><span class="cn" style="color: #8f5902;">FALSE</span>, fig.cap<span class="ot" style="color: #003B4F;">=</span><span class="st" style="color: #20794D;">"Figure from </span></span>
+<span id="cb16-2"><span class="st" style="color: #20794D;">[The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi),</span></span>
+<span id="cb16-3"><span class="st" style="color: #20794D;">p. 118"</span>, out.width<span class="ot" style="color: #003B4F;">=</span><span class="dv" style="color: #AD0000;">400</span>}</span>
+<span id="cb16-4">knitr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">include_graphics</span>(<span class="st" style="color: #20794D;">"badgraphic.png"</span>)</span></code></pre></div>
+<p>Into this more readable construct:</p>
+<div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">{r}</span>
+<span id="cb17-2"><span class="co" style="color: #5E5E5E;">#| echo: FALSE</span></span>
+<span id="cb17-3"><span class="co" style="color: #5E5E5E;">#| fig-cap: Figure from [The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi), p. 118</span></span>
+<span id="cb17-4"><span class="co" style="color: #5E5E5E;">#| out.with: 400</span></span>
+<span id="cb17-5">knitr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">include_graphics</span>(<span class="st" style="color: #20794D;">"badgraphic.png"</span>)</span></code></pre></div>
+<p>… in <em>theory</em>.</p>
+<p>In <em>practice</em>, as of this writing, there’s a <a href="https://github.com/rstudio/rstudio/issues/11708">bug</a> in Quarto that prevents this from working correctly in .qmd files, so… for the moment, we wait and keep it in the former style.</p>
+</section>
+<section id="rmd-files-still-render" class="level3">
+<h3 class="anchored" data-anchor-id="rmd-files-still-render">.Rmd files still render</h3>
+<p>I was a little surprised to see that my non-converted blog posts, copied straight over from the Distill blog and prior to the cleanup for Quarto, still rendered just fine. I guess that’s good, but I wasn’t expecting it. I’m still going to clean them up.</p>
+</section>
+</section>
+<section id="appendix-a-problems" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-a-problems">Appendix A: problems</h2>
+<p>Rather than interrupt the basic narrative above, let’s stack the problems we hit along the way down here.</p>
+<section id="that-pesky-first-image" class="level3">
+<h3 class="anchored" data-anchor-id="that-pesky-first-image">That pesky first image</h3>
+<p>One of the basic concepts in blogs and blog listings is the all-important thumbnail image that is used on the listing page.</p>
+<p>There are basically two ways to implement this in Quarto: either explicitly specify it with the <code>image</code> atrribute in the YAML section of the post’s <code>index.qmd</code> file:</p>
+<div class="sourceCode" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><span class="fu" style="color: #4758AB;">image</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="st" style="color: #20794D;">"image.jpg"</span></span></code></pre></div>
+<p>or, omit this attribute, and in that case, Quarto will use the first image it finds in the post body (if any). The difference is: if you only want to use the image on the listing page, but not have it appear in the post itself, put it in the YAML header; if you want it to be used on both, then omit the YAML header and put it inline.</p>
+<p>The problem is that if you do the latter, and the image is right at the start of the post (a header image, in other words), it will not render correctly if it happens to be within the range of the preview text (which doesn’t appear to be visibly configurable in Quarto, but it’s more or less the first line or two); this is because it doesn’t convert the filename path to a global path. It does in the listing itself, which is odd. You can see the result here, from one of the sample posts; the original code is:</p>
+<div class="sourceCode" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">This is the first post <span class="cf" style="color: #003B4F;">in</span> a Quarto blog. Welcome<span class="sc" style="color: #5E5E5E;">!</span></span>
+<span id="cb19-2"></span>
+<span id="cb19-3"><span class="sc" style="color: #5E5E5E;">!</span>[](thumbnail.jpg)</span></code></pre></div>
+<p>But it we reverse it to put the image above the text:</p>
+<div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><span class="sc" style="color: #5E5E5E;">!</span>[](thumbnail.jpg)</span>
+<span id="cb20-2"></span>
+<span id="cb20-3">This is the first post <span class="cf" style="color: #003B4F;">in</span> a Quarto blog. Welcome<span class="sc" style="color: #5E5E5E;">!</span></span></code></pre></div>
+<p>We get this on the listing page:</p>
+<p><img src="https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1/busted-image.png" class="img-fluid"></p>
+<p>This is Quarto failing to adjust the image’s pathname in the listing, though it does render the image correctly to the right as part of the listing structure.</p>
+<p>This can be worked around with the simple but ugly hack of fully specifying the image’s pathname, as in:</p>
+<div class="sourceCode" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="sc" style="color: #5E5E5E;">!</span>[](<span class="sc" style="color: #5E5E5E;">/</span>posts<span class="sc" style="color: #5E5E5E;">/</span>post<span class="sc" style="color: #5E5E5E;">-</span>with<span class="sc" style="color: #5E5E5E;">-</span>code<span class="sc" style="color: #5E5E5E;">/</span>thumbnail.jpg)</span>
+<span id="cb21-2"></span>
+<span id="cb21-3">This is the first post <span class="cf" style="color: #003B4F;">in</span> a Quarto blog. Welcome<span class="sc" style="color: #5E5E5E;">!</span></span></code></pre></div>
+<p>but</p>
+<ol type="a">
+<li>Gross, and</li>
+<li>You probably don’t want an inline image from the body appearing in the listing preview anyway.</li>
+</ol>
+<p>Hopefully <a href="https://github.com/quarto-dev/quarto-cli/issues/2042">this issue</a> will get resolved at some point.</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>RStudio 2022.07.1+554 “Spotted Wakerobin” Release (7872775ebddc40635780ca1ed238934c3345c5de, 2022-07-22) for macOS Mozilla/5.0 (Macintosh; Intel Mac OS X 12_6_0) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.12.10 Chrome/69.0.3497.128 Safari/537.36, to be precise↩︎</p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
+  author = {Steve Linberg},
+  editor = {},
+  title = {Porting Slinberg.net from {Distill} to {Quarto}},
+  date = {2022-10-01},
+  url = {https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-linberg2022" class="csl-entry quarto-appendix-citeas">
+Steve Linberg. 2022. <span>“Porting Slinberg.net from Distill to
+Quarto.”</span> October 1, 2022. <a href="https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1">https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1</a>.
+</div></div></section></div> ]]></description>
+  <category>quarto</category>
+  <category>distill</category>
+  <category>blog</category>
+  <guid>https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1/index.html</guid>
+  <pubDate>Sat, 01 Oct 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1/quarto.png" medium="image" type="image/png" height="35" width="144"/>
+</item>
+<item>
+  <title>Quickie for importing tasks to OmniFocus 3</title>
+  <dc:creator>Steve Linberg</dc:creator>
+  <link>https://slinberg.net/posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>I’ve been an <a href="https://www.omnigroup.com/omnifocus/">OmniFocus</a> user since version 1.0.</p>
+<p>Well, sort of. I used it a ton in version 1.0 and then eventually stopped. Then I used it again a ton when version 2 came out, and then eventually stopped. It worked well when I really forced myself to use it, but eventually I’d run out of gas, and it always bugged me a bit that I couldn’t get a handle on why. I read David Allen’s “<a href="https://gettingthingsdone.com/">Getting Things Done</a>”, which it was inspired by, and it all made sense, but it still just had a lot of friction to keep using.</p>
+<p>One of the problems, I now realize, was the notion of <em>contexts</em> - each to-do item could be assigned to one, <em>and only one</em>, context, like “online” or “supermarket” or “home”, describing the setting where a task could be done. The problem was that there were many tasks that could be done in multiple contexts, but no way to mark them as such. One user I talked with on one of the forums explained that the way to think about it was that I myself could be in multiple simultaneous contexts, like “home” and “online”, and that tasks that matched either of those would appear. It sort of made sense, but it still never felt natural and I eventually dropped it again.</p>
+<p>I checked it out again in version 3, and the problem has been solved: contexts are gone, replaced by the much more versatile and familiar concept of <em>tags</em>. Tags can be freely defined, and any item can have as many tags as you want. So now I’m using it again and finding it much easier to get along with.</p>
+<p>(I also really appreciate that there is the option to just pay for it straight up, though they also offer the odious subscription-based pricing that everybody except developers hates. There is upgrade pricing from prior versions that makes it more affordable. They also offer <a href="https://support.omnigroup.com/sales-educational-pricing/">educational pricing</a>, so between my educational pricing and upgrade discount, OF3 went from $99 to about $38. Sold.)</p>
+<p>It’s full of really nice little interface touches that are almost invisible but that make life very pleasant. One of them is the ability to import tasks in <a href="https://guide.taskpaper.com/">TaskPaper</a> format, which is very straightforward. I needed to add a list of 24 assignments (sigh) to my inbox, one per day for the next 24 days. I had them typed out, and with the help of a few <a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Keyboard-Macros.html">emacs macros</a> added due dates and tags, using the following format:</p>
+<pre><code>- task description @tags(tag1, tag2) @due(YYYY-MM-DD HH:MM)</code></pre>
+<p>So my full list was:</p>
+<pre><code>- (ch 3) Simple linear regression @tags(Machine Learning, Homework) @due(2022-04-02 23:59)
+- (ch 3) Multiple linear regression @tags(Machine Learning, Homework) @due(2022-04-03 23:59)
+- (ch 4) Logistic regression @tags(Machine Learning, Homework) @due(2022-04-04 23:59)
+- (ch 4) Multiple logistic regression @tags(Machine Learning, Homework) @due(2022-04-05 23:59)
+- (ch 4) Linear discriminant analysis @tags(Machine Learning, Homework) @due(2022-04-06 23:59)
+- (ch 4) Quadratic discriminant analysis @tags(Machine Learning, Homework) @due(2022-04-07 23:59)
+- (ch 4) Naive Bayes @tags(Machine Learning, Homework) @due(2022-04-08 23:59)
+- (ch 4) K-Nearest Neighbors @tags(Machine Learning, Homework) @due(2022-04-09 23:59)
+- (ch 4) Poisson regression @tags(Machine Learning, Homework) @due(2022-04-10 23:59)
+- (ch 5) Cross-validation @tags(Machine Learning, Homework) @due(2022-04-11 23:59)
+- (ch 5) Bootstrap @tags(Machine Learning, Homework) @due(2022-04-12 23:59)
+- (ch 6) Best subset selection @tags(Machine Learning, Homework) @due(2022-04-13 23:59)
+- (ch 6) Stepwise selection @tags(Machine Learning, Homework) @due(2022-04-14 23:59)
+- (ch 6) Ridge regression @tags(Machine Learning, Homework) @due(2022-04-15 23:59)
+- (ch 6) Lasso @tags(Machine Learning, Homework) @due(2022-04-16 23:59)
+- (ch 6) Principal component regression @tags(Machine Learning, Homework) @due(2022-04-17 23:59)
+- (ch 8) Bagging @tags(Machine Learning, Homework) @due(2022-04-18 23:59)
+- (ch 8) Random forests @tags(Machine Learning, Homework) @due(2022-04-19 23:59)
+- (ch 8) Boosting @tags(Machine Learning, Homework) @due(2022-04-20 23:59)
+- (ch 8) Bayesian Additive Regression Trees @tags(Machine Learning, Homework) @due(2022-04-21 23:59)
+- (ch 9) Support Vector Machines @tags(Machine Learning, Homework) @due(2022-04-22 23:59)
+- (ch 12) Principal component analysis @tags(Machine Learning, Homework) @due(2022-04-23 23:59)
+- (ch 12) K-means clustering @tags(Machine Learning, Homework) @due(2022-04-24 23:59)
+- (ch 12) Hierarchical clustering @tags(Machine Learning, Homework) @due(2022-04-25 23:59)</code></pre>
+<p>Copy the entire list, and then just paste into the inbox, and voilà:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://slinberg.net/posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/of_inbox.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Inbox</figcaption><p></p>
+</figure>
+</div>
+<p>Now the problem is I have to actually <em>do</em> all of those things. (But at least I can check off the top item for the new blog post.)</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
+  author = {Steve Linberg},
+  editor = {},
+  title = {Quickie for Importing Tasks to {OmniFocus} 3},
+  date = {2022-04-02},
+  url = {https://slinberg.net/posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-linberg2022" class="csl-entry quarto-appendix-citeas">
+Steve Linberg. 2022. <span>“Quickie for Importing Tasks to OmniFocus
+3.”</span> April 2, 2022. <a href="https://slinberg.net/posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3">https://slinberg.net/posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3</a>.
+</div></div></section></div> ]]></description>
+  <category>blog</category>
+  <category>omnifocus</category>
+  <guid>https://slinberg.net/posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html</guid>
+  <pubDate>Sat, 02 Apr 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://www.omnigroup.com/assets/img/icons/omnifocus-web@2x.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Tufte Takes No Prisoners</title>
+  <dc:creator>Steve Linberg</dc:creator>
+  <link>https://slinberg.net/posts/2022-03-05-tufte-takes-no-prisoners/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>The gloves come off in in “Chartjunk”, chapter 5 of <a href="https://www.edwardtufte.com">Edward Tufte</a>’s “<a href="https://www.edwardtufte.com/tufte/books_vdqi">The Visual Display of Quantitative Information</a>”. Here I am, innocently beginning to think about a poster presentation I have coming up in a couple of months and to imagine design elements that will beautify the project and help make the information easier to understand, and then right in the first paragraph, Tufte drops this:</p>
+<blockquote class="blockquote">
+<p>Graphical decoration, which propers in technical publications as well as in commercial and media graphics, comes cheaper than the hard work required to produce intriguing numbers and secure evidence.</p>
+</blockquote>
+<p><em>…ouch.</em></p>
+<p>OK, let’s not overreact: he’s not saying “don’t strive for beauty” here. The main point is that visual clutter in charts and graphs, which can take many forms, at best pollutes the message and obfuscates the data, and at worst might be used to (attempt to) conceal a lack of data. That’s fair. He then goes on to show many examples of charts rendered almost unintelligible by over-use of fill patterns, made simple by modern computer-generated graphing systems, pointless use of three-dimensional effects that don’t represent data, and heavy gridlines that visually compete with data points.</p>
+<p>On the subject of graph paper, he doesn’t hold back:</p>
+<blockquote class="blockquote">
+<p>Most ready-made graph paper comes with a darkly printed grid. The reverse (unprinted) side should be used, for then the lines show through faintly and do not clutter the data. If the paper is heavily gridded on both sides, throw it out.</p>
+</blockquote>
+<p>A little further on, he shows this monstrosity:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://slinberg.net/posts/2022-03-05-tufte-takes-no-prisoners/badgraphic.png" class="img-fluid figure-img" width="400"></p>
+<p></p><figcaption class="figure-caption">Figure from <a href="https://www.edwardtufte.com/tufte/books_vdqi">The Visual Display of Quantitative Information</a>, p.&nbsp;118</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>…introduced by this utter decimation:</p>
+<blockquote class="blockquote">
+<p>A series of weird three-dimensional displays appearing in the magazine <em>American Education</em> in the 1970s delighted connoisseurs of the graphically preposterous. Here five colors report, almost by happenstance, only five pieces of data (since the division within each year adds to 100 percent). This may well be the worst graphic ever to find its way into print.</p>
+</blockquote>
+<p>On first read, I thought to myself: “<em>I</em> want to be a connoisseur of the graphically preposterous”. Then I thought it over a bit more and decided I wasn’t so sure.</p>
+<p>In any event, I’m around the 2/3 point now in VDQI, enjoying many savagely entertaining examples of what <em>not</em> to do in the visual presentation of data. There are a few good examples scattered in as well, though with much lower overall frequency so far. Studying the wreckage of bad design can absolutely be educational, but with all due deference to the important work of learning from the mistakes of others, it is always easier to critique than to create. I am not “peeking ahead” out of sequence to see if he does this more in subsequent chapters; <em>Saturday Mornings with Tufte™</em> are deliberately slow and meditative, with a cup of coffee and no electronic devices or distractions. So far this has been an informative and educational read, and I’m looking forward to the rest of it and then to moving on to “<a href="https://www.edwardtufte.com/tufte/books_be">Beautiful Evidence</a>”. But I’m still planning to try to create something beautiful in my upcoming poster, and hopefully I can find a way to do that that would also dodge the well-deserved barbs aimed at the many failed efforts shown in this book.</p>
+<hr>
+<p>(<span id="graph_paper"><em>Endnote</em></span>: I am a big fan of graph paper, and although most of my note-taking these days is on the ipad, I still have a big physical stash of my favorite, <a href="https://www.whitelinespaper.com/">whitelines</a> (non-referral link):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://slinberg.net/posts/2022-03-05-tufte-takes-no-prisoners/whitelines.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">From one of my <a href="https://www.whitelinespaper.com/">whitelines</a> notebooks</figcaption><p></p>
+</figure>
+</div>
+<p>It uses a light gray tone with white gridlines instead of black, <em>much</em> easier on the eyes.)</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
+  author = {Steve Linberg},
+  editor = {},
+  title = {Tufte {Takes} {No} {Prisoners}},
+  date = {2022-03-05},
+  url = {https://slinberg.net/posts/2022-03-05-tufte-takes-no-prisoners},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-linberg2022" class="csl-entry quarto-appendix-citeas">
+Steve Linberg. 2022. <span>“Tufte Takes No Prisoners.”</span> March 5,
+2022. <a href="https://slinberg.net/posts/2022-03-05-tufte-takes-no-prisoners">https://slinberg.net/posts/2022-03-05-tufte-takes-no-prisoners</a>.
+</div></div></section></div> ]]></description>
+  <category>tufte</category>
+  <category>design</category>
+  <guid>https://slinberg.net/posts/2022-03-05-tufte-takes-no-prisoners/index.html</guid>
+  <pubDate>Sat, 05 Mar 2022 05:00:00 GMT</pubDate>
+  <media:content url="https://slinberg.net/posts/2022-03-05-tufte-takes-no-prisoners/badgraphic.png" medium="image" type="image/png" height="239" width="144"/>
+</item>
+<item>
+  <title>Playfair and the “Flatten the Curve” Graphic</title>
+  <dc:creator>Steve Linberg</dc:creator>
+  <link>https://slinberg.net/posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>One of the good early tidbits from <a href="https://www.edwardtufte.com">Edward Tufte</a>’s “<a href="https://www.edwardtufte.com/tufte/books_vdqi">The Visual Display of Quantitative Information</a>” is this quote from Scottish political economist William Playfair’s 1786 book “The Commercial and Political Atlas”:</p>
+<blockquote class="blockquote">
+<p>Information, that is imperfectly acquired, is generally as imperfectly retained; and a man who has carefully investigated a printed table, finds, when done, that he has only a very faint and partial idea of what he has read; and that like a figure imprinted on sand, is soon totally erased and defaced.</p>
+</blockquote>
+<p>This speaks to the general principle, widely accepted now but less so at that time, that tables of data can be hard to interpret and understand, and that knowledge gained from them is fleeting. Deep truths revealed by diligent statistical analysis are of limited value if they can’t make themselves readily understood, and if they don’t stick in the minds of viewers.</p>
+<p>One of the great recent triumphs of visual design was the justly-famous “Flatten the Curve” graphic that illustrated the need to keep the rates of COVID-19 transmission low enough that hospitals could keep up and not be overwhelmed. It actually originated from the CDC in a 2007 publication with a title only a career bureaucrat could love: “Interim Pre-Pandemic Planning Guidance : Community Strategy for Pandemic Influenza Mitigation in the United States : Early, Targeted, Layered Use of Nonpharmaceutical Interventions” <span class="citation" data-cites="centersfordiseasecontrolandpreventionu.s.InterimPrepandemicPlanning2007a">(Centers for Disease Control and Prevention (U.S.) 2007)</span>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://slinberg.net/posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/r6601a1f1.gif" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The CDC’s original “Flatten the Curve” graphic (2007)</figcaption><p></p>
+</figure>
+</div>
+<p>Ponderous as the document’s title may be, this graphic nonetheless showed this nontrivial concept very well. The solid-colored curve was the bad scenario of an outbreak of a pandemic with no intervention, and the transparent curve was a view of squishing that outbreak down over time so that it would be more manageable.</p>
+<p>As brilliant as the design was - far, far more effective than paragraphs of explanatory text with supporting tables of data - it was still a bit text-heavy, with two text axes and five chunks of (small) inline text that had to be read to fully understand its meaning, and similarly-colored curves showing the two different outcomes, so it wasn’t quite a glance-level chart that could be instantly understood. When COVID-19 hit in 2019, this graphic was popularized and went through many iterations of further simplification, to make its message as clear and impactful as possible. The New York Times published this version in 2020 <span class="citation" data-cites="robertsFlatteningCoronavirusCurve2020">(Roberts 2020)</span>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://slinberg.net/posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/nyt_curve.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The NYT’s simplified graphic (2020)</figcaption><p></p>
+</figure>
+</div>
+<p>This is even more effective: the text and colors are bold and easy to read, the axis text is simplified, there are only three elements of text in the graph (each only three words), and a third item has been added: a horizontal line indicating the healthcare system’s capacity. This is about as simple and direct as it’s possible to make this information. It communicated a complex problem in a way that could be instantly understood, by almost anyone, regardless of education levels. It may have saved millions of lives, by being shared around the world and absorbed into the collective human understanding of what needed to happen to make the pandemic as manageable as possible.</p>
+<p>(Another very subtle and effective change was the rendering of both curves as slightly irregular in shape, as opposed to the mathematically perfect normal-distribution forms in the CDC’s original graphic; this would help to reinforce the notion that infection / hospitalization / death rates from the pandemic would not follow shapes that could be precisely predicted, though overall trends could still be forecast.)</p>
+<p>Not every complex social phenomenon can be rendered into such an effective message, but good data science should always strive for this level of simplicity and clarity when the purpose is to communicate something important as broadly and effectively as possible.</p>
+
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-centersfordiseasecontrolandpreventionu.s.InterimPrepandemicPlanning2007a" class="csl-entry">
+Centers for Disease Control and Prevention (U.S.). 2007. <span>“Interim Pre-Pandemic Planning Guidance : Community Strategy for Pandemic Influenza Mitigation in the <span>United</span> <span>States</span> : Early, Targeted, Layered Use of Nonpharmaceutical Interventions.”</span> <a href="https://stacks.cdc.gov/view/cdc/11425">https://stacks.cdc.gov/view/cdc/11425</a>.
+</div>
+<div id="ref-robertsFlatteningCoronavirusCurve2020" class="csl-entry">
+Roberts, Siobhan. 2020. <span>“Flattening the <span>Coronavirus</span> <span>Curve</span>.”</span> <em>The New York Times</em>, March. <a href="https://www.nytimes.com/article/flatten-curve-coronavirus.html">https://www.nytimes.com/article/flatten-curve-coronavirus.html</a>.
+</div>
+</div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
+  author = {Steve Linberg},
+  editor = {},
+  title = {Playfair and the “{Flatten} the {Curve}” {Graphic}},
+  date = {2022-02-19},
+  url = {https://slinberg.net/posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-linberg2022" class="csl-entry quarto-appendix-citeas">
+Steve Linberg. 2022. <span>“Playfair and the <span>‘Flatten the
+Curve’</span> Graphic.”</span> February 19, 2022. <a href="https://slinberg.net/posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic">https://slinberg.net/posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic</a>.
+</div></div></section></div> ]]></description>
+  <category>tufte</category>
+  <category>design</category>
+  <guid>https://slinberg.net/posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html</guid>
+  <pubDate>Sat, 19 Feb 2022 05:00:00 GMT</pubDate>
+  <media:content url="https://slinberg.net/posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/nyt_curve.png" medium="image" type="image/png" height="52" width="144"/>
+</item>
+<item>
+  <title>Saturday mornings with Tufte</title>
+  <dc:creator>Steve Linberg</dc:creator>
+  <link>https://slinberg.net/posts/2022-02-05-saturday-mornings-with-tufte/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>It takes a lot of sustained effort to build, maintain, and grow robust quantitative skills. Data science is hard, and it’s not enough to just have a wealth of formulas and statistical techniques committed to memory: data investigation requires instincts, which can only come as the hard-won results of a great deal of study, practice and inquiry.</p>
+<p>As the world re-aligns itself around the tsunami of data that is already hitting us, though, we all know that quant-fu is only half the battle. Being able to manipulate and interpret data fluently is absolutely essential, but no less so is the ability to present and communicate it effectively. Data presentation skills are meaningless (and dangerous) if built atop a weak quantitative foundation, but all the quantitative skills in the world won’t save us if we can’t make the results of our work understandable.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://slinberg.net/posts/2022-02-05-saturday-mornings-with-tufte/tuftebooks.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Saturday reading</figcaption><p></p>
+</figure>
+</div>
+<p>I’m taking a few hours every Saturday morning to read <a href="https://www.edwardtufte.com">Edward Tufte</a>’s “<a href="https://www.edwardtufte.com/tufte/books_vdqi">The Visual Display of Quantitative Information</a>” and “<a href="https://www.edwardtufte.com/tufte/books_be">Beautiful Evidence</a>”. I’m not far enough in yet to articulate his vision or integrate his concepts into my own work, but it has the feeling of a correct path that I’ve learned to recognize from early forays in other fields. A lot of it is about decluttering, stripping away what is superfluous to leave only what is essential, which is one aspect of great art.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://slinberg.net/posts/2022-02-05-saturday-mornings-with-tufte/vdqi_spread.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Sample page on time series</figcaption><p></p>
+</figure>
+</div>
+<p>One of the things that I love about data science is that this principle is equally critical in both the quantitative and qualitative aspects of the field. Statistical and engineering skills help strip away unneeded or irrelevant data; information design skills help visually focus on the most important aspects of what remains, to deliver the message as clearly as possible.</p>
+<p>(And, right out of the gate on page 1 of <em>VDQI</em>, as the cool kids call it, is an idea for a short quantitative project that I’ll take up in the next post.)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://slinberg.net/posts/2022-02-05-saturday-mornings-with-tufte/vdqi_p1.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">VDQI p1</figcaption><p></p>
+</figure>
+</div>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
+  author = {Steve Linberg},
+  editor = {},
+  title = {Saturday Mornings with {Tufte}},
+  date = {2022-02-05},
+  url = {https://slinberg.net/posts/2022-02-05-saturday-mornings-with-tufte},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-linberg2022" class="csl-entry quarto-appendix-citeas">
+Steve Linberg. 2022. <span>“Saturday Mornings with Tufte.”</span>
+February 5, 2022. <a href="https://slinberg.net/posts/2022-02-05-saturday-mornings-with-tufte">https://slinberg.net/posts/2022-02-05-saturday-mornings-with-tufte</a>.
+</div></div></section></div> ]]></description>
+  <category>tufte</category>
+  <category>design</category>
+  <guid>https://slinberg.net/posts/2022-02-05-saturday-mornings-with-tufte/index.html</guid>
+  <pubDate>Sat, 05 Feb 2022 05:00:00 GMT</pubDate>
+  <media:content url="https://slinberg.net/posts/2022-02-05-saturday-mornings-with-tufte/tuftebooks.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Pythagorean Theorem</title>
+  <dc:creator>Steve Linberg</dc:creator>
+  <link>https://slinberg.net/posts/2022-02-02-pythagorean-theorem/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>How did I make it to <code>$adulthood * 2</code> without knowing that our old friend, the Pythagorean Theorem (<img src="https://latex.codecogs.com/png.latex?a%5E2%20+%20b%5E2%20=%20c%5E2">), works in any number of dimensions?</p>
+<p>The Euclidean distance <img src="https://latex.codecogs.com/png.latex?d"> between the origin (<img src="https://latex.codecogs.com/png.latex?0,%200,%20%5Cdots%200">) and a point defined by <img src="https://latex.codecogs.com/png.latex?n"> coordinates <img src="https://latex.codecogs.com/png.latex?x"> is just</p>
+<p><img src="https://latex.codecogs.com/png.latex?d%20=%20%5Csqrt%7Bx_1%5E2%20+%20x_2%5E2%20+%20%5Cdots%20+%20x_n%5E2%7D"></p>
+<p>Add up all of the squares and take the square root. Dope-smack for me.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
+  author = {Steve Linberg},
+  editor = {},
+  title = {Pythagorean {Theorem}},
+  date = {2022-02-02},
+  url = {https://slinberg.net/posts/2022-02-02-pythagorean-theorem},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-linberg2022" class="csl-entry quarto-appendix-citeas">
+Steve Linberg. 2022. <span>“Pythagorean Theorem.”</span> February 2,
+2022. <a href="https://slinberg.net/posts/2022-02-02-pythagorean-theorem">https://slinberg.net/posts/2022-02-02-pythagorean-theorem</a>.
+</div></div></section></div> ]]></description>
+  <category>math</category>
+  <guid>https://slinberg.net/posts/2022-02-02-pythagorean-theorem/index.html</guid>
+  <pubDate>Wed, 02 Feb 2022 05:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

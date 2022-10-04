@@ -14,20 +14,8 @@ website:
     right:
       - text: About
         href: steve.qmd
-      - text: "Meta"
-        menu:
-          - text: "Article listing"
-            href: meta_list.html
-          - text: "Distill and Github Pages Setup"
-            href: meta/distill-and-github-pages-setup/index.html
-      - text: "Academics"
-        menu:
-          - text: "Article listing"
-            href: academics_list.html
-          - text: "PS753 - Political and Social Networks, Spring 2022"
-            href: academics/ps753/
-          - text: "MS797 - Machine Learning for Social Sciences, Spring 2022"
-            href: academics/ms797/
+      - text: "Blog"
+        href: "blog.qmd"
       - icon: twitter
         href: https://twitter.com/stevelinberg
       - icon: linkedin
@@ -48,6 +36,15 @@ format:
     theme:
       light: flatly
       dark: darkly
-    css: styles.css    
+    code-background: true
+    code-copy: true
+    css: styles.css
+    toc: true
+    toc-title: On this page
+    toc-location: right
 editor: visual
+
+execute:
+  freeze: true
+  
 

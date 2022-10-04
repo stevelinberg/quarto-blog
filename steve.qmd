@@ -25,36 +25,35 @@ about:
 
 In summer 2022, I completed coursework for the [Data Analytics and Computational Social Science (DACSS) Masters program](https://www.umass.edu/sbs/data-analytics-and-computational-social-science-program) at the [University of Massachusetts, Amherst](https://umass.edu) (formally graduating later this year). My present position is Senior Systems and Analytics Engineer at the [Gandara Center](https://www.gandaracenter.org/) in West Springfield, MA.
 
-This site contains my academic [blog](index.html) with ruminations on computational social science, my own learning processes and discoveries, and related technical topics and snippets. 
+This site contains my academic [blog](index.html) with ruminations on computational social science, my own learning processes and discoveries, and related technical topics and snippets.
 
 ## Education
 
-*MS, Data Analytics and Computational Social Science* | 2022
+*MS, Data Analytics and Computational Social Science* \| 2022
 
-University of Massachusetts, Amherst | Amherst, MA
+University of Massachusetts, Amherst \| Amherst, MA
 
-*BA, Social Science* | 1992
+*BA, Social Science* \| 1992
 
-Hampshire College | Amherst, MA
+Hampshire College \| Amherst, MA
 
 ## Experience
 
-**Gandara Center**, West Springfield, MA | Senior Systems and Analytics Engineer / CIO / IT Director | 2005 - Present
+**Gandara Center**, West Springfield, MA \| Senior Systems and Analytics Engineer / CIO / IT Director \| 2005 - Present
 
-**Silicon Goblin Technologies**, Amherst, MA | Owner / Programmer | 1999 - 2015
+**Silicon Goblin Technologies**, Amherst, MA \| Owner / Programmer \| 1999 - 2015
 
-**Rojo Networks**, San Francisco, CA | Systems Administrator and Customer Service Lead | 2006-2008
+**Rojo Networks**, San Francisco, CA \| Systems Administrator and Customer Service Lead \| 2006-2008
 
-**National Center on Adult Literacy**, University of Pennsylvania Graduate School of Education, Philadelphia, PA | Systems Programmer and Lead Web Developer | 1997-1999
+**National Center on Adult Literacy**, University of Pennsylvania Graduate School of Education, Philadelphia, PA \| Systems Programmer and Lead Web Developer \| 1997-1999
 
-**Holyoke Public Schools**, Holyoke, MA | Literacy and GED Instructor | 1994-1997
+**Holyoke Public Schools**, Holyoke, MA \| Literacy and GED Instructor \| 1994-1997
 
-**Unicom, Inc.**, Providence, RI | Systems Programmer and Technical Writer | 1983-1997
+**Unicom, Inc.**, Providence, RI \| Systems Programmer and Technical Writer \| 1983-1997
 
 ## Interests
 
-- Data analytics, statistics, machine learning
-- Software engineering
-- Politics, culture and the state of the world
-- Drawing, painting, guitar, motorcycles, baking, gaming
-
+-   Data analytics, statistics, machine learning
+-   Software engineering
+-   Politics, culture and the state of the world
+-   Drawing, painting, guitar, motorcycles, baking, gaming
