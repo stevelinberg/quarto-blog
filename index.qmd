@@ -1,25 +1,39 @@
 ---
 page-layout: full
 toc: false
+header-includes: |
+  <link href="index-styles.css" rel="stylesheet">
+listing:
+  id: recent-posts
+  contents: posts
+  page-size: 3
+  sort: "date desc"
+  type: default
+  categories: false
+  sort-ui: false
+  filter-ui: false
+  fields: [date, title, reading-time, description]
+  feed: false
 ---
 
 ::: grid
 ::: g-col-4
-![](2022-sfl-photo-400x400.jpg){width="200"}
+![](2022-sfl-photo-400x400.jpg){width="300"}
 :::
 
 ::: g-col-8
-# Steve Linberg
+# Steve Linberg {#title-name}
 
-bliff bloo
+I'm a software engineer, data analyst and systems/network admin, recently wrapping up my masters work in the [Data Analytics and Computational Social Science](https://www.umass.edu/sbs/data-analytics-and-computational-social-science-program/ms) (DACSS) program at the [University of Massachusetts Amherst](https://www.umass.edu/).
+
+This site contains my [blog](blog.qmd), selections of my academic work, contact information, and whatever other nuggets and tidbits pop up.
 :::
 
 ::: g-col-6
-# Recent blog posts and highlights
+# Recent blog posts
 
-Some selections from my academic work from the DACSS program at Umass Amherst
-
-Get a listing here
+::: {#recent-posts}
+:::
 :::
 
 ::: g-col-6
