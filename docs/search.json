@@ -109,7 +109,7 @@
     "href": "steve.html",
     "title": "About",
     "section": "",
-    "text": "In summer 2022, I completed coursework for the Data Analytics and Computational Social Science (DACSS) Masters program at the University of Massachusetts, Amherst (formally graduating later this year). My present position is Senior Systems and Analytics Engineer at the Gandara Center in West Springfield, MA.\nThis site contains my academic blog with ruminations on computational social science, my own learning processes and discoveries, and related technical topics and snippets."
+    "text": "In summer 2022, I completed coursework for the Data Analytics and Computational Social Science (DACSS) Masters program at the University of Massachusetts, Amherst (formally graduating later this year). My present position is Senior Systems and Analytics Engineer at the Gandara Center in West Springfield, MA.\nI’ve worn many IT hats over the years, but coding is my first love."
   },
   {
     "objectID": "steve.html#education",
@@ -137,7 +137,7 @@
     "href": "index.html",
     "title": "slinberg.net",
     "section": "",
-    "text": "bliff bloo\n\n\n\nSome selections from my academic work from the DACSS program at Umass Amherst\nGet a listing here\n\n\n\nSome selections from my academic work from the DACSS program at Umass Amherst\n\n\nSpring 2021: stuff from TaD, including the Parler project"
+    "text": "I’m a software engineer, data analyst and systems/network admin, recently wrapping up my masters work in the Data Analytics and Computational Social Science (DACSS) program at the University of Massachusetts Amherst.\nThis site contains my blog with ruminations on computational social science, my own learning processes and discoveries, and related technical topics and snippets; selections of my academic work; contact information; and whatever other nuggets and tidbits pop up.\n\nData is the sword of the 21st century, those who wield it well, the Samurai\n– Jonathan Rosenberg\n\n\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOct 1, 2022\n\n\n11 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nCopy and paste formatted text to mass-create tasks.\n\n\n\n\n\n\nApr 2, 2022\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nEdward Tufte gets raw on chartjunk.\n\n\n\n\n\n\nMar 5, 2022\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nThe importance of simplicity in statistical graphics\n\n\n\n\n\n\nFeb 19, 2022\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nThe other half of data science skillbuilding\n\n\n\n\n\n\nFeb 5, 2022\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow did I not know this\n\n\n\n\n\n\nFeb 2, 2022\n\n\n0 min\n\n\n\n\n\n\nNo matching items\n\n\n  \n\n\n\n\n\nSome selections from my academic work from the DACSS program at Umass Amherst\n\n\nSpring 2021: stuff from TaD, including the Parler project"
   },
   {
     "objectID": "blog.html",
@@ -145,5 +145,26 @@
     "title": "slinberg.net",
     "section": "",
     "text": "Porting slinberg.net from Distill to Quarto\n\n\n\n\n\n\n\nquarto\n\n\ndistill\n\n\nblog\n\n\n\n\n\n\n\n\n\n\n\nOct 1, 2022\n\n\n11 min\n\n\n\n\n\n\n  \n\n\n\n\nQuickie for importing tasks to OmniFocus 3\n\n\n\n\n\n\n\nblog\n\n\nomnifocus\n\n\n\n\nCopy and paste formatted text to mass-create tasks.\n\n\n\n\n\n\nApr 2, 2022\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\nTufte Takes No Prisoners\n\n\n\n\n\n\n\ntufte\n\n\ndesign\n\n\n\n\nEdward Tufte gets raw on chartjunk.\n\n\n\n\n\n\nMar 5, 2022\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nPlayfair and the “Flatten the Curve” Graphic\n\n\n\n\n\n\n\ntufte\n\n\ndesign\n\n\n\n\nThe importance of simplicity in statistical graphics\n\n\n\n\n\n\nFeb 19, 2022\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\nSaturday mornings with Tufte\n\n\n\n\n\n\n\ntufte\n\n\ndesign\n\n\n\n\nThe other half of data science skillbuilding\n\n\n\n\n\n\nFeb 5, 2022\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPythagorean Theorem\n\n\n\n\n\n\n\nmath\n\n\n\n\nHow did I not know this\n\n\n\n\n\n\nFeb 2, 2022\n\n\n0 min\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html#text-as-data",
+    "href": "index.html#text-as-data",
+    "title": "slinberg.net",
+    "section": "Text as Data",
+    "text": "Text as Data\nSpring 2021: stuff from TaD, including the Parler project"
+  },
+  {
+    "objectID": "steve.html#selected-experience",
+    "href": "steve.html#selected-experience",
+    "title": "About",
+    "section": "Selected Experience",
+    "text": "Selected Experience\nGandara Center, West Springfield, MA | Senior Systems and Analytics Engineer / CIO / IT Director | 2005 - Present\nSilicon Goblin Technologies, Amherst, MA | Owner / Programmer | 1999 - 2015\nRojo Networks, San Francisco, CA | Systems Administrator and Customer Service Lead | 2006-2008\nNational Center on Adult Literacy, University of Pennsylvania Graduate School of Education, Philadelphia, PA | Systems Programmer and Lead Web Developer | 1997-1999\nHolyoke Public Schools, Holyoke, MA | Literacy and GED Instructor | 1994-1997\nUnicom, Inc., Providence, RI | Systems Programmer and Technical Writer | 1983-1997"
+  },
+  {
+    "objectID": "index.html#contact",
+    "href": "index.html#contact",
+    "title": "slinberg.net",
+    "section": "Contact",
+    "text": "Contact\n\n steve@slinberg.net (professional) or slinberg@umass.edu (academic)\n @stevelinberg"
   }
 ]

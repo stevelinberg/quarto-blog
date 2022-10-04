@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -41,6 +43,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -60,9 +64,52 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-recent-posts .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-reading-time','listing-description','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      page: 3,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-recent-posts'] = new List('listing-recent-posts', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-0ZXRPNMLL7"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-0ZXRPNMLL7', { 'anonymize_ip': true});
+</script>
+<link href="index-styles.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
+<meta name="twitter:title" content="">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -81,6 +128,11 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="./"><i class="bi bi-house" role="img">
+</i> 
+ </a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="./steve.html">About</a>
   </li>  
@@ -143,16 +195,201 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="grid">
 <div class="g-col-4">
-<p><img src="2022-sfl-photo-400x400.jpg" class="img-fluid" width="200"></p>
+<p><img src="2022-sfl-photo-400x400.jpg" class="img-fluid" width="300"></p>
 </div>
-<section id="steve-linberg" class="level1 g-col-8">
+<section id="title-name" class="level1 g-col-8">
 <h1>Steve Linberg</h1>
-<p>bliff bloo</p>
+<p>I’m a software engineer, data analyst and systems/network admin, recently wrapping up my masters work in the <a href="https://www.umass.edu/sbs/data-analytics-and-computational-social-science-program/ms">Data Analytics and Computational Social Science</a> (DACSS) program at the <a href="https://www.umass.edu/">University of Massachusetts Amherst</a>.</p>
+<p>This site contains my <a href="./blog.html">blog</a> with ruminations on computational social science, my own learning processes and discoveries, and related technical topics and snippets; selections of my academic work; contact information; and whatever other nuggets and tidbits pop up.</p>
+<div class="blockquote">
+<p>Data is the sword of the 21st century, those who wield it well, the Samurai<br>
+– <cite>Jonathan Rosenberg</cite></p>
+</div>
 </section>
-<section id="recent-blog-posts-and-highlights" class="level1 g-col-6">
-<h1>Recent blog posts and highlights</h1>
-<p>Some selections from my academic work from the DACSS program at Umass Amherst</p>
-<p>Get a listing here</p>
+<section id="recent-blog-posts" class="level1 g-col-6">
+<h1>Recent blog posts</h1>
+<div id="listing-recent-posts" class="quarto-listing quarto-listing-container-default">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="quarto,distill,blog" data-listing-date-sort="1664596800000" data-listing-file-modified-sort="1664662894714" data-listing-reading-time-sort="11.55">
+<div class="thumbnail">
+<p><a href="./posts/2022-10-01_distill_to_quarto_part_1/index.html"> <img src="./posts/2022-10-01_distill_to_quarto_part_1/quarto.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2022-10-01_distill_to_quarto_part_1/index.html">
+<h3 class="no-anchor listing-title" data-anchor-id="recent-blog-posts">
+Porting slinberg.net from Distill to Quarto
+</h3>
+<div class="listing-subtitle">
+
+</div>
+<div class="listing-description">
+Quarto: all the cool kids are doing it.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2022-10-01_distill_to_quarto_part_1/index.html">
+<div class="listing-date">
+Oct 1, 2022
+</div>
+<div class="listing-reading-time">
+11 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="blog,omnifocus" data-listing-date-sort="1648872000000" data-listing-file-modified-sort="1664644615220" data-listing-reading-time-sort="3.94">
+<div class="thumbnail">
+<p><a href="./posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html"> <img src="https://www.omnigroup.com/assets/img/icons/omnifocus-web@2x.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html">
+<h3 class="no-anchor listing-title">
+Quickie for importing tasks to OmniFocus 3
+</h3>
+<div class="listing-subtitle">
+
+</div>
+<div class="listing-description">
+<p>Copy and paste formatted text to mass-create tasks.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html">
+<div class="listing-date">
+Apr 2, 2022
+</div>
+<div class="listing-reading-time">
+3 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="tufte,design" data-listing-date-sort="1646456400000" data-listing-file-modified-sort="1664662372111" data-listing-reading-time-sort="2.95">
+<div class="thumbnail">
+<p><a href="./posts/2022-03-05-tufte-takes-no-prisoners/index.html"> <img src="./posts/2022-03-05-tufte-takes-no-prisoners/badgraphic.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2022-03-05-tufte-takes-no-prisoners/index.html">
+<h3 class="no-anchor listing-title">
+Tufte Takes No Prisoners
+</h3>
+<div class="listing-subtitle">
+
+</div>
+<div class="listing-description">
+<p>Edward Tufte gets raw on chartjunk.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2022-03-05-tufte-takes-no-prisoners/index.html">
+<div class="listing-date">
+Mar 5, 2022
+</div>
+<div class="listing-reading-time">
+2 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="tufte,design" data-listing-date-sort="1645246800000" data-listing-file-modified-sort="1664663168387" data-listing-reading-time-sort="3.045">
+<div class="thumbnail">
+<p><a href="./posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html"> <img data-src="./posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/nyt_curve.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html">
+<h3 class="no-anchor listing-title">
+Playfair and the “Flatten the Curve” Graphic
+</h3>
+<div class="listing-subtitle">
+
+</div>
+<div class="listing-description">
+<p>The importance of simplicity in statistical graphics</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html">
+<div class="listing-date">
+Feb 19, 2022
+</div>
+<div class="listing-reading-time">
+3 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="tufte,design" data-listing-date-sort="1644037200000" data-listing-file-modified-sort="1664663662312" data-listing-reading-time-sort="1.605">
+<div class="thumbnail">
+<p><a href="./posts/2022-02-05-saturday-mornings-with-tufte/index.html"> <img data-src="./posts/2022-02-05-saturday-mornings-with-tufte/tuftebooks.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2022-02-05-saturday-mornings-with-tufte/index.html">
+<h3 class="no-anchor listing-title">
+Saturday mornings with Tufte
+</h3>
+<div class="listing-subtitle">
+
+</div>
+<div class="listing-description">
+<p>The other half of data science skillbuilding</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2022-02-05-saturday-mornings-with-tufte/index.html">
+<div class="listing-date">
+Feb 5, 2022
+</div>
+<div class="listing-reading-time">
+1 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5" data-categories="math" data-listing-date-sort="1643778000000" data-listing-file-modified-sort="1664663823703" data-listing-reading-time-sort="0.35">
+<div class="thumbnail">
+<a href="./posts/2022-02-02-pythagorean-theorem/index.html">
+<div class="thumbnail-image">
+
+</div>
+</a><p><a href="./posts/2022-02-02-pythagorean-theorem/index.html"></a></p>
+</div>
+<div class="body">
+<a href="./posts/2022-02-02-pythagorean-theorem/index.html">
+<h3 class="no-anchor listing-title">
+Pythagorean Theorem
+</h3>
+<div class="listing-subtitle">
+
+</div>
+<div class="listing-description">
+<p>How did I not know this</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2022-02-02-pythagorean-theorem/index.html">
+<div class="listing-date">
+Feb 2, 2022
+</div>
+<div class="listing-reading-time">
+0 min
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+<nav id="recent-posts-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
+</div>
 </section>
 <section id="academic-work" class="level1 g-col-6">
 <h1>Academic work</h1>
@@ -163,8 +400,16 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </section>
 </div>
+<section id="contact" class="level2">
+<h2 class="anchored" data-anchor-id="contact">Contact</h2>
+<ul>
+<li><i class="fa-solid fa-envelope" title="Email" aria-hidden="true"></i> <a href="mailto:steve@slinberg.net">steve@slinberg.net</a> (professional) or <a href="mailto:slinberg@umass.edu">slinberg@umass.edu</a> (academic)</li>
+<li><i class="fa-brands fa-twitter" title="twitter" aria-hidden="true"></i> <a href="https://twitter.com/stevelinberg"><span class="citation" data-cites="stevelinberg">@stevelinberg</span></a></li>
+</ul>
 
 
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -379,6 +624,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Copyright 2022 Steve Linberg. Except where otherwise noted, all text and images licensed CC-BY-NC 4.0</div>   
+  </div>
+</footer>
 
 
 
