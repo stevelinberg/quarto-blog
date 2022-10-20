@@ -427,6 +427,13 @@
     "text": "Other conversion notes\nOther unordered odds and end from the porting process:\n\nHashpipe syntax\nOne of the nice things about Quarto is much more readable chunk options via the “hashpipe” syntax (# = “hash”, | = “pipe”, so #| = “hashpipe” 🙄). For example, we can turn this heavy thing:\n{r echo=FALSE, fig.cap=\"Figure from \n[The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi),\np. 118\", out.width=400}\nknitr::include_graphics(\"badgraphic.png\")\nInto this more readable construct:\n{r}\n#| echo: FALSE\n#| fig-cap: Figure from [The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi), p. 118\n#| out.with: 400\nknitr::include_graphics(\"badgraphic.png\")\n… in theory.\nIn practice, as of this writing, there’s a bug in Quarto that prevents this from working correctly in .qmd files, so… for the moment, we wait and keep it in the former style.\n\n\n.Rmd files still render\nI was a little surprised to see that my non-converted blog posts, copied straight over from the Distill blog and prior to the cleanup for Quarto, still rendered just fine. I guess that’s good, but I wasn’t expecting it. I’m still going to clean them up."
   },
   {
+    "objectID": "posts/2022-10-01_distill_to_quarto_part_1/index.html#continue-to-part-2",
+    "href": "posts/2022-10-01_distill_to_quarto_part_1/index.html#continue-to-part-2",
+    "title": "Porting slinberg.net from Distill to Quarto",
+    "section": "Continue to part 2!",
+    "text": "Continue to part 2!\nMore notes and commentary on the process can be found in part 2 of this series."
+  },
+  {
     "objectID": "posts/2022-10-01_distill_to_quarto_part_1/index.html#appendix-a-problems",
     "href": "posts/2022-10-01_distill_to_quarto_part_1/index.html#appendix-a-problems",
     "title": "Porting slinberg.net from Distill to Quarto",
@@ -502,12 +509,5 @@
     "title": "slinberg.net",
     "section": "",
     "text": "Porting to Quarto, part 2\n\n\n\n\n\n\n\nquarto\n\n\ndistill\n\n\n\n\nA few more notes on the Quarto transition\n\n\n\n\n\n\nOct 20, 2022\n\n\n8 min\n\n\n\n\n\n\n  \n\n\n\n\nPorting slinberg.net from Distill to Quarto\n\n\n\n\n\n\n\nquarto\n\n\ndistill\n\n\n\n\n\n\n\n\n\n\n\nOct 1, 2022\n\n\n11 min\n\n\n\n\n\n\n  \n\n\n\n\nQuickie for importing tasks to OmniFocus 3\n\n\n\n\n\n\n\nomnifocus\n\n\n\n\nCopy and paste formatted text to mass-create tasks.\n\n\n\n\n\n\nApr 2, 2022\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\nTufte Takes No Prisoners\n\n\n\n\n\n\n\ntufte\n\n\ndesign\n\n\n\n\nEdward Tufte gets raw on chartjunk.\n\n\n\n\n\n\nMar 5, 2022\n\n\n2 min\n\n\n\n\n\n\n  \n\n\n\n\nPlayfair and the “Flatten the Curve” Graphic\n\n\n\n\n\n\n\ntufte\n\n\ndesign\n\n\n\n\nThe importance of simplicity in statistical graphics\n\n\n\n\n\n\nFeb 19, 2022\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\nSaturday mornings with Tufte\n\n\n\n\n\n\n\ntufte\n\n\ndesign\n\n\n\n\nThe other half of data science skillbuilding\n\n\n\n\n\n\nFeb 5, 2022\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPythagorean Theorem\n\n\n\n\n\n\n\nmath\n\n\n\n\nHow did I not know this\n\n\n\n\n\n\nFeb 2, 2022\n\n\n0 min\n\n\n\n\n\n\n  \n\n\n\n\nDistill and Github Pages Setup\n\n\n\n\n\n\n\ndistill\n\n\ngithub pages\n\n\ngit\n\n\nrstudio\n\n\n\n\nA walkthrough of setting up a new Distill site on GitHub Pages\n\n\n\n\n\n\nJan 29, 2022\n\n\n10 min\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/2022-10-01_distill_to_quarto_part_1/index.html#continue-to-part-2",
-    "href": "posts/2022-10-01_distill_to_quarto_part_1/index.html#continue-to-part-2",
-    "title": "Porting slinberg.net from Distill to Quarto",
-    "section": "Continue to part 2!",
-    "text": "Continue to part 2!\nMore notes and commentary on the process can be found in part 2 of this series."
   }
 ]

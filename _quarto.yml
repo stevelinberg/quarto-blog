@@ -4,9 +4,9 @@ project:
 
 website:
   title: slinberg.net
-  google-analytics: G-0ZXRPNMLL7
+  google-analytics: "G-0ZXRPNMLL7"
   twitter-card: true
-  description: Steve Linberg's blog
+  description: Steve Linberg
   site-url: https://slinberg.net
   repo-url: https://github.com/stevelinberg/quarto-blog
   repo-actions: [edit, issue, source]
