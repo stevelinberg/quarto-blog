@@ -284,6 +284,10 @@ In *practice*, as of this writing, there's a [bug](https://github.com/rstudio/rs
 
 I was a little surprised to see that my non-converted blog posts, copied straight over from the Distill blog and prior to the cleanup for Quarto, still rendered just fine. I guess that's good, but I wasn't expecting it. I'm still going to clean them up.
 
+## Continue to part 2!
+
+More notes and commentary on the process can be found in [part 2](/posts/2022-10-20_distill_to_quarto_part_2) of this series.
+
 ## Appendix A: problems
 
 Rather than interrupt the basic narrative above, let's stack the problems we hit along the way down here.

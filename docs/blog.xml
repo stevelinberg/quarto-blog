@@ -388,6 +388,10 @@ Note
 <p>I was a little surprised to see that my non-converted blog posts, copied straight over from the Distill blog and prior to the cleanup for Quarto, still rendered just fine. I guess that’s good, but I wasn’t expecting it. I’m still going to clean them up.</p>
 </section>
 </section>
+<section id="continue-to-part-2" class="level2">
+<h2 class="anchored" data-anchor-id="continue-to-part-2">Continue to part 2!</h2>
+<p>More notes and commentary on the process can be found in <a href="../../posts/2022-10-20_distill_to_quarto_part_2">part 2</a> of this series.</p>
+</section>
 <section id="appendix-a-problems" class="level2">
 <h2 class="anchored" data-anchor-id="appendix-a-problems">Appendix A: problems</h2>
 <p>Rather than interrupt the basic narrative above, let’s stack the problems we hit along the way down here.</p>
