@@ -3,19 +3,28 @@ project:
   output-dir: docs
 
 website:
-  title: "slinberg.net"
+  title: slinberg.net
+  google-analytics: G-0ZXRPNMLL7
+  twitter-card: true
   description: Steve Linberg's blog
   site-url: https://slinberg.net
   repo-url: https://github.com/stevelinberg/quarto-blog
   repo-actions: [edit, issue, source]
   reader-mode: true
+  page-footer: 
+    left: |
+      © Copyright 2022 Steve Linberg. Except where otherwise noted, all text and images licensed CC-BY-NC 4.0
   navbar:
     search: true
     right:
+      - icon: house
+        href: /
       - text: About
         href: steve.qmd
-      - text: "Blog"
-        href: "blog.qmd"
+      - text: Blog
+        href: blog.qmd
+      - text: Academics
+        href: academics.qmd
       - icon: twitter
         href: https://twitter.com/stevelinberg
       - icon: linkedin
@@ -30,7 +39,26 @@ website:
         href: index.xml
     feed:
       items: 20
-
+  sidebar:
+    - title: "Academics"
+      style: "docked"
+      background: "light"
+      contents:
+        - section: "695M - Machine Learning"
+          href: "academics/695M/index.qmd"
+          contents: 
+          - "academics/695M/glossary/index.qmd"
+          - "academics/695M/useful-r-tidbits/index.qmd"
+          - "academics/695M/bigger-concepts/index.qmd"
+        - section: "697E - Political Networks Analysis"
+          href: "academics/697E/index.qmd"
+          contents: 
+          - "academics/697E/glossary/index.qmd"
+          - "academics/697E/useful-r-tidbits/index.qmd"
+          - "academics/697E/697E-hw3/index.qmd"
+          - "academics/697E/697E-hw4/index.qmd"
+          - "academics/697E/697E-hw5/index.qmd"
+          - "academics/697E/697E-hw6/index.qmd"
 format:
   html:
     theme:
@@ -42,7 +70,7 @@ format:
     toc: true
     toc-title: On this page
     toc-location: right
-editor: visual
+editor: source
 
 execute:
   freeze: true

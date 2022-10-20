@@ -1,7 +1,7 @@
 ---
 title: "Porting slinberg.net from Distill to Quarto"
 date: "2022-10-01"
-categories: [quarto, distill, blog]
+categories: [quarto, distill]
 image: quarto.png
 ---
 
@@ -259,7 +259,7 @@ Other unordered odds and end from the porting process:
 
 One of the nice things about Quarto is much more readable chunk options via the "hashpipe" syntax (`#` = "hash", `|` = "pipe", so `#|` = "hashpipe" 🙄). For example, we can turn this heavy thing:
 
-```r
+``` r
 {r echo=FALSE, fig.cap="Figure from 
 [The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi),
 p. 118", out.width=400}
@@ -268,13 +268,14 @@ knitr::include_graphics("badgraphic.png")
 
 Into this more readable construct:
 
-```r
+``` r
 {r}
 #| echo: FALSE
 #| fig-cap: Figure from [The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi), p. 118
 #| out.with: 400
 knitr::include_graphics("badgraphic.png")
 ```
+
 ... in *theory*.
 
 In *practice*, as of this writing, there's a [bug](https://github.com/rstudio/rstudio/issues/11708) in Quarto that prevents this from working correctly in .qmd files, so... for the moment, we wait and keep it in the former style.

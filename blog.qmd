@@ -10,8 +10,9 @@ listing:
   feed: true
 page-layout: full
 title-block-banner: false
+sidebar: false
 ---
 
-# All blog posts
+# Blog
 
-Use the filter box below to filter by keyword or category.
+Use the filter box below to filter posts by keyword or category.

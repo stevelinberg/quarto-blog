@@ -1,0 +1,21 @@
+---
+title: "695M - Machine Learning"
+date: 2022-02-03
+listing:
+  contents: .
+  sort: "title desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  fields: [date, title, reading-time, description, categories, image]
+  feed: false
+---
+
+Date
+: Spring 2022
+
+Professor
+: [Justin Gross](https://polsci.umass.edu/people/justin-h-gross)
+
+This class was a deep (initial) dive into Machine Learning, with a focus on applications in the social sciences.

@@ -125,9 +125,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-0ZXRPNMLL7"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-0ZXRPNMLL7', { 'anonymize_ip': true});
+</script>
 
 
 <link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="slinberg.net - Porting slinberg.net from Distill to Quarto">
+<meta name="twitter:description" content="Quarto: all the cool kids are doing it.">
+<meta name="twitter:image" content="https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1/quarto.png">
+<meta name="twitter:image-height" content="77">
+<meta name="twitter:image-width" content="320">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed">
@@ -146,11 +161,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../"><i class="bi bi-house" role="img">
+</i> 
+ </a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../steve.html">About</a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../academics.html">Academics</a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/stevelinberg"><i class="bi bi-twitter" role="img">
@@ -248,7 +271,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <div class="quarto-categories">
     <div class="quarto-category">quarto</div>
     <div class="quarto-category">distill</div>
-    <div class="quarto-category">blog</div>
   </div>
   </div>
 
@@ -524,7 +546,7 @@ Note
 </section>
 
 
-<hr><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>RStudio 2022.07.1+554 “Spotted Wakerobin” Release (7872775ebddc40635780ca1ed238934c3345c5de, 2022-07-22) for macOS Mozilla/5.0 (Macintosh; Intel Mac OS X 12_6_0) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.12.10 Chrome/69.0.3497.128 Safari/537.36, to be precise<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -753,6 +775,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Copyright 2022 Steve Linberg. Except where otherwise noted, all text and images licensed CC-BY-NC 4.0</div>   
+  </div>
+</footer>
 
 
 

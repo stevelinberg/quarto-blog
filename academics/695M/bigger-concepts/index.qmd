@@ -1,0 +1,212 @@
+---
+title: "Bigger Concepts"
+date: 2022-02-03
+description: |
+  Bigger concepts for MS797 coursework
+categories: [machine learning]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(ISLR2)
+library(tidyverse)
+library(GGally) # for ggpairs
+library(pander) # for prettier output
+library(cowplot) # for side-by-side plots from different data
+```
+
+This page is for concepts that don't fit into the [glossary](../glossary/index.qmd).
+
+**This document is in process.**
+
+# Classification
+
+The general umbrella categories for *classification*---where the outcome variable to be predicted is categorical, rather than continuous, like eye color rather than weight---are "discriminative" and "generative". Discriminative models take sets of data and separate them into classes, like finding the decision boundary between two or more classes, but can't predict the values of new data. Generative models (used in unsupervised learning) can generate new data, but are more susceptible to outliers (misclassified observations) than discriminative models, require more data to create, and are more computationally expensive.
+
+A generative model---somehow---tries to guess how the data was generated, so it can take a new bit of unseen data, assess the probability that each class would have produced it, and pick the class with the highest probability.
+
+A discriminative model can only look at existing data and create a decision boundary separating the existing data into classes.
+
+![Figure from https://stanford.edu/%7Eshervine/teaching/cs-229/cheatsheet-supervised-learning](disc-gen.png)
+
+Note that there is no decision boundary in the generative model, just levels of probability into which new data could be classified with varying levels of confidence.
+
+Logistic regression is discriminative. Linear discriminant analysis, quadratic discriminant analysis, and naive Bayes are generative, K-nearest neighbors appears to be neither.
+
+## Logistic Regression
+
+Logistic regression's output is a *probability* that a response variable belongs to a particular category.
+
+The general form of a logistic model is:
+
+$$p(X) = \text{PR}(Y = 1|X)$$ The right side of the equation reads "The probability that Y equals 1, given X" - or the chance that Y is a particular category for a specific value of X.
+
+A linear regression model would use this form:
+
+$$p(X) = \beta_0 + \beta_1X$$
+
+And the magic formula for this is the *logistic function*, in which we raise $e$ to this power.
+
+$$p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1X}}$$
+
+(Why $e^{\beta_0 + \beta_1X}$ instead of, say, $2^{\beta_0 + \beta_1X}$ or $\pi^{\beta_0 + \beta_1X}$ or $123456^{\beta_0 + \beta_1X}$?)
+
+Dividing both sides by $1 - p(X)$ (somehow) yields:
+
+$$\frac{p(X)}{1 - p(X)} = e^{\beta_0 + \beta_1X}$$
+
+which is also the *odds* that Y is 1 given X. If the probability of something is 20%, or 1/5, then the odds are 1/4:
+
+$$\frac{1}{5} \div \left[ 1 - \frac{1}{5} \right] = \frac{1}{5} \div \frac{4}{5} = \frac{1}{5} \times \frac{5}{4} = 1/4 = 0.25$$
+
+### When to use logistic regression
+
+When the response variable is categorical, and has two possible classes, like "Yes" or "No", "Up" or "Down", etc. However, see Linear Discriminant Analysis below for examples of when *not* to use it.
+
+In some cases, a categorical response variable could be analyzed with a linear regression by treating the categorical variable as numeric, like treating "not infected" as 0 and "infected" as 1, and using the rounded value as the predictor; however, beyond 2 possible responses it's unlikely that a continuous scale could be established between the possible values, and it gets messy.
+
+### How to do logistic regression
+
+Use `glm()` with the argument `family = binomial` to indicate logistic regression.
+
+Using the `Boston` data set from the `ISLR2` package, the following will model the probability of a tract having a `crim` rate above the median, based on `zn`, using logistic regression:
+
+```{r}
+data(Boston)
+boston <- Boston %>%
+  # Create the crim_above_median response variable
+  mutate(crim_above_med = as.factor(
+    ifelse(crim > median(crim), "Yes", "No")))
+
+# Fit the model
+zn.fit <- glm(crim_above_med ~ zn, data = boston, family = binomial)
+summary(zn.fit)
+```
+
+The `zn.fit` summary above will show the coefficients and p-values; the `$coef` aspect of the summary will show more detail.
+
+`predict()` can then be fed the fit to make predictions. The argument `type = "response"` will tell it to output probabilities "of the form $P(Y = 1|X)$" from the data that was used in the fit, also described as the training data. It returns a vector of probabilities for every data element.
+
+```{r}
+# Create the probability vector from the fit
+zn.probs <- predict(zn.fit, type = "response")
+head(zn.probs) %>% pander()
+```
+
+The responses can be converted into categories and turned into a confusion matrix to show how the regression did with the training data.
+
+```{r}
+# Convert the probability vector into yes-or-no predictions
+zn.pred <- ifelse(zn.probs > 0.5, "Yes", "No")
+# Display a confusion matrix
+table(zn.pred, boston$crim_above_med) %>% pander()
+```
+
+The overall success rate can be calculated with `mean()`, comparing each predicted value to the actual value:
+
+```{r}
+# See how many of the predictions match the actual value
+mean(zn.pred == boston$crim_above_med)
+```
+
+The model can then be run on test data that is held out from the main set, with the expectation that it won't do quite as well as the training data. The efficacy can then be assessed in the same way, and if it's not high, we can return to the model and try to find other forms that make better predictions - or perhaps conclude that we can't make a good prediction at all.
+
+## Linear Discriminant Analysis (LDA)
+
+The simplest use case for LDA is when there are more than two possible response classes; logistic regression gives the probability that an observation is in a class A or B, but it can only handle two classes.
+
+LDA also gives better results when "there is substantial separation between the two classes", or where the sample size is small and the distribution of the predictors is approximately normal in each of the classes.
+
+<aside>How do we determine this?</aside>
+
+## Resampling methods
+
+Resampling methods are used to refine and test models against training data by repeatedly testing against different subsets within the data.
+
+*Cross-validation* can be used to estimate the test error rate of a method (*model assessment*), and *bootstrap* is mostly to measure the accuracy of a parameter or of a method.
+
+### Cross-validation: validation set approach
+
+This approach randomly splits the data into two sets: a *training* set and a *validation* or *test* set. Size ratios seem to be on the order of between 50-50 to 3:1 or 4:1 training-to-test data. The model is fit against the training data, and then `predict()` is used to predict the results for the validation data; the results of `predict` can then be compared against the actual classifications in the validation data to compute the error rate.
+
+This process can be run repeatedly with different splits.
+
+The general process is:
+
+1.  Randomly split the dataset into training and validation sets
+2.  Fit the model to the training data
+3.  Predict the outcomes of the model on the validation data
+4.  Convert the predictions into categorical variables that match the field being predicted (like Yes/No, etc)
+5.  The error rate is the proportion of correct predictions in the validation data.
+
+The code below runs 10 iterations and accumulates the results into a results data frame.
+
+```{r eval=FALSE}
+set.seed(1235)
+train_pct <- .75
+
+p5_3a.results <- data.frame(iteration = integer(),
+                           error_rate = double())
+
+for (i in 1:10) {
+  p5_3a.training <- rep(FALSE, nrow(Default))
+  p5_3a.training[sample(nrow(Default), nrow(Default) * train_pct)] <- TRUE
+  p5_3a.validation <- !p5_3a.training
+
+  p5_3a.fit <-
+    glm(
+      formula = default ~ income + balance,
+      family = binomial,
+      data = Default,
+      subset = p5_3a.training
+    )
+
+  p5_3a.probs <- predict(p5_3a.fit, Default[p5_3a.validation, ], type = "response")
+  p5_3a.pred <- ifelse(p5_3a.probs > 0.5, "Yes", "No")
+  p5_3a.validation_error_rate <-
+    mean(p5_3a.pred == Default[p5_3a.validation, ]$default)
+  p5_3a.validation_error_rate_print <-
+    round(p5_3a.validation_error_rate, 2)
+  
+  p5_3a.results[i,] <- data.frame(
+    iteration = i,
+    error_rate = 1 - p5_3a.validation_error_rate
+  )
+}
+
+```
+
+### Cross-validation: leave-one-out (LOOCV)
+
+This method is similar to the validation set approach, except that the validation set is only one element, and the training set is the remaining $n-1$ observations. It is run automatically $n$ times and returns an average of the test errors.
+
+The process is simpler than the validation set approach:
+
+1.  Fit the model to the entire data set with `glm()` (omitting the `subset` argument)
+2.  Run `cv.glm` on the fit
+3.  The `delta` factor of the return data is the cross-validation error rate for the test data.
+
+Code from the book:
+
+```{r eval=FALSE}
+library(boot)
+glm.fit <- glm(mpg ~ horsepower, data = Auto)
+cv.error <- cv.glm(Auto, glm.fit)
+cv.error$delta
+```
+
+### Cross-validation: k-fold
+
+K-fold cross-validation is like leave-one-out cross-validation but with a larger test set; it splits the data up into $k$ segments and runs the cross-validation on each. It may give better results if run repeatedly and averaged, as with the validation set approach. It is faster than LOOCV, obviously, because it uses less data.
+
+The process is the same as LOOCV, except a parameter such as `K = 10` is added to the `cv.glm()` call. 5 to 10 is a common range for values of $k$.
+
+```{=html}
+<!--
+### When to use it
+
+### How to do it
+
+### How to interpret it
+-->
+```

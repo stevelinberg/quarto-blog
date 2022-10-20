@@ -10,7 +10,163 @@
 <atom:link href="https://slinberg.net/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Steve Linberg's blog</description>
 <generator>quarto-1.1.251</generator>
-<lastBuildDate>Sat, 01 Oct 2022 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 20 Oct 2022 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Porting to Quarto, part 2</title>
+  <dc:creator>Steve Linberg</dc:creator>
+  <link>https://slinberg.net/posts/2022-10-20_distill_to_quarto_part_2/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>Here are a few more notes and tips on the transition to <a href="https://quarto.org">Quarto</a>, for other folks who may be grappling with it as well. You might reference <a href="../../posts/2022-10-01_distill_to_quarto_part_1/index.html">part one</a> as well.</p>
+<section id="site-structure-and-categories" class="level2">
+<h2 class="anchored" data-anchor-id="site-structure-and-categories">Site structure and categories</h2>
+<p>This site is (presently) a mix of 3 general categories of content:</p>
+<ol type="1">
+<li>Static, once-off pages like <a href="../../steve.html">About</a> or the <a href="../../index.html">front page</a></li>
+<li>Time-oriented narrative pages: the <a href="../../blog.html">blog</a></li>
+<li>Academic stuff that is sort of in between, having chronology but usually a bit more substantive than blog posts, which can be short and more stream-of-consciousness</li>
+</ol>
+<p>There’s no real technical distinction between a blog post and a static page, except that Quarto includes functionality for grouping and listing blog posts by using various metadata added in posts’ <code>YAML</code> headers. One of the differences, though, is that blog posts can have categories; standard pages can’t. For this reason, I decided to treat the academic content as blog posts, to inherit the category functionality, but I wanted to keep them distinct from the blog section itself.</p>
+<p>I spent a lot of time trying to solve the following problem, and have just come to the conclusion that I can’t. This happened in Distill, and was part of my motivation for moving to Quarto, and it turns out it’s the same situation in Quarto:</p>
+<div class="callout callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Categories cannot be shared across sections.</p>
+</div>
+</div>
+</div>
+<p>I liked the idea of having categories on posts and pages on the site, as a non-hierarchical form of organization.<sup>1</sup> Basically, I assumed categories were tags, metadata that could be arbitrarily attached to content in various forms and places, and then used to navigate the site in other ways.</p>
+<p>That’s not quite how it works. In Quarto, categories are metadata attached to documents, and they are only accessible from listing pages, like the <a href="../../blog.html">blog</a> page or the <a href="../../academics.html">academics</a> page. There isn’t a way to search a site for categories, and categories don’t cross-pollenate across sections (i.e.&nbsp;categories defined in blog posts won’t be accessible in listings for academics, and vice versa).</p>
+<p>I spent a lot of time trying to find a workaround for this, and up until this morning I thought I was close. I made “academics” a subdirectory of “posts”, and did some gymnastics to keep the separate listing pages from combining the listings. I got all of that working, but in the end I noticed that the category clouds for the listing pages only consisted of the categories for the content it was showing, not all of the categories defined in the site.</p>
+<p>So, I realized it’s just not going to work, and backed the <a href="../../academics.html">academics</a> page out of <code>/posts</code> and made it a parallel top-level structure. A lot of wasted time. Sigh.</p>
+<p>We’ve come this far, though, so we’re committed now, and overall Quarto does feel cleaner and less reliant on hidden CLI voodoo than Distill. So we’ll just add a couple more notes and call it done.</p>
+</section>
+<section id="suppressing-stuff-on-blog-pages" class="level2">
+<h2 class="anchored" data-anchor-id="suppressing-stuff-on-blog-pages">Suppressing stuff on blog pages</h2>
+<p>When you make a blog post, you get a lot of additional stuff by default that is usually good, but which you may not always want.</p>
+<p>In my initial attempt to solve the above problem, I had a directory structure like this for the academics section:</p>
+<pre><code>academics/
+academics/_metadata.yml
+academics/index.qmd
+academics/695M/
+academics/697E/</code></pre>
+<p>The file <code>index.qmd</code> was the listing page for the academics section, but it was treated as a blog post because it was inside the <code>academics</code> directory being listed. This meant that it inherited blog post things like author name, post date, citation information, license information, etc. That was fine for posts, but I didn’t want it all on this particular page.</p>
+<p>Turning it all off took some doing, but the following fields in the YAML header did it:</p>
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 28%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>attribute</th>
+<th>value</th>
+<th>effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>citation</code></td>
+<td><code>false</code></td>
+<td>suppress the BibTex citation block at the bottom of the page</td>
+</tr>
+<tr class="even">
+<td><code>license</code></td>
+<td><code>""</code></td>
+<td>suppress the “Reuse” header and license information.</td>
+</tr>
+<tr class="odd">
+<td><code>title-block-style</code></td>
+<td><code>none</code></td>
+<td>turn off some of the header block information, but we still also need:</td>
+</tr>
+<tr class="even">
+<td><code>date-format</code></td>
+<td><code>""</code></td>
+<td>supress the date header; also be sure NOT to have <code>date</code> in the header, or it will still be echoed</td>
+</tr>
+<tr class="odd">
+<td><code>author</code></td>
+<td><code>"[hidden text]{style='display:none'}"</code></td>
+<td>the yuckiest hack of all; <code>author</code> can’t be blank, so the only thing we can do is put it in a <code>&lt;span&gt;</code> and use CSS to hide it.</td>
+</tr>
+</tbody>
+</table>
+<p>The raw code is:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><span class="fu" style="color: #4758AB;">citation</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="ch" style="color: #20794D;">false</span></span>
+<span id="cb2-2"><span class="fu" style="color: #4758AB;">license</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="st" style="color: #20794D;">""</span></span>
+<span id="cb2-3"><span class="fu" style="color: #4758AB;">title-block-style</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> none</span></span>
+<span id="cb2-4"><span class="fu" style="color: #4758AB;">date-format</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="st" style="color: #20794D;">""</span></span>
+<span id="cb2-5"><span class="fu" style="color: #4758AB;">author</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="st" style="color: #20794D;">"[hidden text]{style='display:none'}"</span></span></code></pre></div>
+<p>For a visual reference, if we create a simple page like this:</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><span class="pp" style="color: #AD0000;">---</span></span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;">title</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span><span class="st" style="color: #20794D;">"A sample page"</span></span>
+<span id="cb3-3"><span class="fu" style="color: #4758AB;">description</span><span class="kw" style="color: #003B4F;">: </span><span class="ch" style="color: #20794D;">|</span></span>
+<span id="cb3-4">  a sample page description</span>
+<span id="cb3-5"><span class="pp" style="color: #AD0000;">---</span></span>
+<span id="cb3-6"></span>
+<span id="cb3-7"><span class="at" style="color: #657422;">I don't want any extra stuff on this page!</span></span></code></pre></div>
+<p>It will render like this:</p>
+<p><img src="https://slinberg.net/posts/2022-10-20_distill_to_quarto_part_2/sample_1.png" class="img-fluid"></p>
+<p>For a blog post, maybe that’s fine, but for an index page or something else, we might only want the title and body, shown in green, and not the stuff in red:</p>
+<p><img src="https://slinberg.net/posts/2022-10-20_distill_to_quarto_part_2/sample_2.png" class="img-fluid"></p>
+<p>The attributes listed above will remove this:</p>
+<p><img src="https://slinberg.net/posts/2022-10-20_distill_to_quarto_part_2/sample_3.png" class="img-fluid"></p>
+<p>Leaving us with this:</p>
+<p><img src="https://slinberg.net/posts/2022-10-20_distill_to_quarto_part_2/sample_4.png" class="img-fluid"></p>
+<p>Aaaahhhhh.</p>
+</section>
+<section id="redirecting-from-previous-urls" class="level2">
+<h2 class="anchored" data-anchor-id="redirecting-from-previous-urls">Redirecting from previous URLs</h2>
+<p><a href="https://www.w3.org/Provider/Style/URI">Cool URLs don’t change.</a></p>
+<p>We said that back in 1998. Did anybody listen? Not really. Do any of your 25-year-old URLs still work like that one does? I doubt it. My point.</p>
+<p>When you migrate your site, URLs are going to break. If you want bookmarks - or google results - to find their way to the pages that got moved around, instead of dropping your confused readers on your cute 404 page, you need to leave pointers from your old URLs to your new ones.</p>
+<p>This can be a daunting project, depending on how many URLs you need to update, and there are several ways to do it. The best way involves having some control over the webserver that’s hosting your site, such as server-side rewrite rules or <code>.htaccess</code> files, because that doesn’t depend on the viewer’s browser to handle the issue that is really a server issue.</p>
+<p>However, if you’re hosting somewhere where you don’t have that kind of control, the next-best way is to use <code>aliases</code> in the YAML header. It won’t work in all cases, but it’s a lot better than nothing.</p>
+<p>So, for example, due to differences in the way the Quarto and Distill versions of this site were built, a sample blog post entry URL was:</p>
+<p>https://slinberg.net/posts/2022-02-02-pythagorean-theorem/</p>
+<p>Hurrah! When I moved it to Quarto, I kept “posts” as the top-level directory, and kept the directory names they were in. The old Distill filename was replaced by <code>index.qmd</code>, which becomes <code>index.html</code>, so that path still works.</p>
+<p>However, the academics listing page was at this address:</p>
+<p><code>https://slinberg.net/academics_list.html</code> And it is now:</p>
+<p><code>https://slinberg.net/academics.html</code> However, if you follow the old link, you’ll see that it still brings you to the right place. This is done with this in the header:</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><span class="fu" style="color: #4758AB;">aliases</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span></span>
+<span id="cb4-2"><span class="at" style="color: #657422;">  </span><span class="kw" style="color: #003B4F;">-</span><span class="at" style="color: #657422;"> </span><span class="st" style="color: #20794D;">"academics_list.html"</span></span></code></pre></div>
+<p>What this actually does is tell Quarto to generate a file called <code>academics_list.html</code>, which contains a redirect to <code>academics.html</code>. This pollutes your directory a bit, and means you have to overlay the old directory structure into your current one, so it’s not ideal from a neatness perspective. However, it will work well enough in most cases.</p>
+<p>So that’s a wrap on the migration process. Other Quarto goodness will follow as I uncover it.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>I’m all about hierarchies, as I date from the very first days of the web when all sites were static, before server-side or client-side processing, and websites were nice, neat hierarchical cascades of directories, images and HTML pages. That’s still my mental concept for websites, even though it’s not strictly necessary anymore.↩︎</p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
+  author = {Steve Linberg},
+  editor = {},
+  title = {Porting to {Quarto,} Part 2},
+  date = {2022-10-20},
+  url = {https://slinberg.net/posts/2022-10-20_distill_to_quarto_part_2},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-linberg2022" class="csl-entry quarto-appendix-citeas">
+Steve Linberg. 2022. <span>“Porting to Quarto, Part 2.”</span> October
+20, 2022. <a href="https://slinberg.net/posts/2022-10-20_distill_to_quarto_part_2">https://slinberg.net/posts/2022-10-20_distill_to_quarto_part_2</a>.
+</div></div></section></div> ]]></description>
+  <category>quarto</category>
+  <category>distill</category>
+  <guid>https://slinberg.net/posts/2022-10-20_distill_to_quarto_part_2/index.html</guid>
+  <pubDate>Thu, 20 Oct 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://slinberg.net/posts/2022-10-20_distill_to_quarto_part_2/quarto.png" medium="image" type="image/png" height="35" width="144"/>
+</item>
 <item>
   <title>Porting slinberg.net from Distill to Quarto</title>
   <dc:creator>Steve Linberg</dc:creator>
@@ -268,7 +424,7 @@ Note
 </section>
 
 
-<hr><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>RStudio 2022.07.1+554 “Spotted Wakerobin” Release (7872775ebddc40635780ca1ed238934c3345c5de, 2022-07-22) for macOS Mozilla/5.0 (Macintosh; Intel Mac OS X 12_6_0) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.12.10 Chrome/69.0.3497.128 Safari/537.36, to be precise↩︎</p></li>
@@ -287,7 +443,6 @@ Quarto.”</span> October 1, 2022. <a href="https://slinberg.net/posts/2022-10-0
 </div></div></section></div> ]]></description>
   <category>quarto</category>
   <category>distill</category>
-  <category>blog</category>
   <guid>https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1/index.html</guid>
   <pubDate>Sat, 01 Oct 2022 04:00:00 GMT</pubDate>
   <media:content url="https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1/quarto.png" medium="image" type="image/png" height="35" width="144"/>
@@ -355,7 +510,6 @@ Quarto.”</span> October 1, 2022. <a href="https://slinberg.net/posts/2022-10-0
 Steve Linberg. 2022. <span>“Quickie for Importing Tasks to OmniFocus
 3.”</span> April 2, 2022. <a href="https://slinberg.net/posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3">https://slinberg.net/posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3</a>.
 </div></div></section></div> ]]></description>
-  <category>blog</category>
   <category>omnifocus</category>
   <guid>https://slinberg.net/posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html</guid>
   <pubDate>Sat, 02 Apr 2022 04:00:00 GMT</pubDate>
@@ -568,6 +722,187 @@ Steve Linberg. 2022. <span>“Pythagorean Theorem.”</span> February 2,
   <category>math</category>
   <guid>https://slinberg.net/posts/2022-02-02-pythagorean-theorem/index.html</guid>
   <pubDate>Wed, 02 Feb 2022 05:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Distill and Github Pages Setup</title>
+  <dc:creator>Steve Linberg</dc:creator>
+  <link>https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>NOTE: Since this article was written, we have <a href="../../posts/2022-10-01_distill_to_quarto_part_1/index.html">migrated from Distill to Quarto</a>. We’ll leave this here in case it’s still helpful to anyone, but it’s not how the site is currently built.</p>
+</div>
+</div>
+<p>This document contains a walkthrough of setting up a new <a href="https://rstudio.github.io/distill/">Distill</a> blog using <a href="https://www.rstudio.com/products/rstudio/">RStudio</a> and <a href="https://pages.github.com/">GitHub pages.</a> It’s the first in a series of articles for social scientists showing how to create, publish and update a website using these packages. This is a relatively easy way to set up a lightweight website that’s well-suited for blogging and writing articles, especially about and using R. Once it’s built, you maintain it using RStudio just like your other projects.</p>
+<p>Although it’s intended to be complete, and not overly technical where avoidable, it does assume a modest level of comfort using basic tools like RStudio and GitHub. If you’re on Mac or Linux, you probably have <a href="https://git-scm.com/">git</a> built in already, but you might need to install it if you’re on Windows. That’s outside the scope of this article, but you can find information about it on the <a href="https://git-scm.com/download/win">Git for Windows download page</a>.</p>
+<p>The very high-level overview of the process here is:</p>
+<ol type="1">
+<li>Create a new, empty GitHub repository that will contain your site</li>
+<li>Create a new, empty RStudio project using the repository you just created</li>
+<li>Install the Distill framework into this project</li>
+<li>Configure and build the bare-bones, empty site and push it up to GitHub</li>
+<li>Configure GitHub Pages to publish the site</li>
+</ol>
+<p>Once you’ve done that, you can begin writing content and publishing blogs, and spend time fine-tuning and tweaking your site. (You can also do that before setting up GitHub Pages if you want to wait to unveil it until it has more content and polish - as you prefer.)</p>
+<p>Assuming you have git and RStudio installed, and a GitHub account created, you’re ready to proceed!</p>
+<section id="create-new-github-repository" class="level2">
+<h2 class="anchored" data-anchor-id="create-new-github-repository">Create new GitHub repository</h2>
+<p>The first step is to create a new repository for the site. Log into GitHub and create a new repo:</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127115109.png" class="img-fluid"></p>
+<p>Call it something sensible like “distill-blog”; make it public (unless you don’t want to) and add a <code>.gitignore</code> file using the <code>R</code> template (just to start things off). Also, if you haven’t already, change your <a href="https://github.com/settings/repositories">github repository settings</a> to use “main” as your default branch name instead of “master”.</p>
+<p>We’ll come back in a bit to set up the Pages part, but for now we just want to get the project built and populated. We now have an empty Git repository sitting on GitHub, waiting to be used for something.</p>
+</section>
+<section id="create-a-new-rstudio-project-using-the-repository" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-new-rstudio-project-using-the-repository">Create a new RStudio project using the repository</h2>
+<p>Now we’ll use our new, empty GitHub repository for our Distill blog. From RStudio, choose “File -&gt; New Project” and choose “Version Control”:</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127124549.png" class="img-fluid"></p>
+<p>Choose “Git”:</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127124647.png" class="img-fluid"></p>
+<p>Copy in the repository URL from your project (found as shown below):</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127125016.png" class="img-fluid"></p>
+<p>Paste it into the <code>Repository URL</code> field in the wizard, choose where you want to store it on your computer, and I recommend checking <code>Open in new session</code> for a clean slate. Click “Create Project” to create it.</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127125055.png" class="img-fluid"></p>
+<p>The empty project will open in a new RStudio window. RStudio has added 3 new files (actually three directories) to the skeleton created by Github, which initially only contains the skeleton <code>.gitignore</code> file:</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127130928.png" class="img-fluid"></p>
+<p>RStudio adds the <code>.git</code> directory, the <code>.Rproj.user</code> directory, and the <code>distill-blog.Rproj</code> RStudio project file (it will be named with the “Project directory name” field from the final screen of the New Project Wizard).</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127131749.png" class="img-fluid"></p>
+<p>The <code>.gitignore</code> file created by Github tells git to ignore the <code>.Rproj.user</code> directory (which contains local settings used by RStudio and which you don’t need to (and shouldn’t) share or publish), and the <code>.git</code> directory is part of every repository and contains the repository settings.</p>
+<p>We want to keep github and RStudio in sync, generally speaking. More precisely, we want to keep <em>the repository</em> in sync between GitHub and RStudio. The local git repository doesn’t yet know about the project file <code>distill-blog.Rproj</code>, since RStudio added that after cloning the repository from GitHub, so a good first task is to add it to the local repository, and push it back up to GitHub to get it in sync, and make sure that that core pipeline is working, since we’ll be using it constantly.</p>
+<p>Although there is a “Git” pane in the Environments panel, which shows that <code>distill-blog.Rproj</code> is ready for staging:</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127133207.png" class="img-fluid"></p>
+<p>…I am an old-school curmudgeon and prefer to use the terminal for git commands, since not everything I normally do with git has a representation in this visual UI. In RStudio I have even remapped the shortcut control-backtick to the terminal for quick switching:</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127133440.png" class="img-fluid"></p>
+<p>Within the terminal, typing <code>git status</code> will show that git doesn’t yet know about <code>distill-blog.Rpro</code>j:</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127133648.png" class="img-fluid"></p>
+<p>This isn’t going to be a git tutorial, so we’re just going to add the file to the repo and push it back to github. If you get stuck in this process, pause here until you’re able to troubleshoot and continue.</p>
+<p>The git commands to update the repository with are:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="fu" style="color: #4758AB;">git</span> add .</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">git</span> commit <span class="at" style="color: #657422;">-m</span> <span class="st" style="color: #20794D;">"Add RStudio project skeleton"</span></span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;">git</span> push</span></code></pre></div>
+<p>(Note: the first command, <code>git add .</code>, says to add all files in the current directory to the repository. We could have explicitly typed <code>git add distill-blog.Rproj</code>, but (a) <code>git add .</code> is much faster, and (b) much easier in the steps below when we may not even know all of the files that need adding, and explicitly enumerating them could be troublesome and error-prone. Sometimes you want to be careful and specific about which files you’re staging, but that’s beyond the scope of this discussion, and we’re keeping it simple here.)</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><span class="ex" style="color: null;">[slinbergdistill-blog]</span> <span class="er" style="color: #AD0000;">(</span><span class="ex" style="color: null;">main</span><span class="kw" style="color: #003B4F;">)</span><span class="ex" style="color: null;">$</span> git add . </span>
+<span id="cb2-2"><span class="ex" style="color: null;">[slinbergdistill-blog]</span> <span class="er" style="color: #AD0000;">(</span><span class="ex" style="color: null;">main</span> +<span class="kw" style="color: #003B4F;">)</span><span class="ex" style="color: null;">$</span> git commit <span class="at" style="color: #657422;">-m</span> <span class="st" style="color: #20794D;">"Add RStudio project skeleton"</span></span>
+<span id="cb2-3"><span class="ex" style="color: null;">[main</span> 6c67d2d] Add RStudio project skeleton</span>
+<span id="cb2-4"> <span class="ex" style="color: null;">1</span> file changed, 13 insertions<span class="er" style="color: #AD0000;">(</span><span class="ex" style="color: null;">+</span><span class="kw" style="color: #003B4F;">)</span></span>
+<span id="cb2-5"> <span class="ex" style="color: null;">create</span> mode 100644 distill-blog.Rproj</span>
+<span id="cb2-6"><span class="ex" style="color: null;">[slinbergdistill-blog]</span> <span class="er" style="color: #AD0000;">(</span><span class="ex" style="color: null;">main</span><span class="kw" style="color: #003B4F;">)</span><span class="ex" style="color: null;">$</span> git push </span>
+<span id="cb2-7"><span class="ex" style="color: null;">Enter</span> passphrase for key <span class="st" style="color: #20794D;">'/Users/slinberg/.ssh/sfl_id_rsa'</span>: </span>
+<span id="cb2-8"><span class="ex" style="color: null;">Enumerating</span> objects: 4, done.</span>
+<span id="cb2-9"><span class="ex" style="color: null;">Counting</span> objects: 100% <span class="er" style="color: #AD0000;">(</span><span class="ex" style="color: null;">4/4</span><span class="kw" style="color: #003B4F;">)</span><span class="ex" style="color: null;">,</span> done.</span>
+<span id="cb2-10"><span class="ex" style="color: null;">Delta</span> compression using up to 8 threads</span>
+<span id="cb2-11"><span class="ex" style="color: null;">Compressing</span> objects: 100% <span class="er" style="color: #AD0000;">(</span><span class="ex" style="color: null;">3/3</span><span class="kw" style="color: #003B4F;">)</span><span class="ex" style="color: null;">,</span> done.</span>
+<span id="cb2-12"><span class="ex" style="color: null;">Writing</span> objects: 100% <span class="er" style="color: #AD0000;">(</span><span class="ex" style="color: null;">3/3</span><span class="kw" style="color: #003B4F;">)</span><span class="ex" style="color: null;">,</span> 444 bytes <span class="kw" style="color: #003B4F;">|</span> <span class="ex" style="color: null;">444.00</span> KiB/s, done.</span>
+<span id="cb2-13"><span class="ex" style="color: null;">Total</span> 3 <span class="er" style="color: #AD0000;">(</span><span class="ex" style="color: null;">delta</span> 0<span class="kw" style="color: #003B4F;">)</span><span class="ex" style="color: null;">,</span> reused 0 <span class="er" style="color: #AD0000;">(</span><span class="ex" style="color: null;">delta</span> 0<span class="kw" style="color: #003B4F;">)</span><span class="ex" style="color: null;">,</span> pack-reused 0</span>
+<span id="cb2-14"><span class="ex" style="color: null;">To</span> github.com:stevelinberg/distill-blog.git</span>
+<span id="cb2-15">   <span class="ex" style="color: null;">54aae63..6c67d2d</span>  main <span class="at" style="color: #657422;">-</span><span class="op" style="color: #5E5E5E;">&gt;</span> main </span></code></pre></div>
+<p>After <code>git push</code> uploads the changes back to the GitHub repository, now if we flip back to GitHub and refresh the page, we’ll see that the project file has been added:</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127135410.png" class="img-fluid"></p>
+<p>At this point, we have an empty RStudio project committed to a GitHub repository, but we don’t yet actually have any content. Now it’s time to create the Distill blog skeleton and add it to the repository.</p>
+</section>
+<section id="add-the-distill-skeleton-to-the-repository" class="level2">
+<h2 class="anchored" data-anchor-id="add-the-distill-skeleton-to-the-repository">Add the Distill skeleton to the repository</h2>
+<p>We will now manually (sort of) create the Distill skeleton. Although we could have created a new project of a Distill blog from the RStudio Create New Project wizard, it wouldn’t have had the GitHub repository, and we would have needed to add that and do the github setup separately. Six of one, half-dozen of the other, but instead we created the GitHub repository first instead, and we’ll add in Distill ourselves now. The end result should be the same.</p>
+<p>(Note: these commands are entered in the RStudio Console, which looks a lot like the Terminal, but speaks a different language. They’re both areas where you type commands, but the difference is that the terminal is a shell that passes commands to the operating system, for doing things like creating directories, copying or deleting files, or issuing git commands, and the Console is an R-language construct that processes R commands. If you type an R command in the Terminal, or a shell command in the Console, they will both be confused and spit out an error message, but it won’t do any damage beyond that. A glance at the tab titles will quickly orient you.)</p>
+<p>In the console, install the <code>distill</code> library if you haven’t yet (reinstalling it won’t do any harm):</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fu" style="color: #4758AB;">install.packages</span>(<span class="st" style="color: #20794D;">"distill"</span>)</span>
+<span id="cb3-2">trying URL <span class="st" style="color: #20794D;">'https://cran.rstudio.com/bin/macosx/contrib/4.1/distill_1.3.tgz'</span></span>
+<span id="cb3-3">Content type <span class="st" style="color: #20794D;">'application/x-gzip'</span> length <span class="dv" style="color: #AD0000;">454710</span> <span class="fu" style="color: #4758AB;">bytes</span> (<span class="dv" style="color: #AD0000;">444</span> KB)</span>
+<span id="cb3-4"><span class="sc" style="color: #5E5E5E;">==</span><span class="er" style="color: #AD0000;">================================================</span></span>
+<span id="cb3-5">downloaded <span class="dv" style="color: #AD0000;">444</span> KB</span>
+<span id="cb3-6"></span>
+<span id="cb3-7"></span>
+<span id="cb3-8">The downloaded binary packages are <span class="cf" style="color: #003B4F;">in</span></span>
+<span id="cb3-9">    <span class="sc" style="color: #5E5E5E;">/</span>var<span class="sc" style="color: #5E5E5E;">/</span>folders<span class="sc" style="color: #5E5E5E;">/</span>jw<span class="sc" style="color: #5E5E5E;">/</span>rmjpk2xj7z7_8txfqrjz0jhr0000gn<span class="sc" style="color: #5E5E5E;">/</span>T<span class="sc" style="color: #5E5E5E;">/</span><span class="er" style="color: #AD0000;">/</span>RtmpjDcuEY<span class="sc" style="color: #5E5E5E;">/</span>downloaded_packages</span></code></pre></div>
+<p>Then load the library, which you should also do as your first step (after opening the project) any time you work on it in the future:</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fu" style="color: #4758AB;">library</span>(distill)</span></code></pre></div>
+<p>With the <code>distill</code> library loaded, we’re ready to create the site. One important point is that we’re going to create the site in the root of our project, rather than inside a subdirectory. There’s no need to bury it one level down, since it won’t be a subcomponent of another project. The first argument in the command below, <code>"."</code>, means to work in the current directory, which is set by default as the directory containing the <code>distill-blog.Rproj</code> file. The argument is the blog title (which can be changed later if needed, but if you can avoid needing to do that it saves a few braincells), and the final argument causes it to be built with support for GitHub Pages, which is where our blog will ultimately end up.</p>
+<p>Here’s the command I ran for this blog:</p>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fu" style="color: #4758AB;">create_blog</span>(<span class="st" style="color: #20794D;">"."</span>, <span class="st" style="color: #20794D;">"Steve Linberg"</span>, <span class="at" style="color: #657422;">gh_pages =</span> <span class="cn" style="color: #8f5902;">TRUE</span>)</span></code></pre></div>
+<p>This takes a few seconds to run and creates a lot of new files. I like to go ahead and commit the project at this point as well, giving us a rollback point where we can wipe out changes we made and start over with a clean install if we get in trouble down the road. Switch back to the terminal, add all files in the directory, commit and push:</p>
+<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><span class="fu" style="color: #4758AB;">git</span> add .</span>
+<span id="cb6-2"><span class="fu" style="color: #4758AB;">git</span> commit <span class="at" style="color: #657422;">-m</span> <span class="st" style="color: #20794D;">"Install Distill skeleton"</span></span>
+<span id="cb6-3"><span class="fu" style="color: #4758AB;">git</span> push</span></code></pre></div>
+<p>If we pop back over to GitHub and reload the repository view, we’ll see a lot of new files added:</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127160301.png" class="img-fluid"></p>
+</section>
+<section id="build-the-site" class="level2">
+<h2 class="anchored" data-anchor-id="build-the-site">Build the site</h2>
+<p>Before we do any further customizing, we can build the site and get it deploying on GitHub Pages. At this point, there’s nothing to see because the site hasn’t been built yet; doing the first build will construct the first blog post and the basic site skeleton.</p>
+<p>When you create the Distill site in this way, RStudio doesn’t yet know that there is one, and so the Build tab may be missing in the Environment pane:</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127160912.png" class="img-fluid"></p>
+<p>If so, quit RStudio and re-open the project file, and it will appear:</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127161112.png" class="img-fluid"></p>
+<p>Click the Build tab and then “Build Website”:</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127161335.png" class="img-fluid"></p>
+<p>It will grind for a few moments and do the first build, and present you with a glorious preview of your new blog in the Viewer panel:</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127161457.png" class="img-fluid"></p>
+<p>Let’s commit this stage too, since a few new files were just created. Switch to the Terminal tab (ctrl + backtick) and issue these git commands:</p>
+<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="fu" style="color: #4758AB;">git</span> add .</span>
+<span id="cb7-2"><span class="fu" style="color: #4758AB;">git</span> commit <span class="at" style="color: #657422;">-m</span> <span class="st" style="color: #20794D;">"First build of site skeleton"</span></span>
+<span id="cb7-3"><span class="fu" style="color: #4758AB;">git</span> push</span></code></pre></div>
+<p>Breathtaking in its awesomeness, we are now ready to share it with the world!</p>
+<p>OK, you might prefer to do some work on it before you unveil it, and that’s fine. When you’re ready, continue below. (Read the RStudio page <a href="https://rstudio.github.io/distill/blog.html?panelset=before-i-sleep">Creating a Blog</a> to learn the details of how Distill sites work, and how to add and customize content; like anything worth learning, it takes a bit of time, but the payoff will be your mighty blog powers.) In this case, we’re going to go ahead and pretend we’re done and test the deployment to make sure it all works.</p>
+</section>
+<section id="configuring-github-pages" class="level2">
+<h2 class="anchored" data-anchor-id="configuring-github-pages">Configuring GitHub Pages</h2>
+<p>Next, we need to go back to GitHub and get GitHub Pages working, so we can publish our site.</p>
+<p>From your GutHub project page, as shown below:</p>
+<ol type="1">
+<li>Click “Settings”</li>
+<li>On the left, click “Pages”</li>
+<li>Under “Source”, set the branch to “main”</li>
+<li>Set the folder to “/docs”</li>
+<li>Click “Save”.</li>
+</ol>
+<p>(Note: ignore the “Choose a theme” button; it doesn’t apply to Distill projects.)</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127162652.png" class="img-fluid"></p>
+<p>GitHub will show a success message (hopefully):</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127163030.png" class="img-fluid"></p>
+<p>Note the “Custom domain” section at the bottom; we’ll return to that if/when we want to move the site to a custom domain. As it is, GitHub generates a URL for the site based on your GitHub username and the repo name. In this case, the address is <a href="https://stevelinberg.github.io/distill-blog/">https://stevelinberg.github.io/distill-blog/</a>. Click the link, and you should see your site:</p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127163306.png" class="img-fluid"></p>
+<p>This means it’s live!</p>
+<p>You could just go from here, if you’re content with the URL GitHub chose for you. Your basic workflow will be:</p>
+<ul>
+<li>Work on content in RStudio</li>
+<li>Commit changes with git as you go</li>
+<li>Build the site when you’re ready (or as often as you like)</li>
+<li>Push the changes to GitHub, which publishes them to your site.</li>
+</ul>
+<p>If you want to brand a little more strongly and put the site on your own domain, continue with “Using a Custom Domain”, the next article in this series, coming soon.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
+  author = {Steve Linberg},
+  editor = {},
+  title = {Distill and {Github} {Pages} {Setup}},
+  date = {2022-01-29},
+  url = {https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-linberg2022" class="csl-entry quarto-appendix-citeas">
+Steve Linberg. 2022. <span>“Distill and Github Pages Setup.”</span>
+January 29, 2022. <a href="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup">https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup</a>.
+</div></div></section></div> ]]></description>
+  <category>distill</category>
+  <category>github pages</category>
+  <category>git</category>
+  <category>rstudio</category>
+  <guid>https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/index.html</guid>
+  <pubDate>Sat, 29 Jan 2022 05:00:00 GMT</pubDate>
+  <media:content url="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127115109.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 </channel>
 </rss>

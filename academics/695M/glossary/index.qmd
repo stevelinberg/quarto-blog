@@ -1,0 +1,501 @@
+---
+title: "Glossary"
+date: 2022-02-03
+description: |
+  Glossary for 695M - Machine Learning
+categories: [machine learning, glossary, math]
+---
+
+Page numbers in parenthesis after terms, from [ISLR](https://www.statlearning.com/) 2nd edition. Non-page numbers indicate other sources; "biostats" references material from Biostatistics 690Z (Health Data Science: Statistical Modeling), fall 2021.
+
+## Chapter 2
+
+input variable (15)
+
+:   also *predictor*, *independent variable*, *feature*; usually written $X_1, X_2$, etc. The parameter or parameters we are testing to see if they are related to or affect the output.
+
+output variable (15)
+
+:   also *response*, *dependent variable*; usually written $Y$. The outcome being measured.
+
+error term (16)
+
+:   $\epsilon$ in the equation\
+    $$Y = f(X) + \epsilon$$ a random quantity of inaccuracy, *independent of X* and with *mean 0*.
+
+systematic (16)
+
+:   $f$ in the equation\
+    $$Y = f(X) + \epsilon$$ the function that describes the (systematic) information $X$ provides about $Y$. This plus the error term equals $Y$.
+
+reducible error (18)
+
+:   The amount of the error $\epsilon$ that could be eliminated by improving our estimator $\hat{f}$; the difference between $\hat{f}$ and $f$. This book and course is mostly about ways to minimize the reducible error.
+
+irreducible error (18)
+
+:   The amount of $\epsilon$ that could not be reduced even if $f$ was a perfect estimator of $Y$. Always greater than 0. Could be due to hidden variables in $\epsilon$, or random fluctuations in Y, like a measure of "\[a\] patient's general feeling of well-being on that day".
+
+expected value (19)
+
+:   *average value* of an expected measure.
+
+training data (21)
+
+:   data used to develop the model for estimating $f$.
+
+parametric methods (21)
+
+:   A model based on one or more input parameters, that yields a value for Y, as in:\
+    $$f(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \dots + \beta_pX_p$$\
+    $$Y \approx \beta_0 + \beta_1X_1 + \beta_2X_2 + \dots + \beta_pX_p$$\
+    $$\text{income} \approx \beta_0 + \beta_1 \times \text{education} + \beta_2 \times \text{seniority}$$\
+    This creates a predictive, *inflexible* model which usually does not match the true $f$, but which has advantages of simplicity and interpretability. It can be used to predict values for $Y$ based on its parameters, or inputs. Linear and logistic regression are parametric.
+
+non-parametric methods (23)
+
+:   methods that do not attempt to estimate $f$. More flexible and have the potential to very closely match observations, but with the risk of *overfitting* the data and increasing the *variance* of subsequent observations. They require much more data than parametric models, and may be difficult to interpret, K-Nearest Neighbor and Support Vector Machines are non-parametric.
+
+prediction (26)
+
+:   seeking to guess the value of an response variable $y_i$ given a set of observations and a predictor $f$.
+
+inference (26)
+
+:   a model that seems to better understand the relationship between the response and the predictors.
+
+supervised learning (26)
+
+:   a category of model that allows us to guess a $y_i$ response to a set of predictor measurements $x_i, i = 1, \dots, n$.
+
+unsupervised learning (26)
+
+:   a category of model in which there are observations/measurements $x_i, i = 1, \dots, n$, but no associated response $y_i$. Linear regression cannot be used because there is no response variable to predict.
+
+cluster analysis (27)
+
+:   in unsupervised learning, a statistical method for determining whether a set of observations can be divided into "relatively distinct groups," looking for similarities within the groups. (Topic modeling may be an example of this.)
+
+quantitative variables (28)
+
+:   numeric values; age, height, weight, quantity. Usually the response variable type for regression problems.
+
+qualitative variables (28)
+
+:   also *categorical*: values from a discrete set. Eye color, name, yes/no. Usually the response variable type for classification problems.
+
+regression problems (28)
+
+:   problems with quantitative response variables. Given predictors foo, bar, and baz, how big is the frob?
+
+classification problems (28)
+
+:   problems with qualitative response variables. Given predictors foo, bar, and baz, is the outcome likely to be a frob, a frib or a freeb?
+
+mean squared error (MSE) (29)
+
+:   the average squared error for a set of observations: $$MSE = \frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{f}(x_i))^2$$ MSE is small if the predicted responses are close to the true responses, and larger as it becomes less accurate; computed from training data, and Gareth *et al.* suggest it should be called *training MSE*.
+
+variance (34)
+
+:   \*"the amount by which\*\* $\hat{f}$ would change if we estimated it using a different training data set" More practically: the average\* of squared differences from the mean, often expressed as $\sigma^2$, where $\sigma$ (or the square root of the variance) is the standard deviation per [StatQuest](https://www.youtube.com/watch?v=EuBBz3bI-aA&t=246s): "the difference in fits between data sets" (like training and test)
+
+bias (35)
+
+:   *"the error that is introduced by approximating a real-life problem, which may be extremely complicated, by a much simpler model"*, as in the error from the (presumed) linearity of a regression against non-linear data whose complexity it does not capture. More flexible models increase variance and decrease bias. per [StatQuest](https://www.youtube.com/watch?v=EuBBz3bI-aA&t=136s): "The inability for a machine learning method (like linear regression) to capture the true relationship is called **bias**" - a straight line trying to model a curved separation in classes will never get it right and always be biased
+
+bias (65)
+
+:   in an estimator, something that systematically misses the true parameter; for an unbiased estimator, $\hat{\mu} = \mu$ when averaged over (huge) numbers of observations
+
+bias-variance trade-off (36)
+
+:   The tension in seeking the best model for the data between missing the true $f$ with an overly simple (biased) model, vs. an overfitted model with too much variance from mapping too closely to test data.
+
+error rate (37)
+
+:   In classification, the proportion of classifications that are mistakes. $$\frac{1}{n}\sum_{i=1}^{n}I(y_i \neq \hat{y}_i)$$ $I$ is 1 if $y_i \neq \hat{y}_i$ - if the guess for any given $y$ is wrong. The error rate is the percentage of incorrect classifications. Also the *training erorr rate*.
+
+indicator variable (37)
+
+:   $I$ in the error rate definition above; a logical variable indicating the presence or absence of a characteristic or trait (such as an accurate classification).
+
+test error rate (37)
+
+:   like the *training error rate* but applied to the test data. Uses $\text{Ave}$ instead of sum notation: $$\text{Ave}(I(y_0 \neq \hat{y}_0))$$ $\hat{y}_0$ is the predicted class label from the classifier.
+
+conditional probability (37)
+
+:   The chance that $Y = j$ given an observed $x_0$, as in the *Bayes classifier*: $$\text{Pr}(Y = j|X = x_0)$$ In a two-class, yes/no classifier, we decide based on whether $\text{Pr}(Y = j|X = x_0)$ is $> 0.5$, or not. Note that $Y$ is the class, as in "ham"/"spam", not a $y$-axis coordinate.
+
+Bayes decision boundary (38)
+
+:   a visual depiction of the line of 50% probability dividing (exactly two?) classes in a two-dimensional space
+
+Bayes error rate (38)
+
+:   the expected (average) probability of classification error over all values of X in a data set. $$1 - E(\underset{j}{maxPr}(Y = j|X))$$ The $\underset{j}{maxPr}$ whichever of the $j$ classes has the highest probability for any given value of $X$. Again, $Y$ is not a y-axis coordinate of a two-dimensional space, it's the *class* of the classification: "yes"/"no", "ham"/"spam", "infected"/"not infected". Also: *"The Bayes error rate is analogous to the irreducible error, discussed earlier."*
+
+K-nearest-neighbors (KNN) (39)
+
+:   a classifier that assigns a class Y to an observation based on the population proportions of its nearest neighbors; a circular "neighborhood" on a two-dimensional plot. It looks at actual data points that have been classified, and asks what any given non-classified point would be classified as based on its nearest neighbors.
+
+## Chapter 3
+
+Synergy effect / interaction effect (60)
+
+:   when two or more predictors affect each other as well as the outcome; when 50k each in TV or radio ads give different results than 100k in either one
+
+Simple linear regression
+
+:   the simplest model, predicting $Y$ from a single predictor $X$. $$Y \approx \beta_0 + \beta_1X$$ $\approx$ = "is approximately modeled as"
+
+least squares (61)
+
+:   the most common measure of closeness of a regression line to its data points, the sum of squares of the distances between the points and the closest point on the line (directly above or below)
+
+residual (61)
+
+:   the difference between $y_i$ and $\hat{y}_i$, also $e_i$; the difference between the $i$th response variable and the $i$th response variable predicted by the model [StatQuest](https://youtu.be/g9c66TUylZ4?t=542): the difference between the *observed* and *predicted* value
+
+residual sum of squares (RSS) (62)
+
+:   the sum of the squared residuals for each point on the regression line $$\text{RSS} = e_1^2 + e_2^2 + \dots + e_n^2$$ Formulas for $\hat{\beta_0}$ and $\hat{\beta_1}$ are on p. 62
+
+intercept ($\beta_0$) (63)
+
+:   the expected value of $Y$ when $X = 0$
+
+slope ($\beta_1$) (63)
+
+:   the average increase in $Y$ associated with a one-unit increase in $X$
+
+error term ($\epsilon$) (63)
+
+:   whatever we missed with the model, due to the true model not being linear (it almost never is), measurement error, or other variables that cause variation in $Y$
+
+population regression line (63)
+
+:   "the best linear approximation to the true relationship between $X$ and $Y$" $$Y = \beta_0 + \beta_1X + \epsilon$$ least squares line (63)
+
+:   the regression line made of the least-squares estimates for $\beta_0$ and $\beta_1$
+
+standard error (SE) (65)
+
+:   the average amount that an estimate $\hat{\mu}$ (sample mean) differs from the actual value of $\mu$ (population mean) $$\text{Var}(\hat{\mu}) = \text{SE}(\hat{\mu})^2 = \frac{\sigma^2}{n} (\text{also} = \frac{\sigma}{\sqrt{n}})$$ $\sigma$ is "the standard deviation of each of the realizations $y_i$ of $Y$. Since $\sigma^2$ is divided by $n$, the standard error shrinks as observations increase. It represents the amount we would expect means of additional samples to"jump around" simply due to random chance and the limitations of the model's accuracy.[^1]
+
+residual standard error (RSE) (66)
+
+:   the estimate of $\sigma$ $$\text{RSE} = \sqrt{RSS / (n-2)}$$
+
+confidence interval (66)
+
+:   a range of values within which we have a measured probability (often 95%) of containing the true value of the parameter; a 95% confidence interval in linear regression takes the form $$\hat{\beta_1} \pm 2 \cdot \text{SE}(\hat{\beta_1})$$
+
+t-statistic (67)
+
+:   the number of standard deviations that $\hat{\beta_1}$ is away from $0$. $$t = \frac{{\hat{\beta_1}} - 0}{\text{SE}(\hat{\beta_1})}$$ For there to be a relationship between $X$ and $Y$, $\hat{\beta_1}$ has to be nonzero (i.e. have a slope). The standard error (SE) of $\hat{\beta_1}$ (in the denominator above) measures its accuracy; if it is small, then $t$ will be larger, and if it is large, then $t$ will be smaller. $t$ is around 2 for a p-value of 0.05 (actually about 1.96, as 2 standard deviations is 95.45% of a normal distribution), and around 2.75 for a p-value of 0.01.
+
+p-value (67)
+
+:   the probability of observing a value greater than $|t|$ by chance.
+
+model sum of squares (MSS) (biostats)
+
+:   Also sometimes **ESS**, "explained sum of squares": the total variance in the response $Y$ that can be accounted for by the model $$\text{MSS} = \sum(\hat{y_i} - \bar{y})^2$$
+
+residual sum of squares (RSS) (biostats)
+
+:   the total variance in the response $Y$ that cannot be accounted for by the model $$\text{RSS} = \sum(y_i - \hat{y_i})^2$$ also $$\text{RSS} = e_i^2 + e_2^2 + \dots + e_n^2$$ or $$\text{RSS} = (y_1 - \hat{\beta_0} - {\hat{\beta_1}x_1})^2 + (y_2 - \hat{\beta_0} - {\hat{\beta_1}x_2})^ + \dots + (y_n - \hat{\beta_0} - {\hat{\beta_1}x_n})^2$$
+
+total sum of squares (TSS) (70)
+
+:   the total variance in the response $Y$; the total variability of the response about its mean $$\text{TSS} = \sum(y_i - \bar{y})^2$$ compare with RSS, the amount of variability left unexplained after the regression. TSS - RSS is the amount of variability (or error) explained by the regression (MSS).
+
+[^1]: http://faculty.ucr.edu/\~hanneman/nettext/C1_Social_Network_Data.html
+
+**NOTE**: there is a nice visual [here on stackexchange](https://stats.stackexchange.com/a/512216/338749); if anybody knows how to tell Zotero to use a custom bibtex citation entry over the ones it generates, please let me know so I can integrate it better here :frown:
+
+$R^2$ statistic (70)
+
+:   the proportion of variance in $Y$ explained by $X$, a range from 0 to 1 $$R^2 = \frac{\text{TSS - RSS}}{\text{TSS}} = 1 - \frac{\text{RSS}}{\text{TSS}}$$ $R^2$ values close to 1 indicate a regression that explains a lot of the variability in the response, and a stronger model. A value close to 0 indicates that the regression doesn't explain much of the variability.
+
+correlation (70)
+
+:   a measure of the linearity of the relationship between $X$ and $Y$; values close to 0 indicate weak-to-no relationship, values near 1 or -1 indicate strong positive or negative correlation $$\text{Cor(X, Y)} = {\frac {\sum _{i=1}^{n}(x_{i}-{\bar {x}})(y_{i}-{\bar {y}})}{{\sqrt {\sum _{i=1}^{n}(x_{i}-{\bar {x}})^{2}}}{\sqrt {\sum _{i=1}^{n}(y_{i}-{\bar {y}})^{2}}}}}$$
+
+standard linear regression model (72)
+
+:   The modal used for standard linear models, used to interpret the the effect on $Y$ of a one-unit increase in any predictor $\beta_j$ while holding all other predictors constant $$Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \dots + \beta_pX_p + \epsilon$$
+
+variable selection (78)
+
+:   the task of refining a model to include only the variables associated with the response
+
+null model (79)
+
+:   a model that conatins an intercept, but no predictors; used as a first stage in forward selection
+
+forward selection (79)
+
+:   a variable selection method that starts with a null model, and then runs simple linear regressions on all predictors $p$ and adding the one that results in the lowest RSS; repeated until some threshold is reached
+
+backwards selection (79)
+
+:   a variable selection method that starts with a model with all predictors, and removing the one with the lowest $p$-value until all remaining predictors are significant, whether by $p$-value or some other criterion
+
+mixed selection (79)
+
+:   a hybrid approach starting with a null model, adding predictors one at a time that produce the best fit, and removing any that acquire a larger $p$-value in the process until all predictors are added or eliminated
+
+interaction (81)
+
+:   when predictors affect each other, in addition to providing their own effect on the model
+
+confidence interval (82)
+
+:   a range with a percentage component in which there is that percentage chance that the true value of an estimated parameter lies; a 95% confidence interval is a range in which we can be 95% certain $f(X)$ will be found
+
+prediction interval (82)
+
+:   similar to confidence interval, but a prediction range within which we are $X$% certain that any singular future observation will fall, rather than a statistic like an overall mean; a 95% prediction interval is a range in which we are confident that 95% of future observations will fall. Prediction ranges are substantially wider than confidence intervals.
+
+qualitative predictor / factor (83)
+
+:   a categorical predictor with a fixed number of factors, like "yes" / "no" or "red" / "yellow" / "green"
+
+dummy variable (83)
+
+:   a numeric representation of a factor to use in a model, as in representing "yes" / "no" factor variables as 1 / 0 in a regression
+
+baseline (86)
+
+:   the factor level where there is no dummy variable; a factor with 3 levels will use 2 dummy variables, with the factor's absence signifying the 3rd value (usually 0)
+
+additivity assumption (87)
+
+:   the assumption that the association between a predictor $X$ and the response $Y$ does not depend on the value of other predictors; used by the standard linear regression model
+
+linearity assumption (87)
+
+:   the assumption, also used by the standard linear regression model, that unit changes in $X_j$ result in the same change to Y regardless of its value
+
+interaction term (88)
+
+:   the product of two predictors in a multiple regression model, quantifying their effect on each other
+
+main effect (89)
+
+:   isolated effects; the effect of a single predictor on the outcome
+
+hierarchical principle (89)
+
+:   the principle that main effects should be left in a model even if they are statistically insignificant, if they are also part of an interaction that is significant
+
+polynomial regression (91)
+
+:   an extension of linear regression to accommodate non-linear relationships
+
+residual plot (93)
+
+:   a plot of the residuals or errors ($e_i = y_i - \hat{y}_i$), used to check for non-linearity (a potential problem that would likely indicate something was missed in the model)
+
+time series (94)
+
+:   data consisting of observation made at discrete points in time
+
+tracking (95)
+
+:   when (residuals / variables?) tend to have similar values
+
+heteroscedasticity (96)
+
+:   non-constant variances in errors; "unequal scatter"
+
+homoscedasticity (extra)
+
+:   constant variances in errors; follows the assumption of equal variance required by most methods
+
+weighted least squares (97)
+
+:   an extension to ordinary least squares used in circumstances of heteroscedasticity, to weight data points proportionally with the inverse variances
+
+outlier (97)
+
+:   an observation whose value is very far from its predicted value
+
+studentized residual (98)
+
+:   a residual divided by its estimated standard error; observations with student residuals higher than 3 (indicating 3 standard deviations) are likely outliers
+
+high leverage (98)
+
+:   observations with an unusual $x_i$ value, far from other / expected $x$ values
+
+leverage statistic (99)
+
+:   a quantification of a point's leverage $$h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum_{i'=1}^{n}(x_{i`} - \bar{x})^2}$$
+
+collinearity (99)
+
+:   when two or more predictor variables are closely related to each other
+
+power (101)
+
+:   the probability of a test correctly detecting a nonzero coefficient (and correctly rejecting $H_0 : \beta_j = 0$)
+
+multicollinearity (102)
+
+:   when collinearity exists between three or more predictors even when no pair of predictors is collinear (or correlated)
+
+variance inflation factor (102)
+
+:   "the ratio of the variance of $\hat{\beta_j}$ when fitting the full model divided by the variance of $\hat{\beta_j}$ on its own"; smallest possible value of 1 indicates the absence of collinearity, 5-10 indicates a "problematic amount". $$\text{VIF}(\hat{\beta_j}) = \frac{1}{1 - {R_{X_j|X_-j}^2}}$$ "$R_{X_j|X_-j}^2$ is the $R^2$ from a regression of $X_j$ onto all of the other predictors"
+
+K-nearest neighbors regression (105)
+
+:   a mode of regression that seeks to classify observations by their proximity to classified neighbors
+
+curse of dimensionality (107)
+
+:   when an observation has no nearby neighbors due to a high number of dimensions exponentially increasing the available space for other observations to be spread out in
+
+# Chapter 4
+
+qualitative / categorical (129)
+
+:   interchangeable term for a variable with a non-quantitative value, such as color
+
+classification (129)
+
+:   predicting a qualitative response for an observation
+
+classifier (129)
+
+:   a classification technique, such as: logistic regression, linear discriminant analysis, quadratic discriminant analysis, naive Bayes, and K-nearest neighbors
+
+logistic function (134)
+
+:   a specific function returning an S-shaped curve with values between 0 and 1, used in logistic regression $$p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1X}}$$
+
+odds (134)
+
+:   the likelihood of a particular outcome: the ratio of the number of results that produce the outcome versus the number that do not, between 0 and $\infty$ (very low or very high probabilities) $$odds = \frac{p(X)}{1 - p(X)} = e^{\beta_0 + \beta_1X}$$ Note: odds is not the same as probability! Odds of 1/4 means a 20% probability, not 25%.
+
+To convert from odds to probability: divide odds by (1 + odds), as in:
+
+$$\frac{1}{4} \div \left[ 1 + \frac{1}{4} \right] = \frac{1}{4} \div \frac{5}{4} = 1/5 = 0.2$$
+
+To convert from probability to odds, divide probability by (1 - probability), as in: $$\frac{1}{5} \div \left[ 1 - \frac{1}{5} \right] = \frac{1}{5} \div \frac{4}{5} = \frac{1}{5} \times \frac{5}{4} = 1/4 = 0.25$$ log odds / logit (135) : the log of the odds $$\text{log} \left( \frac{p(X)}{1 - p(X)} \right)$$
+
+likelihood function (135)
+
+:   a function that produces the closest possible match of a set of observations, for use in predicting the classifications of other points hairy equation not rendered
+
+confounding (139)
+
+:   when predictors correlate; usually this is something to work to avoid
+
+multinomial logistic regression (140)
+
+:   logistic regression into more than 2 categories
+
+softmax coding (141)
+
+:   an alternative coding for multiple logistic regression that treats all classes symmetrically, rather than establishing one as a baseline
+
+(probability) density function (142)
+
+:   a function returning the likelihood of a particular value occurring in a given sample, between 0 and 1; often used in pairs to establish likelihood of a value within a range rather than the likelihood of an infinitely-thin single "slice"
+
+prior (142)
+
+:   the probability that a random observation comes from class $k$
+
+posterior (142)
+
+:   the probability that an observation belongs to a class $k$ given its predictor value
+
+normal / Gaussian (143)
+
+:   characterized by a bell-shaped curve, not uniformly distributed but tending towards a likeliest/central value
+
+overfitting (148)
+
+:   mapping too closely to idiosyncrasies in training data, increasing variance in a model
+
+null classifier (148)
+
+:   a classifier that always predicts a zero or null status
+
+confusion matrix (148)
+
+:   a matrix showing how many predictions were made, and how accurate the classifications were (predicted x actual, hits on TL-BR diagonal and misses on BL-TR diagonal)
+
+sensitivity (149)
+
+:   the percentage of a class (like defaulters) that is correctly identified
+
+specificity (149)
+
+:   the percentage of a different class (like non-defaulters) that is correctly identified
+
+Note: sensitivity and specificity can and should be separately considered when evaluating ML methods. Each column (class) of a confusion matrix has a sensitivity and a specificity. In a 2x2, this is simple; in larger than 2x2, it involves summation.
+
+$$\text{Sensitivity} = \frac{\text{True Positives}}{\text{True Positives + False Negatives}}$$ True positives is the cell in the class column containing the number of correct predictions in a category; the false negatives are the rest of the column.
+
+$$\text{Specificity} = \frac{\text{True Negatives}}{\text{True Negatives + False Positives}}$$ True negatives is the sum of cells, in the other columns, that correctly do *not* predict the class (even if they wrongly predict some other class as well); the false positives are the rest of the *row* for the class that incorrectly predicted that class.
+
+ROC charts show the true positive rate (sensitivity) on the Y axis, and the false positive rate (1 - sensitivity) on the X axis.
+
+ROC curve (150)
+
+:   Receiver Operating Characteristics; name of a curve showing the overall performance of a classifier resembling the top left corner of a rounded rectangle; area under the curve (AUC) indicates the percentage of correct classifications; the closer it is to square, the bigger the AUC, the better the classifier. The Y axis is true positive rate (sensitivity). the X axis is false positive rate (1 - sensitivity).
+
+[StatQuest](https://www.youtube.com/watch?v=4jRBRDbJemM&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=6): AUC (area under the curve) of the ROC shows the overall effectiveness / quality of a model; good models will fill the space more. And the points of the individual curve help indicate the best thresholds to pick for the classifier; points with X = 0 have no false positives, and points with Y = 1 get all of the true positives.
+
+Also, *precision* is another option for the X-axis, rather than false positives, if it's more important to know the proportion of the true positives were correctly identified.
+
+$$\text{Precision} = \frac{\text{True Positives}}{\text{True Positives + False Positives}}$$
+
+marginal distribution (155)
+
+:   the distribution of an individual predictor
+
+joint distribution (155)
+
+:   the association between different predictors
+
+kernel density estimator (156)
+
+:   "essentially a smoothed version of a histogram"
+
+# Chapter 5
+
+model assessment (197)
+
+:   the process of evaluating a model's performance
+
+model selection (197)
+
+:   the process of selecting the proper level of flexibility for a model
+
+validation set approach (198)
+
+:   randomly dividing a set of observations into a training set and a validation or hold-out set, to assess the test error rate
+
+leave one out cross-validation (LOOCV) (200)
+
+:   using a single observation for a validation set and the rest as a training set
+
+k-fold cross-validation (CV) (203)
+
+:   dividing a set of observation into $k$ groups of approximately equal size, using the first as a validation set and fitting the method on the remaining $k-1$ folds
+
+bootstrap (209)
+
+:   a tool to quantify the uncertainty associated with a given estimator or statistical learning method
+
+sampling with replacement (211)
+
+:   picking from a set without removing the picked elements

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Steve Linberg">
+<meta name="dcterms.date" content="2022-01-29">
+<meta name="description" content="A walkthrough of setting up a new Distill site on GitHub Pages">
+
+<title>slinberg.net - Distill and Github Pages Setup</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-0ZXRPNMLL7"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-0ZXRPNMLL7', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="slinberg.net - Distill and Github Pages Setup">
+<meta name="twitter:description" content="A walkthrough of setting up a new Distill site on GitHub Pages">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">slinberg.net</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../"><i class="bi bi-house" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../steve.html">About</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../academics.html">Academics</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/stevelinberg"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/slinberg/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/stevelinberg"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://stackoverflow.com/users/13603796/stevelinberg"><i class="bi bi-stack-overflow" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:steve@slinberg.net"><i class="bi bi-envelope" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml"><i class="bi bi-rss" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#create-new-github-repository" id="toc-create-new-github-repository" class="nav-link active" data-scroll-target="#create-new-github-repository">Create new GitHub repository</a></li>
+  <li><a href="#create-a-new-rstudio-project-using-the-repository" id="toc-create-a-new-rstudio-project-using-the-repository" class="nav-link" data-scroll-target="#create-a-new-rstudio-project-using-the-repository">Create a new RStudio project using the repository</a></li>
+  <li><a href="#add-the-distill-skeleton-to-the-repository" id="toc-add-the-distill-skeleton-to-the-repository" class="nav-link" data-scroll-target="#add-the-distill-skeleton-to-the-repository">Add the Distill skeleton to the repository</a></li>
+  <li><a href="#build-the-site" id="toc-build-the-site" class="nav-link" data-scroll-target="#build-the-site">Build the site</a></li>
+  <li><a href="#configuring-github-pages" id="toc-configuring-github-pages" class="nav-link" data-scroll-target="#configuring-github-pages">Configuring GitHub Pages</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/stevelinberg/quarto-blog/edit/main/posts/2022-01-29_distill-and-github-pages-setup/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/stevelinberg/quarto-blog/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/stevelinberg/quarto-blog/blob/main/posts/2022-01-29_distill-and-github-pages-setup/index.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Distill and Github Pages Setup</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">distill</div>
+    <div class="quarto-category">github pages</div>
+    <div class="quarto-category">git</div>
+    <div class="quarto-category">rstudio</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>A walkthrough of setting up a new Distill site on GitHub Pages</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Steve Linberg </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 29, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>NOTE: Since this article was written, we have <a href="../../posts/2022-10-01_distill_to_quarto_part_1/index.html">migrated from Distill to Quarto</a>. We’ll leave this here in case it’s still helpful to anyone, but it’s not how the site is currently built.</p>
+</div>
+</div>
+<p>This document contains a walkthrough of setting up a new <a href="https://rstudio.github.io/distill/">Distill</a> blog using <a href="https://www.rstudio.com/products/rstudio/">RStudio</a> and <a href="https://pages.github.com/">GitHub pages.</a> It’s the first in a series of articles for social scientists showing how to create, publish and update a website using these packages. This is a relatively easy way to set up a lightweight website that’s well-suited for blogging and writing articles, especially about and using R. Once it’s built, you maintain it using RStudio just like your other projects.</p>
+<p>Although it’s intended to be complete, and not overly technical where avoidable, it does assume a modest level of comfort using basic tools like RStudio and GitHub. If you’re on Mac or Linux, you probably have <a href="https://git-scm.com/">git</a> built in already, but you might need to install it if you’re on Windows. That’s outside the scope of this article, but you can find information about it on the <a href="https://git-scm.com/download/win">Git for Windows download page</a>.</p>
+<p>The very high-level overview of the process here is:</p>
+<ol type="1">
+<li>Create a new, empty GitHub repository that will contain your site</li>
+<li>Create a new, empty RStudio project using the repository you just created</li>
+<li>Install the Distill framework into this project</li>
+<li>Configure and build the bare-bones, empty site and push it up to GitHub</li>
+<li>Configure GitHub Pages to publish the site</li>
+</ol>
+<p>Once you’ve done that, you can begin writing content and publishing blogs, and spend time fine-tuning and tweaking your site. (You can also do that before setting up GitHub Pages if you want to wait to unveil it until it has more content and polish - as you prefer.)</p>
+<p>Assuming you have git and RStudio installed, and a GitHub account created, you’re ready to proceed!</p>
+<section id="create-new-github-repository" class="level2">
+<h2 class="anchored" data-anchor-id="create-new-github-repository">Create new GitHub repository</h2>
+<p>The first step is to create a new repository for the site. Log into GitHub and create a new repo:</p>
+<p><img src="Pasted%20image%2020220127115109.png" class="img-fluid"></p>
+<p>Call it something sensible like “distill-blog”; make it public (unless you don’t want to) and add a <code>.gitignore</code> file using the <code>R</code> template (just to start things off). Also, if you haven’t already, change your <a href="https://github.com/settings/repositories">github repository settings</a> to use “main” as your default branch name instead of “master”.</p>
+<p>We’ll come back in a bit to set up the Pages part, but for now we just want to get the project built and populated. We now have an empty Git repository sitting on GitHub, waiting to be used for something.</p>
+</section>
+<section id="create-a-new-rstudio-project-using-the-repository" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-new-rstudio-project-using-the-repository">Create a new RStudio project using the repository</h2>
+<p>Now we’ll use our new, empty GitHub repository for our Distill blog. From RStudio, choose “File -&gt; New Project” and choose “Version Control”:</p>
+<p><img src="Pasted%20image%2020220127124549.png" class="img-fluid"></p>
+<p>Choose “Git”:</p>
+<p><img src="Pasted%20image%2020220127124647.png" class="img-fluid"></p>
+<p>Copy in the repository URL from your project (found as shown below):</p>
+<p><img src="Pasted%20image%2020220127125016.png" class="img-fluid"></p>
+<p>Paste it into the <code>Repository URL</code> field in the wizard, choose where you want to store it on your computer, and I recommend checking <code>Open in new session</code> for a clean slate. Click “Create Project” to create it.</p>
+<p><img src="Pasted%20image%2020220127125055.png" class="img-fluid"></p>
+<p>The empty project will open in a new RStudio window. RStudio has added 3 new files (actually three directories) to the skeleton created by Github, which initially only contains the skeleton <code>.gitignore</code> file:</p>
+<p><img src="Pasted%20image%2020220127130928.png" class="img-fluid"></p>
+<p>RStudio adds the <code>.git</code> directory, the <code>.Rproj.user</code> directory, and the <code>distill-blog.Rproj</code> RStudio project file (it will be named with the “Project directory name” field from the final screen of the New Project Wizard).</p>
+<p><img src="Pasted%20image%2020220127131749.png" class="img-fluid"></p>
+<p>The <code>.gitignore</code> file created by Github tells git to ignore the <code>.Rproj.user</code> directory (which contains local settings used by RStudio and which you don’t need to (and shouldn’t) share or publish), and the <code>.git</code> directory is part of every repository and contains the repository settings.</p>
+<p>We want to keep github and RStudio in sync, generally speaking. More precisely, we want to keep <em>the repository</em> in sync between GitHub and RStudio. The local git repository doesn’t yet know about the project file <code>distill-blog.Rproj</code>, since RStudio added that after cloning the repository from GitHub, so a good first task is to add it to the local repository, and push it back up to GitHub to get it in sync, and make sure that that core pipeline is working, since we’ll be using it constantly.</p>
+<p>Although there is a “Git” pane in the Environments panel, which shows that <code>distill-blog.Rproj</code> is ready for staging:</p>
+<p><img src="Pasted%20image%2020220127133207.png" class="img-fluid"></p>
+<p>…I am an old-school curmudgeon and prefer to use the terminal for git commands, since not everything I normally do with git has a representation in this visual UI. In RStudio I have even remapped the shortcut control-backtick to the terminal for quick switching:</p>
+<p><img src="Pasted%20image%2020220127133440.png" class="img-fluid"></p>
+<p>Within the terminal, typing <code>git status</code> will show that git doesn’t yet know about <code>distill-blog.Rpro</code>j:</p>
+<p><img src="Pasted%20image%2020220127133648.png" class="img-fluid"></p>
+<p>This isn’t going to be a git tutorial, so we’re just going to add the file to the repo and push it back to github. If you get stuck in this process, pause here until you’re able to troubleshoot and continue.</p>
+<p>The git commands to update the repository with are:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add RStudio project skeleton"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(Note: the first command, <code>git add .</code>, says to add all files in the current directory to the repository. We could have explicitly typed <code>git add distill-blog.Rproj</code>, but (a) <code>git add .</code> is much faster, and (b) much easier in the steps below when we may not even know all of the files that need adding, and explicitly enumerating them could be troublesome and error-prone. Sometimes you want to be careful and specific about which files you’re staging, but that’s beyond the scope of this discussion, and we’re keeping it simple here.)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[slinbergdistill-blog]</span> <span class="er">(</span><span class="ex">main</span><span class="kw">)</span><span class="ex">$</span> git add . </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[slinbergdistill-blog]</span> <span class="er">(</span><span class="ex">main</span> +<span class="kw">)</span><span class="ex">$</span> git commit <span class="at">-m</span> <span class="st">"Add RStudio project skeleton"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[main</span> 6c67d2d] Add RStudio project skeleton</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> file changed, 13 insertions<span class="er">(</span><span class="ex">+</span><span class="kw">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">create</span> mode 100644 distill-blog.Rproj</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[slinbergdistill-blog]</span> <span class="er">(</span><span class="ex">main</span><span class="kw">)</span><span class="ex">$</span> git push </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> passphrase for key <span class="st">'/Users/slinberg/.ssh/sfl_id_rsa'</span>: </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Enumerating</span> objects: 4, done.</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Counting</span> objects: 100% <span class="er">(</span><span class="ex">4/4</span><span class="kw">)</span><span class="ex">,</span> done.</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Delta</span> compression using up to 8 threads</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Compressing</span> objects: 100% <span class="er">(</span><span class="ex">3/3</span><span class="kw">)</span><span class="ex">,</span> done.</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ex">Writing</span> objects: 100% <span class="er">(</span><span class="ex">3/3</span><span class="kw">)</span><span class="ex">,</span> 444 bytes <span class="kw">|</span> <span class="ex">444.00</span> KiB/s, done.</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Total</span> 3 <span class="er">(</span><span class="ex">delta</span> 0<span class="kw">)</span><span class="ex">,</span> reused 0 <span class="er">(</span><span class="ex">delta</span> 0<span class="kw">)</span><span class="ex">,</span> pack-reused 0</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ex">To</span> github.com:stevelinberg/distill-blog.git</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>   <span class="ex">54aae63..6c67d2d</span>  main <span class="at">-</span><span class="op">&gt;</span> main </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>After <code>git push</code> uploads the changes back to the GitHub repository, now if we flip back to GitHub and refresh the page, we’ll see that the project file has been added:</p>
+<p><img src="Pasted%20image%2020220127135410.png" class="img-fluid"></p>
+<p>At this point, we have an empty RStudio project committed to a GitHub repository, but we don’t yet actually have any content. Now it’s time to create the Distill blog skeleton and add it to the repository.</p>
+</section>
+<section id="add-the-distill-skeleton-to-the-repository" class="level2">
+<h2 class="anchored" data-anchor-id="add-the-distill-skeleton-to-the-repository">Add the Distill skeleton to the repository</h2>
+<p>We will now manually (sort of) create the Distill skeleton. Although we could have created a new project of a Distill blog from the RStudio Create New Project wizard, it wouldn’t have had the GitHub repository, and we would have needed to add that and do the github setup separately. Six of one, half-dozen of the other, but instead we created the GitHub repository first instead, and we’ll add in Distill ourselves now. The end result should be the same.</p>
+<p>(Note: these commands are entered in the RStudio Console, which looks a lot like the Terminal, but speaks a different language. They’re both areas where you type commands, but the difference is that the terminal is a shell that passes commands to the operating system, for doing things like creating directories, copying or deleting files, or issuing git commands, and the Console is an R-language construct that processes R commands. If you type an R command in the Terminal, or a shell command in the Console, they will both be confused and spit out an error message, but it won’t do any damage beyond that. A glance at the tab titles will quickly orient you.)</p>
+<p>In the console, install the <code>distill</code> library if you haven’t yet (reinstalling it won’t do any harm):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">"distill"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>trying URL <span class="st">'https://cran.rstudio.com/bin/macosx/contrib/4.1/distill_1.3.tgz'</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Content type <span class="st">'application/x-gzip'</span> length <span class="dv">454710</span> <span class="fu">bytes</span> (<span class="dv">444</span> KB)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="sc">==</span><span class="er">================================================</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>downloaded <span class="dv">444</span> KB</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>The downloaded binary packages are <span class="cf">in</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="sc">/</span>var<span class="sc">/</span>folders<span class="sc">/</span>jw<span class="sc">/</span>rmjpk2xj7z7_8txfqrjz0jhr0000gn<span class="sc">/</span>T<span class="sc">/</span><span class="er">/</span>RtmpjDcuEY<span class="sc">/</span>downloaded_packages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then load the library, which you should also do as your first step (after opening the project) any time you work on it in the future:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(distill)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>With the <code>distill</code> library loaded, we’re ready to create the site. One important point is that we’re going to create the site in the root of our project, rather than inside a subdirectory. There’s no need to bury it one level down, since it won’t be a subcomponent of another project. The first argument in the command below, <code>"."</code>, means to work in the current directory, which is set by default as the directory containing the <code>distill-blog.Rproj</code> file. The argument is the blog title (which can be changed later if needed, but if you can avoid needing to do that it saves a few braincells), and the final argument causes it to be built with support for GitHub Pages, which is where our blog will ultimately end up.</p>
+<p>Here’s the command I ran for this blog:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">create_blog</span>(<span class="st">"."</span>, <span class="st">"Steve Linberg"</span>, <span class="at">gh_pages =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This takes a few seconds to run and creates a lot of new files. I like to go ahead and commit the project at this point as well, giving us a rollback point where we can wipe out changes we made and start over with a clean install if we get in trouble down the road. Switch back to the terminal, add all files in the directory, commit and push:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Install Distill skeleton"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If we pop back over to GitHub and reload the repository view, we’ll see a lot of new files added:</p>
+<p><img src="Pasted%20image%2020220127160301.png" class="img-fluid"></p>
+</section>
+<section id="build-the-site" class="level2">
+<h2 class="anchored" data-anchor-id="build-the-site">Build the site</h2>
+<p>Before we do any further customizing, we can build the site and get it deploying on GitHub Pages. At this point, there’s nothing to see because the site hasn’t been built yet; doing the first build will construct the first blog post and the basic site skeleton.</p>
+<p>When you create the Distill site in this way, RStudio doesn’t yet know that there is one, and so the Build tab may be missing in the Environment pane:</p>
+<p><img src="Pasted%20image%2020220127160912.png" class="img-fluid"></p>
+<p>If so, quit RStudio and re-open the project file, and it will appear:</p>
+<p><img src="Pasted%20image%2020220127161112.png" class="img-fluid"></p>
+<p>Click the Build tab and then “Build Website”:</p>
+<p><img src="Pasted%20image%2020220127161335.png" class="img-fluid"></p>
+<p>It will grind for a few moments and do the first build, and present you with a glorious preview of your new blog in the Viewer panel:</p>
+<p><img src="Pasted%20image%2020220127161457.png" class="img-fluid"></p>
+<p>Let’s commit this stage too, since a few new files were just created. Switch to the Terminal tab (ctrl + backtick) and issue these git commands:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"First build of site skeleton"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Breathtaking in its awesomeness, we are now ready to share it with the world!</p>
+<p>OK, you might prefer to do some work on it before you unveil it, and that’s fine. When you’re ready, continue below. (Read the RStudio page <a href="https://rstudio.github.io/distill/blog.html?panelset=before-i-sleep">Creating a Blog</a> to learn the details of how Distill sites work, and how to add and customize content; like anything worth learning, it takes a bit of time, but the payoff will be your mighty blog powers.) In this case, we’re going to go ahead and pretend we’re done and test the deployment to make sure it all works.</p>
+</section>
+<section id="configuring-github-pages" class="level2">
+<h2 class="anchored" data-anchor-id="configuring-github-pages">Configuring GitHub Pages</h2>
+<p>Next, we need to go back to GitHub and get GitHub Pages working, so we can publish our site.</p>
+<p>From your GutHub project page, as shown below:</p>
+<ol type="1">
+<li>Click “Settings”</li>
+<li>On the left, click “Pages”</li>
+<li>Under “Source”, set the branch to “main”</li>
+<li>Set the folder to “/docs”</li>
+<li>Click “Save”.</li>
+</ol>
+<p>(Note: ignore the “Choose a theme” button; it doesn’t apply to Distill projects.)</p>
+<p><img src="Pasted%20image%2020220127162652.png" class="img-fluid"></p>
+<p>GitHub will show a success message (hopefully):</p>
+<p><img src="Pasted%20image%2020220127163030.png" class="img-fluid"></p>
+<p>Note the “Custom domain” section at the bottom; we’ll return to that if/when we want to move the site to a custom domain. As it is, GitHub generates a URL for the site based on your GitHub username and the repo name. In this case, the address is <a href="https://stevelinberg.github.io/distill-blog/">https://stevelinberg.github.io/distill-blog/</a>. Click the link, and you should see your site:</p>
+<p><img src="Pasted%20image%2020220127163306.png" class="img-fluid"></p>
+<p>This means it’s live!</p>
+<p>You could just go from here, if you’re content with the URL GitHub chose for you. Your basic workflow will be:</p>
+<ul>
+<li>Work on content in RStudio</li>
+<li>Commit changes with git as you go</li>
+<li>Build the site when you’re ready (or as often as you like)</li>
+<li>Push the changes to GitHub, which publishes them to your site.</li>
+</ul>
+<p>If you want to brand a little more strongly and put the site on your own domain, continue with “Using a Custom Domain”, the next article in this series, coming soon.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
+  author = {Steve Linberg},
+  editor = {},
+  title = {Distill and {Github} {Pages} {Setup}},
+  date = {2022-01-29},
+  url = {https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-linberg2022" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Steve Linberg. 2022. <span>“Distill and Github Pages Setup.”</span>
+January 29, 2022. <a href="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup">https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Copyright 2022 Steve Linberg. Except where otherwise noted, all text and images licensed CC-BY-NC 4.0</div>   
+  </div>
+</footer>
+
+
+
+</body></html>

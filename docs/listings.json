@@ -1,24 +1,74 @@
 [
   {
-    "listing": "/blog.html",
+    "listing": "/academics/695M/index.html",
     "items": [
-      "/posts/2022-10-01_distill_to_quarto_part_1/index.html",
-      "/posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html",
-      "/posts/2022-03-05-tufte-takes-no-prisoners/index.html",
-      "/posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html",
-      "/posts/2022-02-05-saturday-mornings-with-tufte/index.html",
-      "/posts/2022-02-02-pythagorean-theorem/index.html"
+      "/academics/695M/useful-r-tidbits/index.html",
+      "/academics/695M/glossary/index.html",
+      "/academics/695M/bigger-concepts/index.html"
+    ]
+  },
+  {
+    "listing": "/academics/697E/index.html",
+    "items": [
+      "/academics/697E/useful-r-tidbits/index.html",
+      "/academics/697E/697E-hw6/index.html",
+      "/academics/697E/697E-hw5/index.html",
+      "/academics/697E/697E-hw4/index.html",
+      "/academics/697E/697E-hw3/index.html",
+      "/academics/697E/glossary/index.html"
     ]
   },
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2022-10-20_distill_to_quarto_part_2/index.html",
       "/posts/2022-10-01_distill_to_quarto_part_1/index.html",
       "/posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html",
       "/posts/2022-03-05-tufte-takes-no-prisoners/index.html",
       "/posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html",
       "/posts/2022-02-05-saturday-mornings-with-tufte/index.html",
-      "/posts/2022-02-02-pythagorean-theorem/index.html"
+      "/posts/2022-02-02-pythagorean-theorem/index.html",
+      "/posts/2022-01-29_distill-and-github-pages-setup/index.html",
+      "/academics/697E/697E-hw6/index.html",
+      "/academics/697E/697E-hw5/index.html",
+      "/academics/697E/697E-hw4/index.html",
+      "/academics/697E/697E-hw3/index.html",
+      "/academics/697E/useful-r-tidbits/index.html",
+      "/academics/695M/bigger-concepts/index.html",
+      "/academics/695M/index.html",
+      "/academics/695M/useful-r-tidbits/index.html",
+      "/academics/695M/glossary/index.html",
+      "/academics/697E/index.html",
+      "/academics/697E/glossary/index.html"
+    ]
+  },
+  {
+    "listing": "/academics.html",
+    "items": [
+      "/academics/697E/697E-hw6/index.html",
+      "/academics/697E/697E-hw5/index.html",
+      "/academics/697E/697E-hw4/index.html",
+      "/academics/697E/697E-hw3/index.html",
+      "/academics/697E/useful-r-tidbits/index.html",
+      "/academics/695M/bigger-concepts/index.html",
+      "/academics/695M/index.html",
+      "/academics/695M/useful-r-tidbits/index.html",
+      "/academics/695M/glossary/index.html",
+      "/academics/697E/index.html",
+      "/academics/697E/glossary/index.html"
+    ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/posts/2022-10-20_distill_to_quarto_part_2/index.html",
+      "/posts/2022-10-01_distill_to_quarto_part_1/index.html",
+      "/posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html",
+      "/posts/2022-03-05-tufte-takes-no-prisoners/index.html",
+      "/posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html",
+      "/posts/2022-02-05-saturday-mornings-with-tufte/index.html",
+      "/posts/2022-02-02-pythagorean-theorem/index.html",
+      "/posts/2022-01-29_distill-and-github-pages-setup/index.html"
     ]
   }
 ]

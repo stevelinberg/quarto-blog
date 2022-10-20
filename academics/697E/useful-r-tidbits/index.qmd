@@ -1,0 +1,758 @@
+---
+title: "Useful R tidbits: Political Networks Analysis"
+description: |
+  Tasty R snacks that do useful things in Political Networks Analysis
+date: 2022-02-08
+categories: [r, social networks]
+---
+
+This document contains R snippets pertaining to work in the [Political Networks Analysis class](../index.qmd). There is also [one for the Machine Learning class](/academics/695M/useful-r-tidbits/index.qmd).
+
+## Prelude: finding data to play with
+
+Since in the class tutorials, the network objects are pre-loaded in the web-based runtime environments, we don't actually see how to load some of the data sets that the exercises are based on, for running outside of this environment.
+
+There are gazillions of ways to get data into R, but for the purposes of playing with networks, there are some packages with pre-existing network data that can be easily loaded. Two of these are `igraphdata`, which contains igraph-formatted network datasets, and `ergm`, which contains statnet-compatible network datasets. 
+
+The datasets in each can be listed with the `data` command:
+
+```r
+> data(package = "igraphdata")
+
+Data sets in package ‘igraphdata’:
+
+Koenigsberg              Bridges of Koenigsberg from Euler's times
+UKfaculty                Friendship network of a UK university faculty
+USairports               US airport network, 2010 December
+enron                    Enron Email Network
+foodwebs                 A collection of food webs
+immuno                   Immunoglobulin interaction network
+karate                   Zachary's karate club network
+kite                     Krackhardt's kite
+macaque                  Visuotactile brain areas and connections
+rfid                     Hospital encounter network data
+yeast                    Yeast protein interaction network
+
+> data(package = "ergm")
+
+Data sets in package ‘ergm’:
+
+cohab_MixMat (cohab)     Target statistics and model fit to a hypothetical
+                         50,000-node network population with 50,000 nodes
+                         based on egocent
+cohab_PopWts (cohab)     Target statistics and model fit to a hypothetical
+                         50,000-node network population with 50,000 nodes
+                         based on egocent
+cohab_TargetStats (cohab)
+                         Target statistics and model fit to a hypothetical
+                         50,000-node network population with 50,000 nodes
+                         based on egocent
+ecoli1 (ecoli)           Two versions of an E. Coli network dataset
+ecoli2 (ecoli)           Two versions of an E. Coli network dataset
+faux.desert.high         Faux desert High School as a network object
+faux.dixon.high          Faux dixon High School as a network object
+faux.magnolia.high       Goodreau's Faux Magnolia High School as a network
+                         object
+faux.mesa.high           Goodreau's Faux Mesa High School as a network
+                         object
+flobusiness (florentine)
+                         Florentine Family Marriage and Business Ties Data
+                         as a "network" object
+flomarriage (florentine)
+                         Florentine Family Marriage and Business Ties Data
+                         as a "network" object
+g4                       Goodreau's four node network as a "network"
+                         object
+kapferer                 Kapferer's tailor shop data
+kapferer2 (kapferer)     Kapferer's tailor shop data
+molecule                 Synthetic network with 20 nodes and 28 edges
+samplike (sampson)       Cumulative network of positive affection within a
+                         monastery as a "network" object
+samplk1 (samplk)         Longitudinal networks of positive affection
+                         within a monastery as a "network" object
+samplk2 (samplk)         Longitudinal networks of positive affection
+                         within a monastery as a "network" object
+samplk3 (samplk)         Longitudinal networks of positive affection
+                         within a monastery as a "network" object
+```
+
+To load the statnet "florentine" data from the `ergm` package:
+
+```r
+> data("florentine", package = "ergm")
+```
+
+This creates the objects `flobusiness` and `flomarriage`, both from this dataset, ready to go in statnet. Note that another version of this dataset is found in the `network` package `flo`:
+
+```r
+data("flo", package = "network")
+```
+
+This loads the very simple data into a matrix, but it is not yet a network object. To convert it to an igraph object:
+
+```r
+library(network)
+library(igraph)
+
+data(flo)
+ntwk.ig <- graph_from_adjacency_matrix(flo)
+```
+
+## Week 1 tutorial cheatsheet
+
+||igraph|statnet|
+|---|---|---|
+|Count of vertices|`vcount()`||
+|Count of edges|`ecount()`||
+|Both||`print()`|
+|Bipartite or single mode?|`is_bipartite()`|`print()`|
+|Edges directed or undirected?|`is_directed()`|`print()`|
+|Weighted? (or binary)|`is_weighted()`|`print()`|
+
+vertex attribute
+: vector of additional information about nodes in a network
+
+edge attribute
+: vector of additional information about the edges in a network
+
+Q: how to get missing edge count in igraph?
+
+||igraph|statnet|
+|---|---|---|
+|display vertex attributes|`vertex_attr_names()`|`list.vertex.attributes()`|
+|display edge attributes|`edge_attr_names()`|`list.edge.attributes()`|
+
+In igraph, attributes are accessed via `$`, using the `V` and `E` functions, 
+as in:
+
+```r
+V(karate.ig)$name
+E(karate.ig)$weight
+```
+
+In statnet, they are accessed via the `%v%` and `%e%` mechanisms, as in:
+
+```r
+karate.stat %v% "vertex.names"
+karate.stat %e% "weight"
+```
+
+### Getting the basic network descriptors
+
+First look at any network is to examine the network *size*, *type* (un/directed, un/weighted, bipartite) and available *attributes of vertices and edges*.
+
+#### igraph
+
+Basic descriptors first:
+
+```r
+vcount(climpref.ig)
+[1] 34
+
+ecount(climpref.ig)
+[1] 531
+
+is_bipartite(climpref.ig)
+[1] FALSE
+
+is_directed(climpref.ig)
+[1] FALSE
+
+is_weighted(climpref.ig)
+[1] TRUE
+```
+
+Listing vertex and edge attributes:
+
+```r
+> vertex_attr_names(climpref.ig)
+[1] "name"                 "Climate.council"      "Klimaallianz"        
+[4] "Stiftung.Klimarappen" "type3"                "type5"               
+[7] "dm"                  
+
+> edge_attr_names(climpref.ig)
+[1] "weight"
+
+```
+
+Accessing vertex and edge attributes:
+
+```r
+> V(climpref.ig)$name %>% head()
+[1] "AA" "AB" "AC" "AD" "AE" "AF"
+
+E(climpref.ig)$weight %>% head()
+[1] 0.69 0.08 0.04 0.18 0.42 0.21
+```
+
+#### statnet
+
+The basic descriptors in statnet are all *shown* by print():
+
+```r
+> print(flobusiness)
+ Network attributes:
+  vertices = 16 
+  directed = FALSE 
+  hyper = FALSE 
+  loops = FALSE 
+  multiple = FALSE 
+  bipartite = FALSE 
+  total edges= 15 
+    missing edges= 0 
+    non-missing edges= 15 
+
+ Vertex attribute names: 
+    priorates totalties vertex.names wealth 
+
+No edge attributes
+```
+
+It appears, though it's thinly documented, that these attributes are programmatically accessible through the `$gal` attribute, as in `is_directed <- flobusiness$gal$directed`:
+
+```r
+> flobusiness$gal
+$n
+[1] 16
+
+$mnext
+[1] 16
+
+$directed
+[1] FALSE
+
+$hyper
+[1] FALSE
+
+$loops
+[1] FALSE
+
+$multiple
+[1] FALSE
+
+$bipartite
+[1] FALSE
+```
+
+## Week 2 cheatsheet
+
+A dyad census will count the reciprocal (`mut`), asymmetric (`asym`) and absent (`null`) dyads, based on directed graphs. In igraph:
+
+```r
+igraph::dyad.census(trade2007.ig)
+$mut
+[1] 11444
+
+$asym
+[1] 3148
+
+$null
+[1] 2244
+```
+
+In statnet:
+```r
+sna::dyad.census()
+ [1]   6225  19035  40611   6442   7044  10097  55355  44966   9200   1876
+[11] 146537  25578  17167  30894 225908 374449
+```
+
+Triad census is similar:
+
+```r
+igraph::triad_census(trade2007.ig)
+```
+
+```r
+sna::triad.census(gotbook.stat, mode="graph")  # undirected
+      
+sna::triad.census(trade2007.stat)              # directed
+      003   012   102 021D 021U 021C  111D  111U 030T 030C   201  120D
+[1,] 6225 13655 26489 4225 4657 4821 34812 23635 4374  537 97088 15073
+     120U  120C    210    300
+[1,] 7947 14249 136169 283855
+
+```
+
+Note that the `statnet` version gives us information about the types of triads as column names in the matrix it returns. The `igraph` version also breaks them into the 16 categories, but returns them in a fixed order not detailed in its return value (described in its help documentation).
+
+The total number of possible triads in a 298 vertex network is (298 x 297 x 296) / (3 x 2 x 1) - the 3 countdown comes from "triad". Quads would be (298 x 297 x 296 x 295) / (4 x 3 x 2 x 1).
+
+### Transitivity
+
+Transitivity is the percentage of potential connected triads - how many are complete. Basic way in igraph is `transitivity()`. The statnet version is `gtrans()`, but it only works in directed networks. `print()` will say whether the network is directed. (Note: in the tutorial, we see that the climate network IS directed, but it returns a different result than igraph: 0.627 vs 0.724. Not clear why. "it is calculating a transitivity score based on an understanding of network structure rooted in hierarchy")
+
+Local transitivity is the `local clustering coefficient` - how many nodes of an ego are connected to each other. Have to unpack this, but the magic is:
+
+```r
+transitivity(gotbook.ig, type="local", 
+  vids=V(gotbook.ig)[
+  c("Petyr Baelish","Jon Snow", "Tyrion Lannister")]) 
+```
+
+The global clustering coefficient in igraph is
+
+```r
+transitivity(trade2007.ig, type="global")
+[1] 0.8837142
+```
+
+The local coefficient is:
+
+```r
+transitivity(trade2007.ig, type="average")
+[1] 0.8862707
+```
+
+Network transitivity in statnet is `gtrans()`:
+
+```r
+gtrans(trade2007.stat)
+[1] 0.9993143
+```
+
+||igraph|statnet|
+|---|---|---|
+|global clustering coefficient|`transitivity(trade2007.ig,  type="global")`|`gtrans(trade2007.stat)` (directed only)|
+|local clustering coefficient|`transitivity(trade2007.ig,  type="local")`|???|
+|average local clustering coefficient|`transitivity(trade2007.ig,  type="average")`|???|
+
+## Degree
+
+`igraph::degree()` and `statnet::degree()`, and once again they give different results; igraph includes loops, statnet doesn't. Force igraph to ignore them with `loops = FALSE`. "Note that setting `diag=TRUE` in `sna::degree` does not guarantee equivalence as statnet only single counts the loops in a directed network, while igraph double-counts the loops."
+
+igraph shows the node names, statnet doesn't.
+
+Getting the degree of a particular set of nodes in `igraph`:
+
+```r
+> igraph::degree(trade2007.ig, v = V(trade2007.ig)[c("China", "Canada", "United Kingdom", "Denmark")])
+         China         Canada United Kingdom        Denmark 
+           364            364            364            362 
+```
+
+This can also be done by index, as in:
+
+```r
+> igraph::degree(flo_ig, v = 1:3)
+Acciaiuoli    Albizzi  Barbadori 
+         2          6          4 
+```
+
+Statnet degrees aren't named:
+
+```r
+> sna::degree(flo_stat)
+ [1]  2  6  4  6  6  2  8  2 12  2  6  0  6  4  8  6
+> which(sna::degree(flo_stat) == 0)
+[1] 12
+```
+
+### *Indegree* and *outdegree* calculations
+
+||igraph|statnet|
+|---|---|---|
+|indegree|`igraph::degree(climate.ig,mode="in", loops = FALSE)`|`sna::degree(climate.stat, cmode="indegree")`|
+|outdegree|`igraph::degree(climate.ig,mode="out", loops = FALSE)`|`sna::degree(climate.stat, cmode="outdegree")`|
+
+Code from the tutorial to create `data.frame`s with degree statistics:
+
+```r
+#igraph:
+
+trade2007.nodes <- data.frame(name = V(trade2007.ig)$name,
+    totdegree = igraph::degree(trade2007.ig, loops = FALSE),
+    indegree = igraph::degree(trade2007.ig, mode = "in", loops = FALSE),
+    outdegree = igraph::degree(trade2007.ig, mode = "out", loops = FALSE))
+
+#statnet version:
+
+trade2007.nodes <- data.frame(name = trade2007.stat%v%"vertex.names",
+    totdegree = sna::degree(trade2007.stat),
+    indegree = sna::degree(trade2007.stat, cmode = "indegree"),
+    outdegree = sna::degree(trade2007.stat, cmode = "outdegree"))
+```
+    
+## Components
+
+Shortest path length between 2 nodes: igraph `distances()` does this.
+
+```r
+distances(gotbook.ig,"Petyr Baelish","Robb Stark")
+# Calculate distance using unweighted edges
+distances(gotbook.ig,"Petyr Baelish","Robb Stark", weights=NA)
+# list shortest paths between 2 nodes
+all_shortest_paths(gotbook.ig,"Bronn","Varys", weights=NA)$res
+#find average shortest path for network
+average.path.length(gotbook.ig,directed=F)
+```
+
+Component structure and membership
+
+*Note*: a graph is fully connected if its number of components is 1. igraph returns this as the `no` parameter of `igraph::components()`; it appears that statnet has no parallel function, but if the number of isolates is 0, the graph is connected (`sna::isolates()`).
+
+```r
+# What element are returned by components
+names(igraph::components(gotbook.ig))
+
+# Number of components
+igraph::components(gotbook.ig)$no 
+
+# Size of each component
+igraph::components(gotbook.ig)$csize 
+
+# retrieve the index of isolate nodes
+# (nodes with component count of 1 from "components" above)
+isolates(gotbook.stat)
+
+# There is no direct command in igraph, but we can do this:
+# Create a list of the degree of each node in the network
+deg_counts <- igraph::degree(gotbook.ig, loops = FALSE)
+
+# filter and count the nodes with 0 degrees (or any other quantity of interest)
+length(deg_counts[deg_counts == 0])
+
+# subset vertex.names attribute to get names of isolates
+as.vector(gotbook.stat %v% 'vertex.names')[c(isolates(gotbook.stat))] %>%
+  head()
+##   [1] "Aegon Frey (Jinglebell)"         "Alebelly"                       
+##   [3] "Alfyn"                           "Allar Deem"                     
+##   [5] "Antario Jast"                    "Balman Byrch"    
+```
+
+## Graph density
+
+Note: `network.density()` (statnet) ignores edge values "at present".
+
+```r
+#get network density: igraph
+graph.density(climate.ig)
+
+## [1] 0.4117647
+
+#get network density: statnet
+network.density(climate.stat)
+
+## [1] 0.399654
+```
+
+Adding `loops = TRUE` to `graph.density()` appears to fix the problem and gets the two packages to agree:
+
+```r
+#get network density without loops: igraph
+graph.density(climate.ig, loops=TRUE)
+
+## [1] 0.399654
+```
+
+*SO*, it's safest to always do either:
+- `graph.density(climate.ig, loops=TRUE)` (igraph), OR
+- `network.density(climate.stat)` (statnet)
+
+In statnet, we can get network density with loops (nodes connecting to themselves) omitted:
+
+```r
+#get network density without loops: statnet
+gden(climate.stat, diag=FALSE)
+
+## [1] 0.3921569
+```
+
+## Network degree centralization
+
+In `statnet`, call `centralization()` with the `degree` function and appropriate parameters for `degree` in the `cmode` argument:
+
+```r
+centralization(climate.stat, degree, cmode="indegree")
+centralization(climate.stat, degree, cmode="outdegree")
+centralization(climate.stat, degree, cmode="freeman") # default
+```
+
+Could also call it with other `sna` functions like `betweenness`, `closeness`
+
+The `igraph` version uses `centr_degree()` and returns an object with several components, of which `centralization` is one:
+
+```r
+centr_degree(climate.ig, loops = FALSE, mode = "in")$centralization
+centr_degree(climate.ig, loops = FALSE, mode = "out")$centralization
+```
+
+### Eigenvector centralization
+
+`statnet` uses `evcent()` to calculate the eigenvalue centrality score for each node in the network:
+
+```r
+evcent(imf2014.stat, ignore.eval=TRUE))
+```
+
+Eigenvector centrality index for the network:
+
+```r
+centralization(imf2014.stat, evcent)
+```
+
+In `igraph`, a set of eigenvector-related information is created with `centr_eigen()`:
+
+```r
+# If the network is directed, specify "directed - T" - will not auto-detect
+eigen_info <- centr_eigen(imf2014.ig, directed = T)
+# Centrality score for node 3:
+eigen_info[3]$vector
+# Eigenveector centrality index for the network:
+eigen_info$centralization
+```
+
+**The scores calculated by `igraph` and `statnet` are different. We aren't sure why.** It appears that igraph [counts incoming ties to calculate eigenvector centrality](https://stackoverflow.com/questions/21035598/what-is-evcent-returning-for-directed-graphs), and statnet [recommends using Bonachic power instead for directed networks](http://mailman13.u.washington.edu/pipermail/statnet_help/2015/002170.html).
+
+### Bonacich Power Centrality
+
+`igraph`:
+
+```r
+power_centrality(imf2014.ig)
+```
+
+`statnet`:
+
+```r
+bonpow(imf2014.stat)
+```
+
+Again, there appear to be some inconsistency between `igraph` and `statnet` in the calculations, with statnet apparently not incorporating weights and failing on singular matrices. 
+
+### Derived and Reflected Centrality
+
+There are no library routines for these calculations. Convert the data to a matrix first:
+
+```r
+mat2014 <- as.matrix(as_adjacency_matrix(imf2014.ig, attr="weight"))
+```
+
+> To calculate the proportion of centrality that is received, we first square the adjacency matrix. The diagonal of the adjacency matrix is equal to the the square of node degree. We then divide this diagonal (sqared degree) by total sqaured indegree (calculated by rowSums) to get the proportion of received centrality.
+
+```r
+# square the adjacency matrix
+mat2014sq <- t(mat2014) %*% mat2014
+
+# Calculate the proportion of reflected centrality.
+imf2014.nodes$rc <- diag(mat2014sq) / rowSums(mat2014sq)
+
+# freplace missing values with 0
+imf2014.nodes$rc <- ifelse(is.nan(imf2014.nodes$rc), 0, imf2014.nodes$rc)
+
+# Calculate received eigenvalue centrality
+imf2014.nodes$eigen.rc <- imf2014.nodes$eigen * imf2014.nodes$rc
+```
+
+> If total centraltiy is 1, then derived centrality is simply 1 - the proportion of eigenvector centrality due to received centrality.
+
+```r
+# Calculate the proportion of derived centrality.
+imf2014.nodes$dc <- 1 - diag(mat2014sq) / rowSums(mat2014sq)
+
+# replace missing values with 0
+imf2014.nodes$dc <- ifelse(is.nan(imf2014.nodes$dc), 1, imf2014.nodes$dc)
+
+# Calculate received eigenvalue centrality
+imf2014.nodes$eigen.dc <- imf2014.nodes$eigen * imf2014.nodes$dc
+```
+
+## Week 5: Big Block of Basic Code
+
+Big Blocks of Basic Code to get a bunch of measures of a network:
+
+```r
+# Get the basic stuff we can do all at once with igraph
+climinfl.nodes <- data.frame(
+    name      = V(climinfl.ig)$name,
+    totdegree = igraph::degree(climinfl.ig, loops=FALSE),
+    indegree  = igraph::degree(climinfl.ig, mode="in", loops=FALSE),
+    outdegree = igraph::degree(climinfl.ig, mode="out", loops=FALSE),
+    eigen     = centr_eigen(climinfl.ig, directed = T)$vector,
+    bonanich  = power_centrality(climinfl.ig),
+    centr_clo = igraph::closeness(climinfl.ig),
+    centr_btw = igraph::betweenness(climinfl.ig, directed = FALSE),
+    # igraph only
+    burt      = constraint(climinfl.ig)
+)
+# Network-level measures:
+#   closeness centralization
+climinfl.centr_clo = centr_clo(climpref.ig)$centralization
+#   betweenness centralization
+climinfl.centr_btw = centr_betw(climpref.ig, directed = FALSE)$centralization
+
+# statnet version
+climinfl.nodes <- data.frame(
+    name      = climinfl.stat %v% "vertex.names",
+    totdegree = sna::degree(climinfl.stat),
+    indegree  = sna::degree(climinfl.stat, cmode = "indegree"),
+    outdegree = sna::degree(climinfl.stat, cmode = "outdegree"),
+    eigen     = sna::evcent(climinfl.stat, ignore.eval = TRUE),
+    bonanich  = sna::bonpow(climinfl.stat),
+    centr_clo = sna::closeness(climinfl.stat, gmode = "graph",
+                               cmode = "suminvundir"),
+    centr_btw = sna::betweenness(climinfl.stat, gmode = "graph")
+)
+# Network-level measures:
+#   closeness centralization
+climinfl.centr_clo = centralization(climinfl.stat, sna::closeness, mode = "graph")
+#   betweenness centralization
+climinfl.centr_btw = centralization(climinfl.stat, sna::betweenness, mode = "graph")
+
+# Statnet-only: Gould-Fernandez Brokerage
+# replace ATTR with the vector of the desired attribute, such as
+# `climinfl.nodes$orgtype5`
+temp <- data.frame(brokerage(climinfl.stat, cl = ATTR)$z.nli)
+climinfl.nodes <- climinfl.nodes %>%
+  mutate(broker.tot = temp$t,
+         broker.coord = temp$w_I,
+         broker.itin = temp$w_O,
+         broker.rep = temp$b_IO,
+         broker.gate = temp$b_OI,
+         broker.lia = temp$b_O)
+
+# Calculated measures not specific to igraph or statnet:
+# Build the derived and reflected centrality (dc/rc) measures
+# "To calculate the proportion of centrality that is received, we first
+# square the adjacency matrix. The diagonal of the adjacency matrix is
+# equal to the the square of node degree. We then divide this diagonal
+# (squared degree) by total squared indegree (calculated by rowSums) to get
+# the proportion of received centrality."
+
+mat_climinfl <- as.matrix(as_adjacency_matrix(climinfl.ig))  # not " attr='weight'"
+mat_climinfl_sq <- t(mat_climinfl) %*% mat_climinfl
+# alternately:
+mat_climinfl <- as.matrix.network(climinfl.stat, attr = "weight")
+diag(mat_climinfl) <- 0
+mat_climinfl_sq <- mat_climinfl %*% mat_climinfl
+
+climinfl.nodes$rc <- diag(mat_climinfl_sq) / rowSums(mat_climinfl_sq)
+# replace missing values with 0
+climinfl.nodes$rc <- ifelse(is.nan(climinfl.nodes$rc), 0, climinfl.nodes$rc)
+climinfl.nodes$dc <- 1 - climinfl.nodes$rc
+
+# Build the derived and reflected eigenvector measures
+climinfl.nodes$eigen.rc <- climinfl.nodes$eigen * climinfl.nodes$rc
+climinfl.nodes$eigen.dc <- climinfl.nodes$eigen * climinfl.nodes$dc
+```
+
+### Closeness centrailty
+
+From text: "The closeness centrality of a node is defined as the sum of the geodesic distances between that node and all other nodes in a network."
+
+Both are called in the above blocks, with `sna::closeness()` or `igraph::closeness()` on the respective network object.
+
+From igraph::closeness help: "Closeness centrality measures how many steps is required to access every other vertex from a given vertex."
+
+igraph and statnet have very different implementations, with options that have to be carefully set.
+
+#### igraph
+
+igraph uses inverse closeness.
+
+For directed networks, use `mode=("in", "out", "all", "total")`, describing the path type; `in` is paths *to* a vertex, `out` is paths *from* a vertex. Undirected networks ignore this parameter. It will use the "weight" edge attribute automatically if it's there, or can be overriden with something else.
+
+#### statnet
+
+Must specify `gmode` (type of graph) as `graph` (undirected) or `digraph` (directed, default). `cmode` (type of closeness centrality being measured) is one of: `directed`, `undirected` (both standard closeness), `suminvdir` (directed case) and `suminvundir` (undirected case), and `gil-schmidt` for that. The `suminv` options correspond to igraph's default inversion, though they're still calculated slightly differently, so they're generally preferred.
+
+statnet ignores the edge weights by default; `ignore.eval = FALSE` to use them, according to the documentation, but the results appear not to use them.
+
+`sna::closeness(climpref.stat, gmode="graph", cmode="suminvundir", ignore.eval=FALSE))`
+
+### Closeness centralization
+
+Closeness centralization is the network-level measure of the *closeness centrality* node-level measure. 
+
+```r
+climinfl.centr_clo = centr_clo(climpref.ig)$centralization
+climinfl.centr_clo = centralization(climinfl.stat, FUN = "closeness", mode = "graph")
+```
+
+### Betweenness centrality
+
+Betweenness centrality is the node-level measure of the number of geodesics (shortest path between two nodes) on which a node sits. A high betweenness centrality measure means a node is on many shortest-paths, suggesting a measure of influence or power.
+
+```r
+igraph::betweenness(climpref.ig, directed = FALSE)
+sna::betweenness(climpref.ig, gmode = "graph")
+```
+
+The igraph version `directed` argument, for whether or not direction should be considered, defaults to `TRUE`; it might be wondered why it doesn't read the directedness of the graph as a default, but oh well.
+
+The statnet version would use `gmode` of `digraph` for a directed network, and `cmode` for a variant undirected form; see `?sna::betweenness` for more. Statnet appears to use weights by default; `weights = NA` disables weights in igraph.
+
+### Betweenness centralization
+
+The network-level measure of betweenness centralization represents [Freeman centralization](https://en.wikipedia.org/wiki/Centrality#Freeman_centralization), at least according to the statnet documentation.
+
+This is a "a measure of how central its most central node is in relation to how central all the other nodes are". 
+
+```r
+climinfl.centr_btw = centr_betw(climpref.ig, directed = FALSE)$centralization
+climinfl.centr_btw = centralization(climpref.stat, FUN = "betweenness", mode = "graph")
+```
+
+### (Burt's) network constraint
+
+igraph-only function measuring a node's connection redundancy from 0 (none) to 1. Uses weights.
+
+```r
+constraint(climinfl.ig)
+```
+
+### Gould-Fernandez Brokerage
+
+(Statnet-only)
+
+From `?brokerage()`: "Gould and Fernandez (following Marsden and others) describe brokerage as the role played by a social actor who mediates contact between two alters."
+
+Requires a directed network with a vertex attribute used for grouping. Returns a structure with a lot of information; tutorial refers mainly to `znli` containing the following roles:
+
+|prefix|Role|Action|Path|
+|---|---|---|---|
+|w_I|Coordinator| mediates contact between two individuals from his or her own group. |A -> A -> A|
+|w_O|Itinerant broker| mediates contact between two individuals from a single group to which he or she does not belong. |A -> B -> A|
+|b_{OI}|Gatekeeper| mediates an incoming contact from an out-group member to an in-group member. |A -> B -> B|
+|b_{IO}|Representative| mediates an outgoing contact from an in-group member to an out-group member. |A -> A -> B|
+|b_O|Liaison| mediates contact between two individuals from different groups, neither of which is the group to which he or she belongs. |A -> B -> C|
+|t|Total|Total (cumulative) brokerage role occupancy|(Any two)|
+
+```r
+brokerage(climinfl.stat, cl = climinfl.nodes$orgtype5)
+```
+
+## Week 6
+
+(All statnet unless otherwise specified)
+
+Calculating structural equivalence ("SE clusters"): look for nodes that have the same pattern of ties with the same neighbors, like siblings of a parent. Unexplained distance functions include "hamming", "correlation", "gamma". The `sedist()` function ignores edge values (weights?). 
+
+```r
+flomarr.se <- equiv.clust(flomarr.stat, equiv.fun = "sedist", method = "hamming", mode = "graph")
+```
+
+The output of `equiv.clust()` can be plotted as a "Cluster Dendogram":
+
+```r
+flomarr.se <- equiv.clust(flomarriage, equiv.fun = "sedist", method = "hamming", mode = "graph")
+plot(flomarr.se,labels = flomarr.se$glabels)
+```
+
+Annoyingly, the different `cluster.method`s "single, average, or ward.D" are not explained in the tutorial. The default is "complete".
+
+`rect.hclust()` (visually) "cuts" the diagram at a given height, making separate clusters:
+
+```r
+plot(flomarr.se, labels = flomarr.se$glabels)
+rect.hclust(flomarr.se$cluster, h = 9)
+```
+
+```r
+flomarr.se <- equiv.clust(flomarriage, equiv.fun = "sedist", cluster.method = "single",
+                          method = "hamming", mode = "graph")
+plot(flomarr.se,labels = flomarr.se$glabels)
+
+
+```
+

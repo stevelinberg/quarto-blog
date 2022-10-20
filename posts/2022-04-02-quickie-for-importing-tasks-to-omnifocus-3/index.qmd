@@ -3,7 +3,7 @@ title: "Quickie for importing tasks to OmniFocus 3"
 description: "Copy and paste formatted text to mass-create tasks."
 date: "2022-04-02"
 image: "https://www.omnigroup.com/assets/img/icons/omnifocus-web@2x.png"
-categories: [blog, omnifocus]
+categories: [omnifocus]
 ---
 
 I've been an [OmniFocus](https://www.omnigroup.com/omnifocus/) user since version 1.0.

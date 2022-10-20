@@ -75,13 +75,40 @@ ul.task-list li input[type="checkbox"] {
 
     const options = {
       valueNames: ['listing-date','listing-title','listing-reading-time','listing-description','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      page: 3,
-    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      
       searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
     window['quarto-listings']['listing-recent-posts'] = new List('listing-recent-posts', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-recent-academic .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-reading-time','listing-description','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-recent-academic'] = new List('listing-recent-academic', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -138,6 +165,9 @@ gtag('config', 'G-0ZXRPNMLL7', { 'anonymize_ip': true});
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./academics.html">Academics</a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/stevelinberg"><i class="bi bi-twitter" role="img">
@@ -206,17 +236,45 @@ gtag('config', 'G-0ZXRPNMLL7', { 'anonymize_ip': true});
 – <cite>Jonathan Rosenberg</cite></p>
 </div>
 </section>
-<section id="recent-blog-posts" class="level1 g-col-6">
-<h1>Recent blog posts</h1>
+<section id="recent-blog-posts" class="level2 g-col-6">
+<h2 class="anchored" data-anchor-id="recent-blog-posts">Recent blog posts</h2>
 <div id="listing-recent-posts" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="quarto,distill,blog" data-listing-date-sort="1664596800000" data-listing-file-modified-sort="1664662894714" data-listing-reading-time-sort="11.55">
+<div class="quarto-post image-right" data-index="0" data-categories="quarto,distill" data-listing-date-sort="1666238400000" data-listing-file-modified-sort="1666297728581" data-listing-reading-time-sort="8.885">
+<div class="thumbnail">
+<p><a href="./posts/2022-10-20_distill_to_quarto_part_2/index.html"> <img src="./posts/2022-10-20_distill_to_quarto_part_2/quarto.png" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2022-10-20_distill_to_quarto_part_2/index.html">
+<h3 class="no-anchor listing-title">
+Porting to Quarto, part 2
+</h3>
+<div class="listing-subtitle">
+
+</div>
+<div class="listing-description">
+<p>A few more notes on the Quarto transition</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2022-10-20_distill_to_quarto_part_2/index.html">
+<div class="listing-date">
+Oct 20, 2022
+</div>
+<div class="listing-reading-time">
+8 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="quarto,distill" data-listing-date-sort="1664596800000" data-listing-file-modified-sort="1666225345044" data-listing-reading-time-sort="11.56">
 <div class="thumbnail">
 <p><a href="./posts/2022-10-01_distill_to_quarto_part_1/index.html"> <img src="./posts/2022-10-01_distill_to_quarto_part_1/quarto.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/2022-10-01_distill_to_quarto_part_1/index.html">
-<h3 class="no-anchor listing-title" data-anchor-id="recent-blog-posts">
+<h3 class="no-anchor listing-title">
 Porting slinberg.net from Distill to Quarto
 </h3>
 <div class="listing-subtitle">
@@ -238,7 +296,7 @@ Oct 1, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="blog,omnifocus" data-listing-date-sort="1648872000000" data-listing-file-modified-sort="1664644615220" data-listing-reading-time-sort="3.94">
+<div class="quarto-post image-right" data-index="2" data-categories="omnifocus" data-listing-date-sort="1648872000000" data-listing-file-modified-sort="1666225359171" data-listing-reading-time-sort="3.94">
 <div class="thumbnail">
 <p><a href="./posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html"> <img src="https://www.omnigroup.com/assets/img/icons/omnifocus-web@2x.png" class="thumnail-image"> </a></p>
 </div>
@@ -266,118 +324,109 @@ Apr 2, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="tufte,design" data-listing-date-sort="1646456400000" data-listing-file-modified-sort="1664662372111" data-listing-reading-time-sort="2.95">
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+<p>See the <a href="./blog.html">full blog</a> for more.</p>
+</section>
+<section id="academic-work" class="level2 g-col-6">
+<h2 class="anchored" data-anchor-id="academic-work">Academic work</h2>
+<div id="listing-recent-academic" class="quarto-listing quarto-listing-container-default">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="r,social networks" data-listing-date-sort="1648267200000" data-listing-file-modified-sort="1666274573044" data-listing-reading-time-sort="6.745">
 <div class="thumbnail">
-<p><a href="./posts/2022-03-05-tufte-takes-no-prisoners/index.html"> <img src="./posts/2022-03-05-tufte-takes-no-prisoners/badgraphic.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/2022-03-05-tufte-takes-no-prisoners/index.html">
-<h3 class="no-anchor listing-title">
-Tufte Takes No Prisoners
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>Edward Tufte gets raw on chartjunk.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/2022-03-05-tufte-takes-no-prisoners/index.html">
-<div class="listing-date">
-Mar 5, 2022
-</div>
-<div class="listing-reading-time">
-2 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="tufte,design" data-listing-date-sort="1645246800000" data-listing-file-modified-sort="1664663168387" data-listing-reading-time-sort="3.045">
-<div class="thumbnail">
-<p><a href="./posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html"> <img data-src="./posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/nyt_curve.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html">
-<h3 class="no-anchor listing-title">
-Playfair and the “Flatten the Curve” Graphic
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>The importance of simplicity in statistical graphics</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html">
-<div class="listing-date">
-Feb 19, 2022
-</div>
-<div class="listing-reading-time">
-3 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="tufte,design" data-listing-date-sort="1644037200000" data-listing-file-modified-sort="1664663662312" data-listing-reading-time-sort="1.605">
-<div class="thumbnail">
-<p><a href="./posts/2022-02-05-saturday-mornings-with-tufte/index.html"> <img data-src="./posts/2022-02-05-saturday-mornings-with-tufte/tuftebooks.jpg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/2022-02-05-saturday-mornings-with-tufte/index.html">
-<h3 class="no-anchor listing-title">
-Saturday mornings with Tufte
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>The other half of data science skillbuilding</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/2022-02-05-saturday-mornings-with-tufte/index.html">
-<div class="listing-date">
-Feb 5, 2022
-</div>
-<div class="listing-reading-time">
-1 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="math" data-listing-date-sort="1643778000000" data-listing-file-modified-sort="1664663823703" data-listing-reading-time-sort="0.35">
-<div class="thumbnail">
-<a href="./posts/2022-02-02-pythagorean-theorem/index.html">
+<a href="./academics/697E/697E-hw6/index.html">
 <div class="thumbnail-image">
 
 </div>
-</a><p><a href="./posts/2022-02-02-pythagorean-theorem/index.html"></a></p>
+</a><p><a href="./academics/697E/697E-hw6/index.html"></a></p>
 </div>
 <div class="body">
-<a href="./posts/2022-02-02-pythagorean-theorem/index.html">
+<a href="./academics/697E/697E-hw6/index.html">
 <h3 class="no-anchor listing-title">
-Pythagorean Theorem
+Homework 6: Clustering and Blockmodels in the Florentine Wedding dataset
 </h3>
 <div class="listing-subtitle">
 
 </div>
 <div class="listing-description">
-<p>How did I not know this</p>
+<p>Yet more ways to look at the Florence data.</p>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/2022-02-02-pythagorean-theorem/index.html">
+<a href="./academics/697E/697E-hw6/index.html">
 <div class="listing-date">
-Feb 2, 2022
+Mar 26, 2022
 </div>
 <div class="listing-reading-time">
-0 min
+6 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="r,social networks" data-listing-date-sort="1644987600000" data-listing-file-modified-sort="1666274244504" data-listing-reading-time-sort="6.05">
+<div class="thumbnail">
+<a href="./academics/697E/697E-hw5/index.html">
+<div class="thumbnail-image">
+
+</div>
+</a><p><a href="./academics/697E/697E-hw5/index.html"></a></p>
+</div>
+<div class="body">
+<a href="./academics/697E/697E-hw5/index.html">
+<h3 class="no-anchor listing-title">
+Homework 5: Constraint and Brokerage in the Florentine Wedding dataset
+</h3>
+<div class="listing-subtitle">
+
+</div>
+<div class="listing-description">
+<p>Examining additional centrality measures in the Florentine network</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./academics/697E/697E-hw5/index.html">
+<div class="listing-date">
+Feb 16, 2022
+</div>
+<div class="listing-reading-time">
+6 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="r,social networks" data-listing-date-sort="1644469200000" data-listing-file-modified-sort="1666289713969" data-listing-reading-time-sort="7.915">
+<div class="thumbnail">
+<a href="./academics/697E/697E-hw4/index.html">
+<div class="thumbnail-image">
+
+</div>
+</a><p><a href="./academics/697E/697E-hw4/index.html"></a></p>
+</div>
+<div class="body">
+<a href="./academics/697E/697E-hw4/index.html">
+<h3 class="no-anchor listing-title">
+Homework 4: Centrality Analysis of the Florentine Wedding dataset
+</h3>
+<div class="listing-subtitle">
+
+</div>
+<div class="listing-description">
+<p>Examining centrality measures in the Florentine network</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./academics/697E/697E-hw4/index.html">
+<div class="listing-date">
+Feb 10, 2022
+</div>
+<div class="listing-reading-time">
+7 min
 </div>
 </a>
 </div>
@@ -386,25 +435,16 @@ Feb 2, 2022
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-<nav id="recent-posts-pagination" class="listing-pagination" aria-label="Page Navigation">
-  <ul class="pagination"></ul>
-</nav>
 </div>
-</section>
-<section id="academic-work" class="level1 g-col-6">
-<h1>Academic work</h1>
-<p>Some selections from my academic work from the DACSS program at Umass Amherst</p>
-<section id="text-as-data" class="level2">
-<h2 class="anchored" data-anchor-id="text-as-data"><a href="academics/797TA/">Text as Data</a></h2>
-<p>Spring 2021: stuff from TaD, including the Parler project</p>
-</section>
+<p>See the <a href="./academics.html">academics page</a> for more.</p>
 </section>
 </div>
 <section id="contact" class="level2">
 <h2 class="anchored" data-anchor-id="contact">Contact</h2>
 <ul>
 <li><i class="fa-solid fa-envelope" title="Email" aria-hidden="true"></i> <a href="mailto:steve@slinberg.net">steve@slinberg.net</a> (professional) or <a href="mailto:slinberg@umass.edu">slinberg@umass.edu</a> (academic)</li>
-<li><i class="fa-brands fa-twitter" title="twitter" aria-hidden="true"></i> <a href="https://twitter.com/stevelinberg"><span class="citation" data-cites="stevelinberg">@stevelinberg</span></a></li>
+<li><i class="fa-brands fa-linkedin" title="linkedin" aria-hidden="true"></i> <a href="https://www.linkedin.com/in/slinberg/">@slinberg</a></li>
+<li><i class="fa-brands fa-twitter" title="twitter" aria-hidden="true"></i> <a href="https://twitter.com/stevelinberg">@stevelinberg</a></li>
 </ul>
 
 

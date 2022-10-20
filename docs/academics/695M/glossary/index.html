@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2022-02-03">
+<meta name="description" content="Glossary for 695M - Machine Learning">
+
+<title>slinberg.net - Glossary</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-0ZXRPNMLL7"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-0ZXRPNMLL7', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../../styles.css">
+<meta name="twitter:title" content="slinberg.net - Glossary">
+<meta name="twitter:description" content="Glossary for 695M - Machine Learning">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">slinberg.net</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../../"><i class="bi bi-house" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../steve.html">About</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../blog.html">Blog</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../academics.html">Academics</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/stevelinberg"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/slinberg/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/stevelinberg"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://stackoverflow.com/users/13603796/stevelinberg"><i class="bi bi-stack-overflow" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:steve@slinberg.net"><i class="bi bi-envelope" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../../index.xml"><i class="bi bi-rss" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Glossary</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../academics/695M/index.html" class="sidebar-item-text sidebar-link">695M - Machine Learning</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../academics/695M/glossary/index.html" class="sidebar-item-text sidebar-link active">Glossary</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../academics/695M/useful-r-tidbits/index.html" class="sidebar-item-text sidebar-link">Useful R tidbits: Machine Learning</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../academics/695M/bigger-concepts/index.html" class="sidebar-item-text sidebar-link">Bigger Concepts</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../academics/697E/index.html" class="sidebar-item-text sidebar-link">697E - Political Networks Analysis</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../academics/697E/glossary/index.html" class="sidebar-item-text sidebar-link">Glossary</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../academics/697E/useful-r-tidbits/index.html" class="sidebar-item-text sidebar-link">Useful R tidbits: Political Networks Analysis</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../academics/697E/697E-hw3/index.html" class="sidebar-item-text sidebar-link">Homework 3: The Florentine Wedding dataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../academics/697E/697E-hw4/index.html" class="sidebar-item-text sidebar-link">Homework 4: Centrality Analysis of the Florentine Wedding dataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../academics/697E/697E-hw5/index.html" class="sidebar-item-text sidebar-link">Homework 5: Constraint and Brokerage in the Florentine Wedding dataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../academics/697E/697E-hw6/index.html" class="sidebar-item-text sidebar-link">Homework 6: Clustering and Blockmodels in the Florentine Wedding dataset</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#chapter-2" id="toc-chapter-2" class="nav-link active" data-scroll-target="#chapter-2">Chapter 2</a></li>
+  <li><a href="#chapter-3" id="toc-chapter-3" class="nav-link" data-scroll-target="#chapter-3">Chapter 3</a></li>
+  <li><a href="#chapter-4" id="toc-chapter-4" class="nav-link" data-scroll-target="#chapter-4">Chapter 4</a></li>
+  <li><a href="#chapter-5" id="toc-chapter-5" class="nav-link" data-scroll-target="#chapter-5">Chapter 5</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/stevelinberg/quarto-blog/edit/main/academics/695M/glossary/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/stevelinberg/quarto-blog/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/stevelinberg/quarto-blog/blob/main/academics/695M/glossary/index.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Glossary</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">machine learning</div>
+    <div class="quarto-category">glossary</div>
+    <div class="quarto-category">math</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>Glossary for 695M - Machine Learning</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 3, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<p>Page numbers in parenthesis after terms, from <a href="https://www.statlearning.com/">ISLR</a> 2nd edition. Non-page numbers indicate other sources; “biostats” references material from Biostatistics 690Z (Health Data Science: Statistical Modeling), fall 2021.</p>
+<section id="chapter-2" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-2">Chapter 2</h2>
+<dl>
+<dt>input variable (15)</dt>
+<dd>
+<p>also <em>predictor</em>, <em>independent variable</em>, <em>feature</em>; usually written <span class="math inline">\(X_1, X_2\)</span>, etc. The parameter or parameters we are testing to see if they are related to or affect the output.</p>
+</dd>
+<dt>output variable (15)</dt>
+<dd>
+<p>also <em>response</em>, <em>dependent variable</em>; usually written <span class="math inline">\(Y\)</span>. The outcome being measured.</p>
+</dd>
+<dt>error term (16)</dt>
+<dd>
+<p><span class="math inline">\(\epsilon\)</span> in the equation<br>
+<span class="math display">\[Y = f(X) + \epsilon\]</span> a random quantity of inaccuracy, <em>independent of X</em> and with <em>mean 0</em>.</p>
+</dd>
+<dt>systematic (16)</dt>
+<dd>
+<p><span class="math inline">\(f\)</span> in the equation<br>
+<span class="math display">\[Y = f(X) + \epsilon\]</span> the function that describes the (systematic) information <span class="math inline">\(X\)</span> provides about <span class="math inline">\(Y\)</span>. This plus the error term equals <span class="math inline">\(Y\)</span>.</p>
+</dd>
+<dt>reducible error (18)</dt>
+<dd>
+<p>The amount of the error <span class="math inline">\(\epsilon\)</span> that could be eliminated by improving our estimator <span class="math inline">\(\hat{f}\)</span>; the difference between <span class="math inline">\(\hat{f}\)</span> and <span class="math inline">\(f\)</span>. This book and course is mostly about ways to minimize the reducible error.</p>
+</dd>
+<dt>irreducible error (18)</dt>
+<dd>
+<p>The amount of <span class="math inline">\(\epsilon\)</span> that could not be reduced even if <span class="math inline">\(f\)</span> was a perfect estimator of <span class="math inline">\(Y\)</span>. Always greater than 0. Could be due to hidden variables in <span class="math inline">\(\epsilon\)</span>, or random fluctuations in Y, like a measure of “[a] patient’s general feeling of well-being on that day”.</p>
+</dd>
+<dt>expected value (19)</dt>
+<dd>
+<p><em>average value</em> of an expected measure.</p>
+</dd>
+<dt>training data (21)</dt>
+<dd>
+<p>data used to develop the model for estimating <span class="math inline">\(f\)</span>.</p>
+</dd>
+<dt>parametric methods (21)</dt>
+<dd>
+<p>A model based on one or more input parameters, that yields a value for Y, as in:<br>
+<span class="math display">\[f(X) = \beta_0 + \beta_1X_1 + \beta_2X_2 + \dots + \beta_pX_p\]</span><br>
+<span class="math display">\[Y \approx \beta_0 + \beta_1X_1 + \beta_2X_2 + \dots + \beta_pX_p\]</span><br>
+<span class="math display">\[\text{income} \approx \beta_0 + \beta_1 \times \text{education} + \beta_2 \times \text{seniority}\]</span><br>
+This creates a predictive, <em>inflexible</em> model which usually does not match the true <span class="math inline">\(f\)</span>, but which has advantages of simplicity and interpretability. It can be used to predict values for <span class="math inline">\(Y\)</span> based on its parameters, or inputs. Linear and logistic regression are parametric.</p>
+</dd>
+<dt>non-parametric methods (23)</dt>
+<dd>
+<p>methods that do not attempt to estimate <span class="math inline">\(f\)</span>. More flexible and have the potential to very closely match observations, but with the risk of <em>overfitting</em> the data and increasing the <em>variance</em> of subsequent observations. They require much more data than parametric models, and may be difficult to interpret, K-Nearest Neighbor and Support Vector Machines are non-parametric.</p>
+</dd>
+<dt>prediction (26)</dt>
+<dd>
+<p>seeking to guess the value of an response variable <span class="math inline">\(y_i\)</span> given a set of observations and a predictor <span class="math inline">\(f\)</span>.</p>
+</dd>
+<dt>inference (26)</dt>
+<dd>
+<p>a model that seems to better understand the relationship between the response and the predictors.</p>
+</dd>
+<dt>supervised learning (26)</dt>
+<dd>
+<p>a category of model that allows us to guess a <span class="math inline">\(y_i\)</span> response to a set of predictor measurements <span class="math inline">\(x_i, i = 1, \dots, n\)</span>.</p>
+</dd>
+<dt>unsupervised learning (26)</dt>
+<dd>
+<p>a category of model in which there are observations/measurements <span class="math inline">\(x_i, i = 1, \dots, n\)</span>, but no associated response <span class="math inline">\(y_i\)</span>. Linear regression cannot be used because there is no response variable to predict.</p>
+</dd>
+<dt>cluster analysis (27)</dt>
+<dd>
+<p>in unsupervised learning, a statistical method for determining whether a set of observations can be divided into “relatively distinct groups,” looking for similarities within the groups. (Topic modeling may be an example of this.)</p>
+</dd>
+<dt>quantitative variables (28)</dt>
+<dd>
+<p>numeric values; age, height, weight, quantity. Usually the response variable type for regression problems.</p>
+</dd>
+<dt>qualitative variables (28)</dt>
+<dd>
+<p>also <em>categorical</em>: values from a discrete set. Eye color, name, yes/no. Usually the response variable type for classification problems.</p>
+</dd>
+<dt>regression problems (28)</dt>
+<dd>
+<p>problems with quantitative response variables. Given predictors foo, bar, and baz, how big is the frob?</p>
+</dd>
+<dt>classification problems (28)</dt>
+<dd>
+<p>problems with qualitative response variables. Given predictors foo, bar, and baz, is the outcome likely to be a frob, a frib or a freeb?</p>
+</dd>
+<dt>mean squared error (MSE) (29)</dt>
+<dd>
+<p>the average squared error for a set of observations: <span class="math display">\[MSE = \frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{f}(x_i))^2\]</span> MSE is small if the predicted responses are close to the true responses, and larger as it becomes less accurate; computed from training data, and Gareth <em>et al.</em> suggest it should be called <em>training MSE</em>.</p>
+</dd>
+<dt>variance (34)</dt>
+<dd>
+<p>*“the amount by which** <span class="math inline">\(\hat{f}\)</span> would change if we estimated it using a different training data set” More practically: the average* of squared differences from the mean, often expressed as <span class="math inline">\(\sigma^2\)</span>, where <span class="math inline">\(\sigma\)</span> (or the square root of the variance) is the standard deviation per <a href="https://www.youtube.com/watch?v=EuBBz3bI-aA&amp;t=246s">StatQuest</a>: “the difference in fits between data sets” (like training and test)</p>
+</dd>
+<dt>bias (35)</dt>
+<dd>
+<p><em>“the error that is introduced by approximating a real-life problem, which may be extremely complicated, by a much simpler model”</em>, as in the error from the (presumed) linearity of a regression against non-linear data whose complexity it does not capture. More flexible models increase variance and decrease bias. per <a href="https://www.youtube.com/watch?v=EuBBz3bI-aA&amp;t=136s">StatQuest</a>: “The inability for a machine learning method (like linear regression) to capture the true relationship is called <strong>bias</strong>” - a straight line trying to model a curved separation in classes will never get it right and always be biased</p>
+</dd>
+<dt>bias (65)</dt>
+<dd>
+<p>in an estimator, something that systematically misses the true parameter; for an unbiased estimator, <span class="math inline">\(\hat{\mu} = \mu\)</span> when averaged over (huge) numbers of observations</p>
+</dd>
+<dt>bias-variance trade-off (36)</dt>
+<dd>
+<p>The tension in seeking the best model for the data between missing the true <span class="math inline">\(f\)</span> with an overly simple (biased) model, vs.&nbsp;an overfitted model with too much variance from mapping too closely to test data.</p>
+</dd>
+<dt>error rate (37)</dt>
+<dd>
+<p>In classification, the proportion of classifications that are mistakes. <span class="math display">\[\frac{1}{n}\sum_{i=1}^{n}I(y_i \neq \hat{y}_i)\]</span> <span class="math inline">\(I\)</span> is 1 if <span class="math inline">\(y_i \neq \hat{y}_i\)</span> - if the guess for any given <span class="math inline">\(y\)</span> is wrong. The error rate is the percentage of incorrect classifications. Also the <em>training erorr rate</em>.</p>
+</dd>
+<dt>indicator variable (37)</dt>
+<dd>
+<p><span class="math inline">\(I\)</span> in the error rate definition above; a logical variable indicating the presence or absence of a characteristic or trait (such as an accurate classification).</p>
+</dd>
+<dt>test error rate (37)</dt>
+<dd>
+<p>like the <em>training error rate</em> but applied to the test data. Uses <span class="math inline">\(\text{Ave}\)</span> instead of sum notation: <span class="math display">\[\text{Ave}(I(y_0 \neq \hat{y}_0))\]</span> <span class="math inline">\(\hat{y}_0\)</span> is the predicted class label from the classifier.</p>
+</dd>
+<dt>conditional probability (37)</dt>
+<dd>
+<p>The chance that <span class="math inline">\(Y = j\)</span> given an observed <span class="math inline">\(x_0\)</span>, as in the <em>Bayes classifier</em>: <span class="math display">\[\text{Pr}(Y = j|X = x_0)\]</span> In a two-class, yes/no classifier, we decide based on whether <span class="math inline">\(\text{Pr}(Y = j|X = x_0)\)</span> is <span class="math inline">\(&gt; 0.5\)</span>, or not. Note that <span class="math inline">\(Y\)</span> is the class, as in “ham”/“spam”, not a <span class="math inline">\(y\)</span>-axis coordinate.</p>
+</dd>
+<dt>Bayes decision boundary (38)</dt>
+<dd>
+<p>a visual depiction of the line of 50% probability dividing (exactly two?) classes in a two-dimensional space</p>
+</dd>
+<dt>Bayes error rate (38)</dt>
+<dd>
+<p>the expected (average) probability of classification error over all values of X in a data set. <span class="math display">\[1 - E(\underset{j}{maxPr}(Y = j|X))\]</span> The <span class="math inline">\(\underset{j}{maxPr}\)</span> whichever of the <span class="math inline">\(j\)</span> classes has the highest probability for any given value of <span class="math inline">\(X\)</span>. Again, <span class="math inline">\(Y\)</span> is not a y-axis coordinate of a two-dimensional space, it’s the <em>class</em> of the classification: “yes”/“no”, “ham”/“spam”, “infected”/“not infected”. Also: <em>“The Bayes error rate is analogous to the irreducible error, discussed earlier.”</em></p>
+</dd>
+<dt>K-nearest-neighbors (KNN) (39)</dt>
+<dd>
+<p>a classifier that assigns a class Y to an observation based on the population proportions of its nearest neighbors; a circular “neighborhood” on a two-dimensional plot. It looks at actual data points that have been classified, and asks what any given non-classified point would be classified as based on its nearest neighbors.</p>
+</dd>
+</dl>
+</section>
+<section id="chapter-3" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-3">Chapter 3</h2>
+<dl>
+<dt>Synergy effect / interaction effect (60)</dt>
+<dd>
+<p>when two or more predictors affect each other as well as the outcome; when 50k each in TV or radio ads give different results than 100k in either one</p>
+</dd>
+<dt>Simple linear regression</dt>
+<dd>
+<p>the simplest model, predicting <span class="math inline">\(Y\)</span> from a single predictor <span class="math inline">\(X\)</span>. <span class="math display">\[Y \approx \beta_0 + \beta_1X\]</span> <span class="math inline">\(\approx\)</span> = “is approximately modeled as”</p>
+</dd>
+<dt>least squares (61)</dt>
+<dd>
+<p>the most common measure of closeness of a regression line to its data points, the sum of squares of the distances between the points and the closest point on the line (directly above or below)</p>
+</dd>
+<dt>residual (61)</dt>
+<dd>
+<p>the difference between <span class="math inline">\(y_i\)</span> and <span class="math inline">\(\hat{y}_i\)</span>, also <span class="math inline">\(e_i\)</span>; the difference between the <span class="math inline">\(i\)</span>th response variable and the <span class="math inline">\(i\)</span>th response variable predicted by the model <a href="https://youtu.be/g9c66TUylZ4?t=542">StatQuest</a>: the difference between the <em>observed</em> and <em>predicted</em> value</p>
+</dd>
+<dt>residual sum of squares (RSS) (62)</dt>
+<dd>
+<p>the sum of the squared residuals for each point on the regression line <span class="math display">\[\text{RSS} = e_1^2 + e_2^2 + \dots + e_n^2\]</span> Formulas for <span class="math inline">\(\hat{\beta_0}\)</span> and <span class="math inline">\(\hat{\beta_1}\)</span> are on p.&nbsp;62</p>
+</dd>
+<dt>intercept (<span class="math inline">\(\beta_0\)</span>) (63)</dt>
+<dd>
+<p>the expected value of <span class="math inline">\(Y\)</span> when <span class="math inline">\(X = 0\)</span></p>
+</dd>
+<dt>slope (<span class="math inline">\(\beta_1\)</span>) (63)</dt>
+<dd>
+<p>the average increase in <span class="math inline">\(Y\)</span> associated with a one-unit increase in <span class="math inline">\(X\)</span></p>
+</dd>
+<dt>error term (<span class="math inline">\(\epsilon\)</span>) (63)</dt>
+<dd>
+<p>whatever we missed with the model, due to the true model not being linear (it almost never is), measurement error, or other variables that cause variation in <span class="math inline">\(Y\)</span></p>
+</dd>
+<dt>population regression line (63)</dt>
+<dd>
+<p>“the best linear approximation to the true relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>” <span class="math display">\[Y = \beta_0 + \beta_1X + \epsilon\]</span> least squares line (63)</p>
+</dd>
+<dd>
+<p>the regression line made of the least-squares estimates for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span></p>
+</dd>
+<dt>standard error (SE) (65)</dt>
+<dd>
+<p>the average amount that an estimate <span class="math inline">\(\hat{\mu}\)</span> (sample mean) differs from the actual value of <span class="math inline">\(\mu\)</span> (population mean) <span class="math display">\[\text{Var}(\hat{\mu}) = \text{SE}(\hat{\mu})^2 = \frac{\sigma^2}{n} (\text{also} = \frac{\sigma}{\sqrt{n}})\]</span> <span class="math inline">\(\sigma\)</span> is “the standard deviation of each of the realizations <span class="math inline">\(y_i\)</span> of <span class="math inline">\(Y\)</span>. Since <span class="math inline">\(\sigma^2\)</span> is divided by <span class="math inline">\(n\)</span>, the standard error shrinks as observations increase. It represents the amount we would expect means of additional samples to”jump around” simply due to random chance and the limitations of the model’s accuracy.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</dd>
+<dt>residual standard error (RSE) (66)</dt>
+<dd>
+<p>the estimate of <span class="math inline">\(\sigma\)</span> <span class="math display">\[\text{RSE} = \sqrt{RSS / (n-2)}\]</span></p>
+</dd>
+<dt>confidence interval (66)</dt>
+<dd>
+<p>a range of values within which we have a measured probability (often 95%) of containing the true value of the parameter; a 95% confidence interval in linear regression takes the form <span class="math display">\[\hat{\beta_1} \pm 2 \cdot \text{SE}(\hat{\beta_1})\]</span></p>
+</dd>
+<dt>t-statistic (67)</dt>
+<dd>
+<p>the number of standard deviations that <span class="math inline">\(\hat{\beta_1}\)</span> is away from <span class="math inline">\(0\)</span>. <span class="math display">\[t = \frac{{\hat{\beta_1}} - 0}{\text{SE}(\hat{\beta_1})}\]</span> For there to be a relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, <span class="math inline">\(\hat{\beta_1}\)</span> has to be nonzero (i.e.&nbsp;have a slope). The standard error (SE) of <span class="math inline">\(\hat{\beta_1}\)</span> (in the denominator above) measures its accuracy; if it is small, then <span class="math inline">\(t\)</span> will be larger, and if it is large, then <span class="math inline">\(t\)</span> will be smaller. <span class="math inline">\(t\)</span> is around 2 for a p-value of 0.05 (actually about 1.96, as 2 standard deviations is 95.45% of a normal distribution), and around 2.75 for a p-value of 0.01.</p>
+</dd>
+<dt>p-value (67)</dt>
+<dd>
+<p>the probability of observing a value greater than <span class="math inline">\(|t|\)</span> by chance.</p>
+</dd>
+<dt>model sum of squares (MSS) (biostats)</dt>
+<dd>
+<p>Also sometimes <strong>ESS</strong>, “explained sum of squares”: the total variance in the response <span class="math inline">\(Y\)</span> that can be accounted for by the model <span class="math display">\[\text{MSS} = \sum(\hat{y_i} - \bar{y})^2\]</span></p>
+</dd>
+<dt>residual sum of squares (RSS) (biostats)</dt>
+<dd>
+<p>the total variance in the response <span class="math inline">\(Y\)</span> that cannot be accounted for by the model <span class="math display">\[\text{RSS} = \sum(y_i - \hat{y_i})^2\]</span> also <span class="math display">\[\text{RSS} = e_i^2 + e_2^2 + \dots + e_n^2\]</span> or <span class="math display">\[\text{RSS} = (y_1 - \hat{\beta_0} - {\hat{\beta_1}x_1})^2 + (y_2 - \hat{\beta_0} - {\hat{\beta_1}x_2})^ + \dots + (y_n - \hat{\beta_0} - {\hat{\beta_1}x_n})^2\]</span></p>
+</dd>
+<dt>total sum of squares (TSS) (70)</dt>
+<dd>
+<p>the total variance in the response <span class="math inline">\(Y\)</span>; the total variability of the response about its mean <span class="math display">\[\text{TSS} = \sum(y_i - \bar{y})^2\]</span> compare with RSS, the amount of variability left unexplained after the regression. TSS - RSS is the amount of variability (or error) explained by the regression (MSS).</p>
+</dd>
+</dl>
+<p><strong>NOTE</strong>: there is a nice visual <a href="https://stats.stackexchange.com/a/512216/338749">here on stackexchange</a>; if anybody knows how to tell Zotero to use a custom bibtex citation entry over the ones it generates, please let me know so I can integrate it better here :frown:</p>
+<dl>
+<dt><span class="math inline">\(R^2\)</span> statistic (70)</dt>
+<dd>
+<p>the proportion of variance in <span class="math inline">\(Y\)</span> explained by <span class="math inline">\(X\)</span>, a range from 0 to 1 <span class="math display">\[R^2 = \frac{\text{TSS - RSS}}{\text{TSS}} = 1 - \frac{\text{RSS}}{\text{TSS}}\]</span> <span class="math inline">\(R^2\)</span> values close to 1 indicate a regression that explains a lot of the variability in the response, and a stronger model. A value close to 0 indicates that the regression doesn’t explain much of the variability.</p>
+</dd>
+<dt>correlation (70)</dt>
+<dd>
+<p>a measure of the linearity of the relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>; values close to 0 indicate weak-to-no relationship, values near 1 or -1 indicate strong positive or negative correlation <span class="math display">\[\text{Cor(X, Y)} = {\frac {\sum _{i=1}^{n}(x_{i}-{\bar {x}})(y_{i}-{\bar {y}})}{{\sqrt {\sum _{i=1}^{n}(x_{i}-{\bar {x}})^{2}}}{\sqrt {\sum _{i=1}^{n}(y_{i}-{\bar {y}})^{2}}}}}\]</span></p>
+</dd>
+<dt>standard linear regression model (72)</dt>
+<dd>
+<p>The modal used for standard linear models, used to interpret the the effect on <span class="math inline">\(Y\)</span> of a one-unit increase in any predictor <span class="math inline">\(\beta_j\)</span> while holding all other predictors constant <span class="math display">\[Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \dots + \beta_pX_p + \epsilon\]</span></p>
+</dd>
+<dt>variable selection (78)</dt>
+<dd>
+<p>the task of refining a model to include only the variables associated with the response</p>
+</dd>
+<dt>null model (79)</dt>
+<dd>
+<p>a model that conatins an intercept, but no predictors; used as a first stage in forward selection</p>
+</dd>
+<dt>forward selection (79)</dt>
+<dd>
+<p>a variable selection method that starts with a null model, and then runs simple linear regressions on all predictors <span class="math inline">\(p\)</span> and adding the one that results in the lowest RSS; repeated until some threshold is reached</p>
+</dd>
+<dt>backwards selection (79)</dt>
+<dd>
+<p>a variable selection method that starts with a model with all predictors, and removing the one with the lowest <span class="math inline">\(p\)</span>-value until all remaining predictors are significant, whether by <span class="math inline">\(p\)</span>-value or some other criterion</p>
+</dd>
+<dt>mixed selection (79)</dt>
+<dd>
+<p>a hybrid approach starting with a null model, adding predictors one at a time that produce the best fit, and removing any that acquire a larger <span class="math inline">\(p\)</span>-value in the process until all predictors are added or eliminated</p>
+</dd>
+<dt>interaction (81)</dt>
+<dd>
+<p>when predictors affect each other, in addition to providing their own effect on the model</p>
+</dd>
+<dt>confidence interval (82)</dt>
+<dd>
+<p>a range with a percentage component in which there is that percentage chance that the true value of an estimated parameter lies; a 95% confidence interval is a range in which we can be 95% certain <span class="math inline">\(f(X)\)</span> will be found</p>
+</dd>
+<dt>prediction interval (82)</dt>
+<dd>
+<p>similar to confidence interval, but a prediction range within which we are <span class="math inline">\(X\)</span>% certain that any singular future observation will fall, rather than a statistic like an overall mean; a 95% prediction interval is a range in which we are confident that 95% of future observations will fall. Prediction ranges are substantially wider than confidence intervals.</p>
+</dd>
+<dt>qualitative predictor / factor (83)</dt>
+<dd>
+<p>a categorical predictor with a fixed number of factors, like “yes” / “no” or “red” / “yellow” / “green”</p>
+</dd>
+<dt>dummy variable (83)</dt>
+<dd>
+<p>a numeric representation of a factor to use in a model, as in representing “yes” / “no” factor variables as 1 / 0 in a regression</p>
+</dd>
+<dt>baseline (86)</dt>
+<dd>
+<p>the factor level where there is no dummy variable; a factor with 3 levels will use 2 dummy variables, with the factor’s absence signifying the 3rd value (usually 0)</p>
+</dd>
+<dt>additivity assumption (87)</dt>
+<dd>
+<p>the assumption that the association between a predictor <span class="math inline">\(X\)</span> and the response <span class="math inline">\(Y\)</span> does not depend on the value of other predictors; used by the standard linear regression model</p>
+</dd>
+<dt>linearity assumption (87)</dt>
+<dd>
+<p>the assumption, also used by the standard linear regression model, that unit changes in <span class="math inline">\(X_j\)</span> result in the same change to Y regardless of its value</p>
+</dd>
+<dt>interaction term (88)</dt>
+<dd>
+<p>the product of two predictors in a multiple regression model, quantifying their effect on each other</p>
+</dd>
+<dt>main effect (89)</dt>
+<dd>
+<p>isolated effects; the effect of a single predictor on the outcome</p>
+</dd>
+<dt>hierarchical principle (89)</dt>
+<dd>
+<p>the principle that main effects should be left in a model even if they are statistically insignificant, if they are also part of an interaction that is significant</p>
+</dd>
+<dt>polynomial regression (91)</dt>
+<dd>
+<p>an extension of linear regression to accommodate non-linear relationships</p>
+</dd>
+<dt>residual plot (93)</dt>
+<dd>
+<p>a plot of the residuals or errors (<span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>), used to check for non-linearity (a potential problem that would likely indicate something was missed in the model)</p>
+</dd>
+<dt>time series (94)</dt>
+<dd>
+<p>data consisting of observation made at discrete points in time</p>
+</dd>
+<dt>tracking (95)</dt>
+<dd>
+<p>when (residuals / variables?) tend to have similar values</p>
+</dd>
+<dt>heteroscedasticity (96)</dt>
+<dd>
+<p>non-constant variances in errors; “unequal scatter”</p>
+</dd>
+<dt>homoscedasticity (extra)</dt>
+<dd>
+<p>constant variances in errors; follows the assumption of equal variance required by most methods</p>
+</dd>
+<dt>weighted least squares (97)</dt>
+<dd>
+<p>an extension to ordinary least squares used in circumstances of heteroscedasticity, to weight data points proportionally with the inverse variances</p>
+</dd>
+<dt>outlier (97)</dt>
+<dd>
+<p>an observation whose value is very far from its predicted value</p>
+</dd>
+<dt>studentized residual (98)</dt>
+<dd>
+<p>a residual divided by its estimated standard error; observations with student residuals higher than 3 (indicating 3 standard deviations) are likely outliers</p>
+</dd>
+<dt>high leverage (98)</dt>
+<dd>
+<p>observations with an unusual <span class="math inline">\(x_i\)</span> value, far from other / expected <span class="math inline">\(x\)</span> values</p>
+</dd>
+<dt>leverage statistic (99)</dt>
+<dd>
+<p>a quantification of a point’s leverage <span class="math display">\[h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum_{i'=1}^{n}(x_{i`} - \bar{x})^2}\]</span></p>
+</dd>
+<dt>collinearity (99)</dt>
+<dd>
+<p>when two or more predictor variables are closely related to each other</p>
+</dd>
+<dt>power (101)</dt>
+<dd>
+<p>the probability of a test correctly detecting a nonzero coefficient (and correctly rejecting <span class="math inline">\(H_0 : \beta_j = 0\)</span>)</p>
+</dd>
+<dt>multicollinearity (102)</dt>
+<dd>
+<p>when collinearity exists between three or more predictors even when no pair of predictors is collinear (or correlated)</p>
+</dd>
+<dt>variance inflation factor (102)</dt>
+<dd>
+<p>“the ratio of the variance of <span class="math inline">\(\hat{\beta_j}\)</span> when fitting the full model divided by the variance of <span class="math inline">\(\hat{\beta_j}\)</span> on its own”; smallest possible value of 1 indicates the absence of collinearity, 5-10 indicates a “problematic amount”. <span class="math display">\[\text{VIF}(\hat{\beta_j}) = \frac{1}{1 - {R_{X_j|X_-j}^2}}\]</span> “<span class="math inline">\(R_{X_j|X_-j}^2\)</span> is the <span class="math inline">\(R^2\)</span> from a regression of <span class="math inline">\(X_j\)</span> onto all of the other predictors”</p>
+</dd>
+<dt>K-nearest neighbors regression (105)</dt>
+<dd>
+<p>a mode of regression that seeks to classify observations by their proximity to classified neighbors</p>
+</dd>
+<dt>curse of dimensionality (107)</dt>
+<dd>
+<p>when an observation has no nearby neighbors due to a high number of dimensions exponentially increasing the available space for other observations to be spread out in</p>
+</dd>
+</dl>
+</section>
+<section id="chapter-4" class="level1">
+<h1>Chapter 4</h1>
+<dl>
+<dt>qualitative / categorical (129)</dt>
+<dd>
+<p>interchangeable term for a variable with a non-quantitative value, such as color</p>
+</dd>
+<dt>classification (129)</dt>
+<dd>
+<p>predicting a qualitative response for an observation</p>
+</dd>
+<dt>classifier (129)</dt>
+<dd>
+<p>a classification technique, such as: logistic regression, linear discriminant analysis, quadratic discriminant analysis, naive Bayes, and K-nearest neighbors</p>
+</dd>
+<dt>logistic function (134)</dt>
+<dd>
+<p>a specific function returning an S-shaped curve with values between 0 and 1, used in logistic regression <span class="math display">\[p(X) = \frac{e^{\beta_0 + \beta_1X}}{1 + e^{\beta_0 + \beta_1X}}\]</span></p>
+</dd>
+<dt>odds (134)</dt>
+<dd>
+<p>the likelihood of a particular outcome: the ratio of the number of results that produce the outcome versus the number that do not, between 0 and <span class="math inline">\(\infty\)</span> (very low or very high probabilities) <span class="math display">\[odds = \frac{p(X)}{1 - p(X)} = e^{\beta_0 + \beta_1X}\]</span> Note: odds is not the same as probability! Odds of 1/4 means a 20% probability, not 25%.</p>
+</dd>
+</dl>
+<p>To convert from odds to probability: divide odds by (1 + odds), as in:</p>
+<p><span class="math display">\[\frac{1}{4} \div \left[ 1 + \frac{1}{4} \right] = \frac{1}{4} \div \frac{5}{4} = 1/5 = 0.2\]</span></p>
+<p>To convert from probability to odds, divide probability by (1 - probability), as in: <span class="math display">\[\frac{1}{5} \div \left[ 1 - \frac{1}{5} \right] = \frac{1}{5} \div \frac{4}{5} = \frac{1}{5} \times \frac{5}{4} = 1/4 = 0.25\]</span> log odds / logit (135) : the log of the odds <span class="math display">\[\text{log} \left( \frac{p(X)}{1 - p(X)} \right)\]</span></p>
+<dl>
+<dt>likelihood function (135)</dt>
+<dd>
+<p>a function that produces the closest possible match of a set of observations, for use in predicting the classifications of other points hairy equation not rendered</p>
+</dd>
+<dt>confounding (139)</dt>
+<dd>
+<p>when predictors correlate; usually this is something to work to avoid</p>
+</dd>
+<dt>multinomial logistic regression (140)</dt>
+<dd>
+<p>logistic regression into more than 2 categories</p>
+</dd>
+<dt>softmax coding (141)</dt>
+<dd>
+<p>an alternative coding for multiple logistic regression that treats all classes symmetrically, rather than establishing one as a baseline</p>
+</dd>
+<dt>(probability) density function (142)</dt>
+<dd>
+<p>a function returning the likelihood of a particular value occurring in a given sample, between 0 and 1; often used in pairs to establish likelihood of a value within a range rather than the likelihood of an infinitely-thin single “slice”</p>
+</dd>
+<dt>prior (142)</dt>
+<dd>
+<p>the probability that a random observation comes from class <span class="math inline">\(k\)</span></p>
+</dd>
+<dt>posterior (142)</dt>
+<dd>
+<p>the probability that an observation belongs to a class <span class="math inline">\(k\)</span> given its predictor value</p>
+</dd>
+<dt>normal / Gaussian (143)</dt>
+<dd>
+<p>characterized by a bell-shaped curve, not uniformly distributed but tending towards a likeliest/central value</p>
+</dd>
+<dt>overfitting (148)</dt>
+<dd>
+<p>mapping too closely to idiosyncrasies in training data, increasing variance in a model</p>
+</dd>
+<dt>null classifier (148)</dt>
+<dd>
+<p>a classifier that always predicts a zero or null status</p>
+</dd>
+<dt>confusion matrix (148)</dt>
+<dd>
+<p>a matrix showing how many predictions were made, and how accurate the classifications were (predicted x actual, hits on TL-BR diagonal and misses on BL-TR diagonal)</p>
+</dd>
+<dt>sensitivity (149)</dt>
+<dd>
+<p>the percentage of a class (like defaulters) that is correctly identified</p>
+</dd>
+<dt>specificity (149)</dt>
+<dd>
+<p>the percentage of a different class (like non-defaulters) that is correctly identified</p>
+</dd>
+</dl>
+<p>Note: sensitivity and specificity can and should be separately considered when evaluating ML methods. Each column (class) of a confusion matrix has a sensitivity and a specificity. In a 2x2, this is simple; in larger than 2x2, it involves summation.</p>
+<p><span class="math display">\[\text{Sensitivity} = \frac{\text{True Positives}}{\text{True Positives + False Negatives}}\]</span> True positives is the cell in the class column containing the number of correct predictions in a category; the false negatives are the rest of the column.</p>
+<p><span class="math display">\[\text{Specificity} = \frac{\text{True Negatives}}{\text{True Negatives + False Positives}}\]</span> True negatives is the sum of cells, in the other columns, that correctly do <em>not</em> predict the class (even if they wrongly predict some other class as well); the false positives are the rest of the <em>row</em> for the class that incorrectly predicted that class.</p>
+<p>ROC charts show the true positive rate (sensitivity) on the Y axis, and the false positive rate (1 - sensitivity) on the X axis.</p>
+<dl>
+<dt>ROC curve (150)</dt>
+<dd>
+<p>Receiver Operating Characteristics; name of a curve showing the overall performance of a classifier resembling the top left corner of a rounded rectangle; area under the curve (AUC) indicates the percentage of correct classifications; the closer it is to square, the bigger the AUC, the better the classifier. The Y axis is true positive rate (sensitivity). the X axis is false positive rate (1 - sensitivity).</p>
+</dd>
+</dl>
+<p><a href="https://www.youtube.com/watch?v=4jRBRDbJemM&amp;list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&amp;index=6">StatQuest</a>: AUC (area under the curve) of the ROC shows the overall effectiveness / quality of a model; good models will fill the space more. And the points of the individual curve help indicate the best thresholds to pick for the classifier; points with X = 0 have no false positives, and points with Y = 1 get all of the true positives.</p>
+<p>Also, <em>precision</em> is another option for the X-axis, rather than false positives, if it’s more important to know the proportion of the true positives were correctly identified.</p>
+<p><span class="math display">\[\text{Precision} = \frac{\text{True Positives}}{\text{True Positives + False Positives}}\]</span></p>
+<dl>
+<dt>marginal distribution (155)</dt>
+<dd>
+<p>the distribution of an individual predictor</p>
+</dd>
+<dt>joint distribution (155)</dt>
+<dd>
+<p>the association between different predictors</p>
+</dd>
+<dt>kernel density estimator (156)</dt>
+<dd>
+<p>“essentially a smoothed version of a histogram”</p>
+</dd>
+</dl>
+</section>
+<section id="chapter-5" class="level1">
+<h1>Chapter 5</h1>
+<dl>
+<dt>model assessment (197)</dt>
+<dd>
+<p>the process of evaluating a model’s performance</p>
+</dd>
+<dt>model selection (197)</dt>
+<dd>
+<p>the process of selecting the proper level of flexibility for a model</p>
+</dd>
+<dt>validation set approach (198)</dt>
+<dd>
+<p>randomly dividing a set of observations into a training set and a validation or hold-out set, to assess the test error rate</p>
+</dd>
+<dt>leave one out cross-validation (LOOCV) (200)</dt>
+<dd>
+<p>using a single observation for a validation set and the rest as a training set</p>
+</dd>
+<dt>k-fold cross-validation (CV) (203)</dt>
+<dd>
+<p>dividing a set of observation into <span class="math inline">\(k\)</span> groups of approximately equal size, using the first as a validation set and fitting the method on the remaining <span class="math inline">\(k-1\)</span> folds</p>
+</dd>
+<dt>bootstrap (209)</dt>
+<dd>
+<p>a tool to quantify the uncertainty associated with a given estimator or statistical learning method</p>
+</dd>
+<dt>sampling with replacement (211)</dt>
+<dd>
+<p>picking from a set without removing the picked elements</p>
+</dd>
+</dl>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>http://faculty.ucr.edu/~hanneman/nettext/C1_Social_Network_Data.html<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Copyright 2022 Steve Linberg. Except where otherwise noted, all text and images licensed CC-BY-NC 4.0</div>   
+  </div>
+</footer>
+
+
+
+</body></html>

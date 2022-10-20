@@ -1,5 +1,6 @@
 ---
 title: "About"
+sidebar: false
 image: "2022-sfl-photo-400x400.jpg"
 about:
   template: trestles
@@ -25,7 +26,7 @@ about:
 
 In summer 2022, I completed coursework for the [Data Analytics and Computational Social Science (DACSS) Masters program](https://www.umass.edu/sbs/data-analytics-and-computational-social-science-program) at the [University of Massachusetts, Amherst](https://umass.edu) (formally graduating later this year). My present position is Senior Systems and Analytics Engineer at the [Gandara Center](https://www.gandaracenter.org/) in West Springfield, MA.
 
-This site contains my academic [blog](index.html) with ruminations on computational social science, my own learning processes and discoveries, and related technical topics and snippets.
+I've worn many IT hats over the years - sysadmin, DBA, trainer, tech writer - but a day without code is a strange and sad day.
 
 ## Education
 
@@ -37,7 +38,7 @@ University of Massachusetts, Amherst \| Amherst, MA
 
 Hampshire College \| Amherst, MA
 
-## Experience
+## Selected Experience
 
 **Gandara Center**, West Springfield, MA \| Senior Systems and Analytics Engineer / CIO / IT Director \| 2005 - Present
 
@@ -49,6 +50,8 @@ Hampshire College \| Amherst, MA
 
 **Holyoke Public Schools**, Holyoke, MA \| Literacy and GED Instructor \| 1994-1997
 
+**Turning Point Software**, Boston, MA \| Programmer \| 1988-1990
+
 **Unicom, Inc.**, Providence, RI \| Systems Programmer and Technical Writer \| 1983-1997
 
 ## Interests
@@ -56,4 +59,4 @@ Hampshire College \| Amherst, MA
 -   Data analytics, statistics, machine learning
 -   Software engineering
 -   Politics, culture and the state of the world
--   Drawing, painting, guitar, motorcycles, baking, gaming
+-   Classical drawing and painting, guitar, motorcycles, baking, gaming

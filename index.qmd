@@ -1,19 +1,30 @@
 ---
 page-layout: full
 toc: false
+sidebar: false
 header-includes: |
   <link href="index-styles.css" rel="stylesheet">
 listing:
-  id: recent-posts
-  contents: posts
-  page-size: 3
-  sort: "date desc"
-  type: default
-  categories: false
-  sort-ui: false
-  filter-ui: false
-  fields: [date, title, reading-time, description]
-  feed: false
+  - id: recent-posts
+    contents: posts
+    max-items: 3
+    sort: "date desc"
+    type: default
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    fields: [date, title, reading-time, description, image]
+    feed: false
+  - id: recent-academic
+    contents: academics
+    max-items: 3
+    sort: "date desc"
+    type: default
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    fields: [date, title, reading-time, description, image]
+    feed: false
 ---
 
 ::: grid
@@ -26,23 +37,35 @@ listing:
 
 I'm a software engineer, data analyst and systems/network admin, recently wrapping up my masters work in the [Data Analytics and Computational Social Science](https://www.umass.edu/sbs/data-analytics-and-computational-social-science-program/ms) (DACSS) program at the [University of Massachusetts Amherst](https://www.umass.edu/).
 
-This site contains my [blog](blog.qmd), selections of my academic work, contact information, and whatever other nuggets and tidbits pop up.
+This site contains my [blog](blog.qmd) with ruminations on computational social science, my own learning processes and discoveries, and related technical topics and snippets; selections of my academic work; contact information; and whatever other nuggets and tidbits pop up.
+
+::: blockquote
+Data is the sword of the 21st century, those who wield it well, the Samurai\
+-- <cite>Jonathan Rosenberg</cite>
+:::
 :::
 
 ::: g-col-6
-# Recent blog posts
+## Recent blog posts
 
 ::: {#recent-posts}
 :::
+See the [full blog](blog.qmd) for more.
+
 :::
 
 ::: g-col-6
-# Academic work
+## Academic work
 
-Some selections from my academic work from the DACSS program at Umass Amherst
+::: {#recent-academic}
+:::
+See the [academics page](academics.qmd) for more.
 
-## [Text as Data](academics/797TA/)
-
-Spring 2021: stuff from TaD, including the Parler project
 :::
 :::
+
+## Contact
+
+-   {{< fa envelope title="Email" >}} [steve\@slinberg.net](mailto:steve@slinberg.net) (professional) or [slinberg\@umass.edu](mailto:slinberg@umass.edu) (academic)
+-   {{< fa brands linkedin title="linkedin" >}} [\@slinberg](https://www.linkedin.com/in/slinberg/)
+-   {{< fa brands twitter title="twitter" >}} [\@stevelinberg](https://twitter.com/stevelinberg)

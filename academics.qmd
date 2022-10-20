@@ -1,0 +1,22 @@
+---
+title: "Academics"
+sidebar: true
+aliases: 
+  - "academics_list.html"
+listing:
+  contents: academics
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: true
+  filter-ui: true
+  fields: [date, title, reading-time, description, categories, image]
+  feed: true
+page-layout: full
+
+---
+
+This section contains a selection of my academic work, organized by class in the sidebar.
+
+Below is a blog-style chronological list of the material.
+

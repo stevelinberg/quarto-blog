@@ -1,0 +1,21 @@
+---
+title: "697E - Political Networks Analysis"
+date: 2022-02-03
+listing:
+  contents: .
+  sort: "title desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  fields: [date, title, reading-time, description, categories, image]
+  feed: false
+---
+
+Date
+: Spring 2022
+
+Professor
+: [Meredith Rolfe](https://polsci.umass.edu/people/meredith-rolfe)
+
+This class applied network theory to political and social networks.
