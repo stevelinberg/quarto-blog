@@ -4,6 +4,16 @@ description: |
   A walkthrough of setting up a new Distill site on GitHub Pages
 date: 2022-01-29
 categories: [distill, github pages, git, rstudio]
+# https://github.com/schochastics/quarto-social-share
+filters: 
+  - social-share
+share:
+  permalink: "https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/"
+  description: "A walkthrough of setting up a new Distill site on GitHub Pages"
+  twitter: true
+  reddit: true
+  linkedin: true
+  email: true
 ---
 
 :::{.callout-note}

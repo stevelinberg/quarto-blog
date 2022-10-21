@@ -114,20 +114,14 @@ This can be a daunting project, depending on how many URLs you need to update, a
 
 However, if you're hosting somewhere where you don't have that kind of control, the next-best way is to use `aliases` in the YAML header. It won't work in all cases, but it's a lot better than nothing. 
 
-So, for example, due to differences in the way the Quarto and Distill versions of this site were built, a sample blog post entry URL was:
+So, for example, due to differences in the way the Quarto and Distill versions of this site were built, the academics listing page was at this address:
 
-https://slinberg.net/posts/2022-02-02-pythagorean-theorem/
+[https://slinberg.net/academics_list.html](https://slinberg.net/academics_list.html)
 
-Hurrah! When I moved it to Quarto, I kept "posts" as the top-level directory, and kept the directory names they were in. The old Distill filename was replaced by `index.qmd`, which becomes `index.html`, so that path still works.
-
-However, the academics listing page was at this address:
-
-`https://slinberg.net/academics_list.html
-`
 And it is now:
 
-`https://slinberg.net/academics.html
-`
+[https://slinberg.net/academics.html](https://slinberg.net/academics.html)
+
 However, if you follow the old link, you'll see that it still brings you to the right place. This is done with this in the header:
 
 ```yaml

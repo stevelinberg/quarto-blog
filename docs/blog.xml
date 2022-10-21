@@ -129,12 +129,11 @@ academics/697E/</code></pre>
 <p>When you migrate your site, URLs are going to break. If you want bookmarks - or google results - to find their way to the pages that got moved around, instead of dropping your confused readers on your cute 404 page, you need to leave pointers from your old URLs to your new ones.</p>
 <p>This can be a daunting project, depending on how many URLs you need to update, and there are several ways to do it. The best way involves having some control over the webserver that’s hosting your site, such as server-side rewrite rules or <code>.htaccess</code> files, because that doesn’t depend on the viewer’s browser to handle the issue that is really a server issue.</p>
 <p>However, if you’re hosting somewhere where you don’t have that kind of control, the next-best way is to use <code>aliases</code> in the YAML header. It won’t work in all cases, but it’s a lot better than nothing.</p>
-<p>So, for example, due to differences in the way the Quarto and Distill versions of this site were built, a sample blog post entry URL was:</p>
-<p>https://slinberg.net/posts/2022-02-02-pythagorean-theorem/</p>
-<p>Hurrah! When I moved it to Quarto, I kept “posts” as the top-level directory, and kept the directory names they were in. The old Distill filename was replaced by <code>index.qmd</code>, which becomes <code>index.html</code>, so that path still works.</p>
-<p>However, the academics listing page was at this address:</p>
-<p><code>https://slinberg.net/academics_list.html</code> And it is now:</p>
-<p><code>https://slinberg.net/academics.html</code> However, if you follow the old link, you’ll see that it still brings you to the right place. This is done with this in the header:</p>
+<p>So, for example, due to differences in the way the Quarto and Distill versions of this site were built, the academics listing page was at this address:</p>
+<p><a href="https://slinberg.net/academics_list.html">https://slinberg.net/academics_list.html</a></p>
+<p>And it is now:</p>
+<p><a href="https://slinberg.net/academics.html">https://slinberg.net/academics.html</a></p>
+<p>However, if you follow the old link, you’ll see that it still brings you to the right place. This is done with this in the header:</p>
 <div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><span class="fu" style="color: #4758AB;">aliases</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> </span></span>
 <span id="cb4-2"><span class="at" style="color: #657422;">  </span><span class="kw" style="color: #003B4F;">-</span><span class="at" style="color: #657422;"> </span><span class="st" style="color: #20794D;">"academics_list.html"</span></span></code></pre></div>
 <p>What this actually does is tell Quarto to generate a file called <code>academics_list.html</code>, which contains a redirect to <code>academics.html</code>. This pollutes your directory a bit, and means you have to overlay the old directory structure into your current one, so it’s not ideal from a neatness perspective. However, it will work well enough in most cases.</p>
