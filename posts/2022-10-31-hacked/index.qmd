@@ -7,7 +7,7 @@ categories: [meta, quarto]
 image: lunix.png
 ---
 
-[[![jeffk (nsfw)](lunix.png){width="70%"}](https://www.somethingawful.com/hosted/jeffk/computarfunnys/comic-2.htm)]{.aside}
+[[![jeffk (nsfw)](/posts/2022-10-31-hacked/lunix.png){width="70%"}](https://www.somethingawful.com/hosted/jeffk/computarfunnys/comic-2.htm)]{.aside}
 
 I thought this was pretty funny... some spam tonight that *this website's database has been hacked*, and I better pay up some bitcoin or they'll `destr0y [my] site's reputati0n`! Oh noes!
 
