@@ -10,7 +10,63 @@
 <atom:link href="https://slinberg.net/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Steve Linberg</description>
 <generator>quarto-1.1.251</generator>
-<lastBuildDate>Thu, 20 Oct 2022 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 31 Oct 2022 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Hacked! (or not)</title>
+  <dc:creator>Steve Linberg</dc:creator>
+  <link>https://slinberg.net/posts/2022-10-31-hacked/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="aside"><a href="https://www.somethingawful.com/hosted/jeffk/computarfunnys/comic-2.htm"><img src="https://slinberg.net/posts/2022-10-31-hacked/lunix.png" class="img-fluid" style="width:70.0%" alt="jeffk (nsfw)"></a></span></div></div>
+<p>I thought this was pretty funny… some spam tonight that <em>this website’s database has been hacked</em>, and I better pay up some bitcoin or they’ll <code>destr0y [my] site's reputati0n</code>! Oh noes!</p>
+<p>It takes some doing to hack the database of a site that <a href="https://quarto.org">doesn’t have a database</a>, let me tell you. Very impressive work guys! They must have fprotted my tarball with lunix.</p>
+<p>Unfortunately my $5 in free bitcoin that I got a while back is only worth about $1.62 last time I looked. Guess they’re gonna keep my database on that <code>0ffsh0re server</code>. So it goes.</p>
+<section id="the-bad-news" class="level2">
+<h2 class="anchored" data-anchor-id="the-bad-news">The bad news</h2>
+<blockquote class="blockquote">
+<p>Your Site Has Been CompromisedY0ur Site Has Been Hacked</p>
+<p>PLEASE FoRWARD THIS EMAIL T0 SoMEoNE IN Y0UR C0MPANY WHo iS ALL0WED To MAKE IMPORTANT DECISIoNS!</p>
+<p>We have hacked y0ur website https://slinberg.net:443 and extracted your databases.</p>
+<p>How did this happen?</p>
+<p>our team has f0und a vulnerability within your site that we were able t0 exploit. After finding the vulnerability we were able to get y0ur database credentials and extract your entire database and m0ve the information to an 0ffsh0re server.</p>
+<p>What does this mean?</p>
+<p>We will systematically go through a series 0f steps 0f totally damaging your reputati0n. First your database will be leaked or s0ld to the highest bidder which they will use with whatever their intentions are. Next if there are e-mails f0und they will be e-mailed that their informati0n has been s0ld or leaked and your site https://slinberg.net:443 was at fault thusly damaging y0ur reputation and having angry customers/associates with whatever angry customers/associates do. Lastly any links that you have indexed in the search engines will be de-indexed based 0ff of blackhat techniques that we used in the past t0 de-index 0ur targets.</p>
+<p>How d0 i st0p this?</p>
+<p>We are willing to refrain from destr0ying y0ur site’s reputati0n for a small fee. The current fee is $3000 in bitcoins (0.15 BTC).</p>
+<p>Please send the bitcoin to the f0llowing Bitcoin address (Copy and paste as it is case sensitive):</p>
+<p>(yeah we won’t copy and paste this part)</p>
+<p>0nce you have paid we will automatically get inf0rmed that it was your payment. Please note that you have t0 make payment within 3 days after opening this e-mail or the database leak, e-mails dispatched, and de-index 0f your site WiLL start!</p>
+<p>How do i get Bitcoins?</p>
+<p>Y0u can easily buy bitcoins via several websites or even offline from a Bitcoin-ATM.</p>
+<p>What if i d0n’t pay?</p>
+<p>if you decide not t0 pay, we will start the attack at the indicated date and uph0ld it until you do, there’s n0 counter measure t0 this, you will only end up wasting more m0ney trying to find a s0lution. We will completely destroy y0ur reputation am0ngst g00gle and your customers.</p>
+<p>This is not a h0ax, d0 not reply t0 this email, don’t try to reas0n 0r negotiate, we will not read any replies. 0nce you have paid we will st0p what we were doing and y0u will never hear from us again!</p>
+<p>Please n0te that Bitcoin is anonym0us and n0 0ne will find 0ut that y0u have complied. Finally don’t reply as this email is unm0nitored.</p>
+</blockquote>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
+  author = {Steve Linberg},
+  editor = {},
+  title = {Hacked! (Or Not)},
+  date = {2022-10-31},
+  url = {https://slinberg.net/posts/2022-10-31-hacked},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-linberg2022" class="csl-entry quarto-appendix-citeas">
+Steve Linberg. 2022. <span>“Hacked! (Or Not).”</span> October 31, 2022.
+<a href="https://slinberg.net/posts/2022-10-31-hacked">https://slinberg.net/posts/2022-10-31-hacked</a>.
+</div></div></section></div> ]]></description>
+  <category>meta</category>
+  <category>quarto</category>
+  <guid>https://slinberg.net/posts/2022-10-31-hacked/index.html</guid>
+  <pubDate>Mon, 31 Oct 2022 04:00:00 GMT</pubDate>
+  <media:content url="https://slinberg.net/posts/2022-10-31-hacked/lunix.png" medium="image" type="image/png" height="202" width="144"/>
+</item>
 <item>
   <title>Porting to Quarto, part 2</title>
   <dc:creator>Steve Linberg</dc:creator>
