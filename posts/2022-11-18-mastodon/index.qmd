@@ -19,3 +19,27 @@ Anyway, one of the places Twitter refugees like me are flocking to is [Mastodon]
 
 The incomparable [Julia Silge](https://mastodon.social/@juliasilge@fosstodon.org) is on Mastodon (and also at Fosstodon); that's good enough for me. So is [Danielle Navarro](https://mastodon.social/@djnavarro@fosstodon.org), for that matter, and lots of other R and data luminaries. It's been a long time since social media felt fun. Not missing the blue bird very much so far.
 
+PS. Validate your username! Mine is [@stevelinberg@fosstodon.org](https://fosstodon.org/@stevelinberg); add a text link to your Quarto site's front page, like I did in my [Contact section](/#contact), and be sure the `rel="me"` attribute is part of the link. The markdown for this (including the groovy Mastodon icon: {{< fa brands mastodon title="mastodon" >}}) is easy enough:
+
+```
+{{{< fa brands mastodon title="mastodon" >}}}
+  [\@stevelinberg\@fosstodon.org](https://fosstodon.org/@stevelinberg){rel="me"}
+```
+
+Don't forget to escape the `@` symbols in the text part of the link. If you have header icons in your `_quarto.yml` as well, the entry looks like:
+
+```yml
+website:
+  navbar:
+    right:
+      - icon: mastodon
+        href: https://fosstodon.org/@stevelinberg
+```
+
+Easy peasy, lemon squeezy.
+
+Then go to your Mastodon's account settings, and enter your website in one of the 4 metadata fields you get for links; the text on the right will give you the format for the link you need to verify your account with:
+
+![settings](settings.png)
+
+Just be sure that `rel="me"` makes it in to your link, however you format it, and you're golden.

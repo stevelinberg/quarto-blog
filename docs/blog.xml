@@ -25,6 +25,24 @@
 <p>“Home” and “Federated” will give you basically the same thing on whichever server(s) you join, so your choice of server only impacts the “Local” view. I set up a personal account on <a href="https://mastodon.social">mastodon.social</a>, the biggest single server, out of some instinct that I should be on the biggest one for some reason. You don’t actually need to do that - and there are so many people on that server that the “Local” view is more or less useless. It’s fine, but there’s no advantage to being on a big server.</p>
 <p><a href="https://fosstodon.org">Fosstodon</a> is oriented at open-source software and data, so it seemed like a good place to set up my professional/academic account. Took a few hours to get my account approved; I then signed up for <a href="https://www.patreon.com/fosstodon">their Patreon</a> to throw them a buck a month to help keep the lights on. Mastodon carries no ads, and isn’t owned by anybody. I love this, and would rather contribute a little to a product I use than to BE the product, which is the case in any “free,” ad-bearing social media.</p>
 <p>The incomparable <a href="https://mastodon.social/@juliasilge@fosstodon.org">Julia Silge</a> is on Mastodon (and also at Fosstodon); that’s good enough for me. So is <a href="https://mastodon.social/@djnavarro@fosstodon.org">Danielle Navarro</a>, for that matter, and lots of other R and data luminaries. It’s been a long time since social media felt fun. Not missing the blue bird very much so far.</p>
+<p>PS. Validate your username! Mine is <a href="https://fosstodon.org/@stevelinberg"><span class="citation" data-cites="stevelinberg">@stevelinberg</span><span class="citation" data-cites="fosstodon.org">@fosstodon.org</span></a>; add a text link to your Quarto site’s front page, like I did in my <a href="../../#contact">Contact section</a>, and be sure the <code>rel="me"</code> attribute is part of the link. The markdown for this (including the groovy Mastodon icon: ) is easy enough:</p>
+<pre><code>{{&lt; fa brands mastodon title="mastodon" &gt;}}
+  [\@stevelinberg\@fosstodon.org](https://fosstodon.org/@stevelinberg){rel="me"}</code></pre>
+<p>Don’t forget to escape the <code>@</code> symbols in the text part of the link. If you have header icons in your <code>_quarto.yml</code> as well, the entry looks like:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><span class="fu" style="color: #4758AB;">website</span><span class="kw" style="color: #003B4F;">:</span></span>
+<span id="cb2-2"><span class="at" style="color: #657422;">  </span><span class="fu" style="color: #4758AB;">navbar</span><span class="kw" style="color: #003B4F;">:</span></span>
+<span id="cb2-3"><span class="at" style="color: #657422;">    </span><span class="fu" style="color: #4758AB;">right</span><span class="kw" style="color: #003B4F;">:</span></span>
+<span id="cb2-4"><span class="at" style="color: #657422;">      </span><span class="kw" style="color: #003B4F;">-</span><span class="at" style="color: #657422;"> </span><span class="fu" style="color: #4758AB;">icon</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> mastodon</span></span>
+<span id="cb2-5"><span class="at" style="color: #657422;">        </span><span class="fu" style="color: #4758AB;">href</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> https://fosstodon.org/@stevelinberg</span></span></code></pre></div>
+<p>Easy peasy, lemon squeezy.</p>
+<p>Then go to your Mastodon’s account settings, and enter your website in one of the 4 metadata fields you get for links; the text on the right will give you the format for the link you need to verify your account with:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://slinberg.net/posts/2022-11-18-mastodon/settings.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">settings</figcaption><p></p>
+</figure>
+</div>
+<p>Just be sure that <code>rel="me"</code> makes it in to your link, however you format it, and you’re golden.</p>
 
 
 
