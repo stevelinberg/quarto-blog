@@ -33,8 +33,9 @@
 <span id="cb2-2"><span class="at" style="color: #657422;">  </span><span class="fu" style="color: #4758AB;">navbar</span><span class="kw" style="color: #003B4F;">:</span></span>
 <span id="cb2-3"><span class="at" style="color: #657422;">    </span><span class="fu" style="color: #4758AB;">right</span><span class="kw" style="color: #003B4F;">:</span></span>
 <span id="cb2-4"><span class="at" style="color: #657422;">      </span><span class="kw" style="color: #003B4F;">-</span><span class="at" style="color: #657422;"> </span><span class="fu" style="color: #4758AB;">icon</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> mastodon</span></span>
-<span id="cb2-5"><span class="at" style="color: #657422;">        </span><span class="fu" style="color: #4758AB;">href</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> https://fosstodon.org/@stevelinberg</span></span></code></pre></div>
-<p>Easy peasy, lemon squeezy.</p>
+<span id="cb2-5"><span class="at" style="color: #657422;">        </span><span class="fu" style="color: #4758AB;">href</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> https://fosstodon.org/@stevelinberg</span></span>
+<span id="cb2-6"><span class="at" style="color: #657422;">        </span><span class="fu" style="color: #4758AB;">rel</span><span class="kw" style="color: #003B4F;">:</span><span class="at" style="color: #657422;"> me</span></span></code></pre></div>
+<p>Easy peasy, lemon squeezy. (H/T to <a href="https://fosstodon.org/@MickaelCanouil">Mickaël CANOUIL</a> for <a href="https://fosstodon.org/@MickaelCanouil/109355167379296655">this tip</a> about <code>rel: me</code> in yml!)</p>
 <p>Then go to your Mastodon’s account settings, and enter your website in one of the 4 metadata fields you get for links; the text on the right will give you the format for the link you need to verify your account with:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

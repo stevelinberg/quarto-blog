@@ -34,9 +34,10 @@ website:
     right:
       - icon: mastodon
         href: https://fosstodon.org/@stevelinberg
+        rel: me
 ```
 
-Easy peasy, lemon squeezy.
+Easy peasy, lemon squeezy. (H/T to [Mickaël CANOUIL](https://fosstodon.org/@MickaelCanouil) for [this tip](https://fosstodon.org/@MickaelCanouil/109355167379296655) about `rel: me` in yml!)
 
 Then go to your Mastodon's account settings, and enter your website in one of the 4 metadata fields you get for links; the text on the right will give you the format for the link you need to verify your account with:
 
