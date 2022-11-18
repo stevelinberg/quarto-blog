@@ -3,7 +3,7 @@ title: "Mastodon"
 description: |
   Decentralized, open-source social media? Yes please.
 date: "2022-11-18"
-categories: [R, mastodon, social media, twitter]
+categories: [R, mastodon, social media, twitter, quarto]
 image: https://cdn.fosstodon.org/site_uploads/files/000/000/004/@1x/ec7a05be77b5390f.png
 ---
 
