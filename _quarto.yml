@@ -25,6 +25,8 @@ website:
         href: blog.qmd
       - text: Academics
         href: academics.qmd
+      - icon: mastodon
+        href: https://fosstodon.org/@stevelinberg
       - icon: twitter
         href: https://twitter.com/stevelinberg
       - icon: linkedin

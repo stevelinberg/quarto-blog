@@ -67,5 +67,6 @@ See the [academics page](academics.qmd) for more.
 ## Contact
 
 -   {{< fa envelope title="Email" >}} [steve\@slinberg.net](mailto:steve@slinberg.net) (professional) or [slinberg\@umass.edu](mailto:slinberg@umass.edu) (academic)
+-   {{< fa brands mastodon title="mastodon" >}} [\@stevelinberg\@fosstodon.org](https://fosstodon.org/@stevelinberg){rel="me"}
 -   {{< fa brands linkedin title="linkedin" >}} [\@slinberg](https://www.linkedin.com/in/slinberg/)
--   {{< fa brands twitter title="twitter" >}} [\@stevelinberg](https://twitter.com/stevelinberg)
+-   {{< fa brands twitter title="twitter" >}} [\@stevelinberg](https://twitter.com/stevelinberg) (deprecated)
