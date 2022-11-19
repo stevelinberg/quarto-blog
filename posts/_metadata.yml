@@ -28,3 +28,14 @@ citation: true
 
 sidebar: false
 
+comments:
+  giscus:
+    repo:  stevelinberg/quarto-blog
+    repo-id: "R_kgDOIG4tgA"
+    category: "Announcements"
+    category-id: "DIC_kwDOIG4tgM4CSp-x"
+    mapping: "pathname"
+    reactions-enabled: true
+    loading: lazy
+    input-position: "bottom"
+    theme: "light"
