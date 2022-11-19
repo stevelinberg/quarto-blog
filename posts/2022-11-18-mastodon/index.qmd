@@ -21,7 +21,7 @@ The incomparable [Julia Silge](https://mastodon.social/@juliasilge@fosstodon.org
 
 PS. Validate your username! Mine is [@stevelinberg@fosstodon.org](https://fosstodon.org/@stevelinberg); add a text link to your Quarto site's front page, like I did in my [Contact section](/#contact), and be sure the `rel="me"` attribute is part of the link. The markdown for this (including the groovy Mastodon icon: {{< fa brands mastodon title="mastodon" >}}) is easy enough:
 
-```
+```txt
 {{{< fa brands mastodon title="mastodon" >}}}
   [\@stevelinberg\@fosstodon.org](https://fosstodon.org/@stevelinberg){rel="me"}
 ```
