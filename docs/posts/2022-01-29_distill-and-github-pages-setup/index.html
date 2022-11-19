@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.3.14">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -162,53 +162,56 @@ gtag('config', 'G-0ZXRPNMLL7', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="../../"><i class="bi bi-house" role="img">
+    <a class="nav-link" href="../../" rel=""><i class="bi bi-house" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../steve.html">About</a>
+    <a class="nav-link" href="../../steve.html" rel="">
+ <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../blog.html">Blog</a>
+    <a class="nav-link" href="../../blog.html" rel="">
+ <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../academics.html">Academics</a>
+    <a class="nav-link" href="../../academics.html" rel="">
+ <span class="menu-text">Academics</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://fosstodon.org/@stevelinberg"><i class="bi bi-mastodon" role="img">
+    <a class="nav-link" href="https://fosstodon.org/@stevelinberg" rel=""><i class="bi bi-mastodon" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/stevelinberg"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/stevelinberg" rel=""><i class="bi bi-twitter" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/slinberg/"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/slinberg/" rel=""><i class="bi bi-linkedin" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/stevelinberg"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/stevelinberg" rel=""><i class="bi bi-github" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://stackoverflow.com/users/13603796/stevelinberg"><i class="bi bi-stack-overflow" role="img">
+    <a class="nav-link" href="https://stackoverflow.com/users/13603796/stevelinberg" rel=""><i class="bi bi-stack-overflow" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="mailto:steve@slinberg.net"><i class="bi bi-envelope" role="img">
+    <a class="nav-link" href="mailto:steve@slinberg.net" rel=""><i class="bi bi-envelope" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../../index.xml"><i class="bi bi-rss" role="img">
+    <a class="nav-link" href="../../index.xml" rel=""><i class="bi bi-rss" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
               <div class="quarto-toggle-container">
@@ -277,6 +280,7 @@ gtag('config', 'G-0ZXRPNMLL7', { 'anonymize_ip': true});
       <p class="date">January 29, 2022</p>
     </div>
   </div>
+  
     
   </div>
   
@@ -311,32 +315,32 @@ Note
 <section id="create-new-github-repository" class="level2">
 <h2 class="anchored" data-anchor-id="create-new-github-repository">Create new GitHub repository</h2>
 <p>The first step is to create a new repository for the site. Log into GitHub and create a new repo:</p>
-<p><img src="Pasted%20image%2020220127115109.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127115109.png" class="img-fluid"></p>
 <p>Call it something sensible like “distill-blog”; make it public (unless you don’t want to) and add a <code>.gitignore</code> file using the <code>R</code> template (just to start things off). Also, if you haven’t already, change your <a href="https://github.com/settings/repositories">github repository settings</a> to use “main” as your default branch name instead of “master”.</p>
 <p>We’ll come back in a bit to set up the Pages part, but for now we just want to get the project built and populated. We now have an empty Git repository sitting on GitHub, waiting to be used for something.</p>
 </section>
 <section id="create-a-new-rstudio-project-using-the-repository" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-new-rstudio-project-using-the-repository">Create a new RStudio project using the repository</h2>
 <p>Now we’ll use our new, empty GitHub repository for our Distill blog. From RStudio, choose “File -&gt; New Project” and choose “Version Control”:</p>
-<p><img src="Pasted%20image%2020220127124549.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127124549.png" class="img-fluid"></p>
 <p>Choose “Git”:</p>
-<p><img src="Pasted%20image%2020220127124647.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127124647.png" class="img-fluid"></p>
 <p>Copy in the repository URL from your project (found as shown below):</p>
-<p><img src="Pasted%20image%2020220127125016.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127125016.png" class="img-fluid"></p>
 <p>Paste it into the <code>Repository URL</code> field in the wizard, choose where you want to store it on your computer, and I recommend checking <code>Open in new session</code> for a clean slate. Click “Create Project” to create it.</p>
-<p><img src="Pasted%20image%2020220127125055.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127125055.png" class="img-fluid"></p>
 <p>The empty project will open in a new RStudio window. RStudio has added 3 new files (actually three directories) to the skeleton created by Github, which initially only contains the skeleton <code>.gitignore</code> file:</p>
-<p><img src="Pasted%20image%2020220127130928.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127130928.png" class="img-fluid"></p>
 <p>RStudio adds the <code>.git</code> directory, the <code>.Rproj.user</code> directory, and the <code>distill-blog.Rproj</code> RStudio project file (it will be named with the “Project directory name” field from the final screen of the New Project Wizard).</p>
-<p><img src="Pasted%20image%2020220127131749.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127131749.png" class="img-fluid"></p>
 <p>The <code>.gitignore</code> file created by Github tells git to ignore the <code>.Rproj.user</code> directory (which contains local settings used by RStudio and which you don’t need to (and shouldn’t) share or publish), and the <code>.git</code> directory is part of every repository and contains the repository settings.</p>
 <p>We want to keep github and RStudio in sync, generally speaking. More precisely, we want to keep <em>the repository</em> in sync between GitHub and RStudio. The local git repository doesn’t yet know about the project file <code>distill-blog.Rproj</code>, since RStudio added that after cloning the repository from GitHub, so a good first task is to add it to the local repository, and push it back up to GitHub to get it in sync, and make sure that that core pipeline is working, since we’ll be using it constantly.</p>
 <p>Although there is a “Git” pane in the Environments panel, which shows that <code>distill-blog.Rproj</code> is ready for staging:</p>
-<p><img src="Pasted%20image%2020220127133207.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127133207.png" class="img-fluid"></p>
 <p>…I am an old-school curmudgeon and prefer to use the terminal for git commands, since not everything I normally do with git has a representation in this visual UI. In RStudio I have even remapped the shortcut control-backtick to the terminal for quick switching:</p>
-<p><img src="Pasted%20image%2020220127133440.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127133440.png" class="img-fluid"></p>
 <p>Within the terminal, typing <code>git status</code> will show that git doesn’t yet know about <code>distill-blog.Rpro</code>j:</p>
-<p><img src="Pasted%20image%2020220127133648.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127133648.png" class="img-fluid"></p>
 <p>This isn’t going to be a git tutorial, so we’re just going to add the file to the repo and push it back to github. If you get stuck in this process, pause here until you’re able to troubleshoot and continue.</p>
 <p>The git commands to update the repository with are:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
@@ -359,7 +363,7 @@ Note
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ex">To</span> github.com:stevelinberg/distill-blog.git</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>   <span class="ex">54aae63..6c67d2d</span>  main <span class="at">-</span><span class="op">&gt;</span> main </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>After <code>git push</code> uploads the changes back to the GitHub repository, now if we flip back to GitHub and refresh the page, we’ll see that the project file has been added:</p>
-<p><img src="Pasted%20image%2020220127135410.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127135410.png" class="img-fluid"></p>
 <p>At this point, we have an empty RStudio project committed to a GitHub repository, but we don’t yet actually have any content. Now it’s time to create the Distill blog skeleton and add it to the repository.</p>
 </section>
 <section id="add-the-distill-skeleton-to-the-repository" class="level2">
@@ -386,19 +390,19 @@ Note
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Install Distill skeleton"</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If we pop back over to GitHub and reload the repository view, we’ll see a lot of new files added:</p>
-<p><img src="Pasted%20image%2020220127160301.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127160301.png" class="img-fluid"></p>
 </section>
 <section id="build-the-site" class="level2">
 <h2 class="anchored" data-anchor-id="build-the-site">Build the site</h2>
 <p>Before we do any further customizing, we can build the site and get it deploying on GitHub Pages. At this point, there’s nothing to see because the site hasn’t been built yet; doing the first build will construct the first blog post and the basic site skeleton.</p>
 <p>When you create the Distill site in this way, RStudio doesn’t yet know that there is one, and so the Build tab may be missing in the Environment pane:</p>
-<p><img src="Pasted%20image%2020220127160912.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127160912.png" class="img-fluid"></p>
 <p>If so, quit RStudio and re-open the project file, and it will appear:</p>
-<p><img src="Pasted%20image%2020220127161112.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127161112.png" class="img-fluid"></p>
 <p>Click the Build tab and then “Build Website”:</p>
-<p><img src="Pasted%20image%2020220127161335.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127161335.png" class="img-fluid"></p>
 <p>It will grind for a few moments and do the first build, and present you with a glorious preview of your new blog in the Viewer panel:</p>
-<p><img src="Pasted%20image%2020220127161457.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127161457.png" class="img-fluid"></p>
 <p>Let’s commit this stage too, since a few new files were just created. Switch to the Terminal tab (ctrl + backtick) and issue these git commands:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"First build of site skeleton"</span></span>
@@ -418,11 +422,11 @@ Note
 <li>Click “Save”.</li>
 </ol>
 <p>(Note: ignore the “Choose a theme” button; it doesn’t apply to Distill projects.)</p>
-<p><img src="Pasted%20image%2020220127162652.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127162652.png" class="img-fluid"></p>
 <p>GitHub will show a success message (hopefully):</p>
-<p><img src="Pasted%20image%2020220127163030.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127163030.png" class="img-fluid"></p>
 <p>Note the “Custom domain” section at the bottom; we’ll return to that if/when we want to move the site to a custom domain. As it is, GitHub generates a URL for the site based on your GitHub username and the repo name. In this case, the address is <a href="https://stevelinberg.github.io/distill-blog/">https://stevelinberg.github.io/distill-blog/</a>. Click the link, and you should see your site:</p>
-<p><img src="Pasted%20image%2020220127163306.png" class="img-fluid"></p>
+<p><img src="Pasted image 20220127163306.png" class="img-fluid"></p>
 <p>This means it’s live!</p>
 <p>You could just go from here, if you’re content with the URL GitHub chose for you. Your basic workflow will be:</p>
 <ul>
@@ -438,7 +442,6 @@ Note
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
   author = {Steve Linberg},
-  editor = {},
   title = {Distill and {Github} {Pages} {Setup}},
   date = {2022-01-29},
   url = {https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup},
@@ -580,7 +583,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } 
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -602,7 +607,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -638,24 +660,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
