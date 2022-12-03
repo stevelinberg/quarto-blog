@@ -2,102 +2,106 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://slinberg.net/academics/695M/bigger-concepts/index.html</loc>
-    <lastmod>2022-11-19T22:33:43.002Z</lastmod>
+    <lastmod>2022-12-03T02:23:05.165Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/academics/695M/index.html</loc>
-    <lastmod>2022-11-19T22:33:43.411Z</lastmod>
+    <lastmod>2022-12-03T02:23:05.578Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/academics/695M/useful-r-tidbits/index.html</loc>
-    <lastmod>2022-11-19T22:33:44.157Z</lastmod>
+    <lastmod>2022-12-03T02:23:06.315Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/academics/695M/glossary/index.html</loc>
-    <lastmod>2022-11-19T22:33:44.749Z</lastmod>
+    <lastmod>2022-12-03T02:23:06.922Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/academics/697E/697E-hw5/index.html</loc>
-    <lastmod>2022-11-19T22:33:45.325Z</lastmod>
+    <lastmod>2022-12-03T02:23:07.487Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/academics/697E/697E-hw3/index.html</loc>
-    <lastmod>2022-11-19T22:33:45.877Z</lastmod>
+    <lastmod>2022-12-03T02:23:08.054Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/academics/697E/697E-hw4/index.html</loc>
-    <lastmod>2022-11-19T22:33:46.506Z</lastmod>
+    <lastmod>2022-12-03T02:23:08.693Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/academics/697E/index.html</loc>
-    <lastmod>2022-11-19T22:33:46.919Z</lastmod>
+    <lastmod>2022-12-03T02:23:09.112Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/academics/697E/useful-r-tidbits/index.html</loc>
-    <lastmod>2022-11-19T22:33:47.654Z</lastmod>
+    <lastmod>2022-12-03T02:23:09.867Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/academics/697E/glossary/index.html</loc>
-    <lastmod>2022-11-19T22:33:48.261Z</lastmod>
+    <lastmod>2022-12-03T02:23:10.479Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/academics/697E/697E-hw6/index.html</loc>
-    <lastmod>2022-11-19T22:33:48.864Z</lastmod>
+    <lastmod>2022-12-03T02:23:11.102Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/index.html</loc>
-    <lastmod>2022-11-19T22:33:49.722Z</lastmod>
+    <lastmod>2022-12-03T02:23:12.000Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3/index.html</loc>
-    <lastmod>2022-11-19T22:33:50.242Z</lastmod>
+    <lastmod>2022-12-03T02:23:12.519Z</lastmod>
+  </url>
+  <url>
+    <loc>https://slinberg.net/posts/2022-12-02-sonnets/index.html</loc>
+    <lastmod>2022-12-03T02:23:13.091Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/posts/2022-10-31-hacked/index.html</loc>
-    <lastmod>2022-11-19T22:33:50.788Z</lastmod>
+    <lastmod>2022-12-03T02:23:13.642Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/posts/2022-11-18-mastodon/index.html</loc>
-    <lastmod>2022-11-19T22:33:51.533Z</lastmod>
+    <lastmod>2022-12-03T02:23:14.404Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/posts/2022-02-02-pythagorean-theorem/index.html</loc>
-    <lastmod>2022-11-19T22:33:51.985Z</lastmod>
+    <lastmod>2022-12-03T02:23:14.901Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic/index.html</loc>
-    <lastmod>2022-11-19T22:33:52.603Z</lastmod>
+    <lastmod>2022-12-03T02:23:15.496Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/posts/2022-10-20_distill_to_quarto_part_2/index.html</loc>
-    <lastmod>2022-11-19T22:33:53.175Z</lastmod>
+    <lastmod>2022-12-03T02:23:16.075Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1/index.html</loc>
-    <lastmod>2022-11-19T22:33:54.780Z</lastmod>
+    <lastmod>2022-12-03T02:23:17.757Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/posts/2022-03-05-tufte-takes-no-prisoners/index.html</loc>
-    <lastmod>2022-11-19T22:33:55.344Z</lastmod>
+    <lastmod>2022-12-03T02:23:18.322Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/posts/2022-02-05-saturday-mornings-with-tufte/index.html</loc>
-    <lastmod>2022-11-19T22:33:55.875Z</lastmod>
+    <lastmod>2022-12-03T02:23:18.833Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/steve.html</loc>
-    <lastmod>2022-11-19T22:33:56.232Z</lastmod>
+    <lastmod>2022-12-03T02:23:19.200Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/index.html</loc>
-    <lastmod>2022-11-19T22:33:56.688Z</lastmod>
+    <lastmod>2022-12-03T02:23:19.673Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/academics.html</loc>
-    <lastmod>2022-11-19T22:33:57.176Z</lastmod>
+    <lastmod>2022-12-03T02:23:20.150Z</lastmod>
   </url>
   <url>
     <loc>https://slinberg.net/blog.html</loc>
-    <lastmod>2022-11-19T22:33:57.628Z</lastmod>
+    <lastmod>2022-12-03T02:23:20.637Z</lastmod>
   </url>
 </urlset>

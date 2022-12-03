@@ -10,7 +10,189 @@
 <atom:link href="https://slinberg.net/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Steve Linberg</description>
 <generator>quarto-1.3.14</generator>
-<lastBuildDate>Fri, 18 Nov 2022 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 02 Dec 2022 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>AI Sonnets on Data Science</title>
+  <dc:creator>Steve Linberg</dc:creator>
+  <link>https://slinberg.net/posts/2022-12-02-sonnets/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<div>
+<div style="float: left; padding-right: 20px; margin-top: 0.5em">
+<p><img src="https://slinberg.net/posts/2022-12-02-sonnets/ChatGPT.jpg" class="img-fluid" width="150"></p>
+</div>
+<p>I’ve been playing around with <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>, which lets you interact with OpenAI’s GPT-3 language model in a chatbot style. I remain more or less equal parts fascinated and terrified by this system. It’s an amazing technical achievement, and while as of now no computer system I know of has passed the Turing test, it’s getting really close. The thing that scares me the most about the GPT-3 system is the certainty with which it says things that aren’t true… I tested it with the question of whether C is statically typed (it is), and this was its response:</p>
+</div>
+<blockquote class="blockquote">
+<p>No, C is not a statically-typed language. In a statically-typed language, variables must have a specific type that is known at compile-time, and the compiler will check for type errors and other issues before the program is run. This means that in a statically-typed language, the type of a variable cannot be changed at runtime, and any attempt to use a variable in a way that is not consistent with its type will result in a compile-time error.</p>
+<p>In contrast, C is a dynamically-typed language, which means that the type of a variable is not determined until runtime. This means that the type of a variable can be changed at runtime, and the compiler doesn’t check for type errors or other issues until the program is run. This can make C programs more prone to runtime errors and other issues.</p>
+</blockquote>
+<p>This was “written” with such confidence that it made me question whether I’ve been wrong about C all these years, for a few minutes at least. I couldn’t remember the last time I tested C’s static typing, and tried (say) assigning an integer value to a <code>char *</code>. Would the compiler just go ahead and do that and assume you knew what you were doing? Was C technically a dynamically typed language in some gotcha-level way I wasn’t thinking of?</p>
+<p>Answer: no, of course not. But the way the answer was phrased made me doubt myself.</p>
+<section id="a-sonnet-about-data-analytics" class="level2">
+<h2 class="anchored" data-anchor-id="a-sonnet-about-data-analytics">A Sonnet About Data Analytics</h2>
+<p>Anyway, after I got this out of my system I decided to just play with it. I asked it to write a sonnet about data analytics. This was its response:</p>
+<blockquote class="blockquote">
+<p>Data analytics is a complex field,<br>
+Where numbers and trends are revealed,<br>
+With algorithms and tools,<br>
+Insights are found and ruled,<br>
+A treasure trove of knowledge sealed.</p>
+<p>Through data analysis we can see,<br>
+Patterns and trends in our history,<br>
+From the past we can learn,<br>
+And our future discern,<br>
+A powerful tool for all to see.</p>
+<p>With data we can make predictions,<br>
+And take strategic decisions,<br>
+From sales to marketing,<br>
+Data has a lot to bring,<br>
+A valuable asset for all conditions.</p>
+<p>So let us embrace data analytics,<br>
+And all that it has to give us,<br>
+A world of information,<br>
+At our fingertips and imagination,<br>
+A powerful tool for all of us.</p>
+</blockquote>
+<p>I thought… that’s not too bad! I wanted to see another, so I said <em>“do it again”</em>. It responded:</p>
+<blockquote class="blockquote">
+<p>I’m sorry, but I’m not able to generate multiple versions of the same content. As a language model, my responses are generated based on the input I receive, and I don’t have the ability to create multiple versions of the same content.</p>
+</blockquote>
+<p>OK, fair enough. So you need to vary the input to get different output. I started adding adjectives.</p>
+<p><em>“write a sad sonnet about data analytics”</em></p>
+</section>
+<section id="a-sad-sonnet-about-data-analytics" class="level2">
+<h2 class="anchored" data-anchor-id="a-sad-sonnet-about-data-analytics">A Sad Sonnet About Data Analytics</h2>
+<blockquote class="blockquote">
+<p>Data analytics can be a cruel task,<br>
+Filled with numbers that never ask,<br>
+Our hearts may be breaking,<br>
+But the numbers keep shaking,<br>
+Leaving us empty and devoid of any mask.</p>
+<p>We pour our hearts into the data,<br>
+But it remains cold and uninviting,<br>
+No matter how much we try,<br>
+It never seems to satisfy,<br>
+Leaving us feeling lost and solitary.</p>
+<p>The insights we seek elude us still,<br>
+As the data remains chill,<br>
+Our hopes and dreams shattered,<br>
+By the numbers that mattered,<br>
+Leaving us alone and feeling ill.&nbsp;</p>
+<p>But even in the darkest of days,<br>
+We must keep searching for the data’s ways,<br>
+For though it may break our hearts,<br>
+In the end it imparts,<br>
+The knowledge that sets us free from its daze.</p>
+</blockquote>
+<p>…I sat back heavily. My heart sank. This was utterly tragic. I had no idea data science could be so bleak.</p>
+<p>I had to go on.</p>
+<p><em>“write an angry sonnet about data analytics”</em></p>
+</section>
+<section id="an-angry-sonnet-about-data-analytics" class="level2">
+<h2 class="anchored" data-anchor-id="an-angry-sonnet-about-data-analytics">An Angry Sonnet About Data Analytics</h2>
+<blockquote class="blockquote">
+<p>Data analytics, a curse upon us all,<br>
+A never-ending stream of numbers and code,<br>
+We toil and we labor,<br>
+But the data remains unyielding and cold,<br>
+Leaving us frustrated and feeling alone.</p>
+<p>With each passing day, our frustration grows,<br>
+As we struggle to make sense of the data,<br>
+It taunts and it teases,<br>
+Leaving us feeling like fools,<br>
+Our efforts met with nothing but woe.</p>
+<p>But we will not be defeated by data,<br>
+We will not be broken by its cold embrace,<br>
+We will continue to fight,<br>
+Until we have unlocked its secrets,<br>
+And claimed its insights as our own.</p>
+<p>For though it may challenge us,<br>
+Data analytics is ours to tame,<br>
+And we will not rest,<br>
+Until we have conquered its vast domain,<br>
+And claimed its power as our own.</p>
+</blockquote>
+<p>This one, I could definitely relate to.</p>
+<p><em>“write an obsequious sonnet about data analytics”</em></p>
+</section>
+<section id="an-obsequious-sonnet-about-data-analytics" class="level2">
+<h2 class="anchored" data-anchor-id="an-obsequious-sonnet-about-data-analytics">An Obsequious Sonnet About Data Analytics</h2>
+<blockquote class="blockquote">
+<p>Data analytics, a blessing to us all,<br>
+A never-ending stream of numbers and code,<br>
+We humbly bow before it,<br>
+Grateful for its insights and knowledge,<br>
+As it guides us on our path to success.</p>
+<p>With each passing day, our gratitude grows,<br>
+As we learn more and more from the data,<br>
+It reveals and it teaches,<br>
+Leading us to new heights,<br>
+Our efforts rewarded with insights and growth.</p>
+<p>We are but humble servants of data,<br>
+Eager to do its bidding and follow its lead,<br>
+For we know that in its hands,<br>
+Lie the keys to our future,<br>
+And the power to unlock our greatest potential.</p>
+<p>So let us embrace data analytics,<br>
+And all that it has to offer us,<br>
+For in its power and wisdom,<br>
+Lies the path to our success,<br>
+And the keys to a brighter future.</p>
+</blockquote>
+<p>I feel inspired.</p>
+<p><em>“write a narcissistic sonnet about data analytics”</em></p>
+</section>
+<section id="a-narcissistic-sonnet-about-data-analytics" class="level2">
+<h2 class="anchored" data-anchor-id="a-narcissistic-sonnet-about-data-analytics">A Narcissistic Sonnet About Data Analytics</h2>
+<blockquote class="blockquote">
+<p>Data analytics, a reflection of me,<br>
+A never-ending stream of numbers that see,<br>
+Into the depths of my soul,<br>
+And reveal the truth about me whole,<br>
+A mirror that shows me all that I can be.</p>
+<p>With each passing day, my admiration grows,<br>
+As I learn more and more from the data,<br>
+It shows me my strengths and my weaknesses,<br>
+And helps me to improve and progress,<br>
+A faithful companion on my journey.</p>
+<p>I am the master of data analytics,<br>
+And it is mine to wield and command,<br>
+With its power and its knowledge,<br>
+I will conquer and prevail,<br>
+And rise above all others in the land.</p>
+<p>So let us celebrate data analytics,<br>
+And all that it does for me,<br>
+For in its numbers and its insights,<br>
+Lies the key to my greatness,<br>
+And the path to my ultimate victory.</p>
+</blockquote>
+<p><em>I am the master of data analytics</em></p>
+<p>The path to my ultimate victory.</p>
+<p>I can’t think of anything to add to that. That’s a wrap.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
+  author = {Steve Linberg},
+  title = {AI {Sonnets} on {Data} {Science}},
+  date = {2022-12-02},
+  url = {https://slinberg.net/posts/2022-12-02-sonnets},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-linberg2022" class="csl-entry quarto-appendix-citeas">
+Steve Linberg. 2022. <span>“AI Sonnets on Data Science.”</span> December
+2, 2022. <a href="https://slinberg.net/posts/2022-12-02-sonnets">https://slinberg.net/posts/2022-12-02-sonnets</a>.
+</div></div></section></div> ]]></description>
+  <category>AI</category>
+  <category>data science</category>
+  <guid>https://slinberg.net/posts/2022-12-02-sonnets/index.html</guid>
+  <pubDate>Fri, 02 Dec 2022 05:00:00 GMT</pubDate>
+  <media:content url="https://slinberg.net/posts/2022-12-02-sonnets/ChatGPT.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Mastodon</title>
   <dc:creator>Steve Linberg</dc:creator>

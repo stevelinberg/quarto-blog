@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.14">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Steve Linberg">
+<meta name="dcterms.date" content="2022-12-02">
+<meta name="description" content="The OpenAI system writes emotive sonnets about data science.">
+
+<title>slinberg.net - AI Sonnets on Data Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-0ZXRPNMLL7"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-0ZXRPNMLL7', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="slinberg.net - AI Sonnets on Data Science">
+<meta name="twitter:description" content="The OpenAI system writes emotive sonnets about data science.">
+<meta name="twitter:image" content="https://slinberg.net/posts/2022-12-02-sonnets/ChatGPT.jpg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">slinberg.net</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../" rel=""><i class="bi bi-house" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../steve.html" rel="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html" rel="">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../academics.html" rel="">
+ <span class="menu-text">Academics</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://fosstodon.org/@stevelinberg" rel=""><i class="bi bi-mastodon" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/stevelinberg" rel=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/slinberg/" rel=""><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/stevelinberg" rel=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://stackoverflow.com/users/13603796/stevelinberg" rel=""><i class="bi bi-stack-overflow" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:steve@slinberg.net" rel=""><i class="bi bi-envelope" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml" rel=""><i class="bi bi-rss" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a-sonnet-about-data-analytics" id="toc-a-sonnet-about-data-analytics" class="nav-link active" data-scroll-target="#a-sonnet-about-data-analytics">A Sonnet About Data Analytics</a></li>
+  <li><a href="#a-sad-sonnet-about-data-analytics" id="toc-a-sad-sonnet-about-data-analytics" class="nav-link" data-scroll-target="#a-sad-sonnet-about-data-analytics">A Sad Sonnet About Data Analytics</a></li>
+  <li><a href="#an-angry-sonnet-about-data-analytics" id="toc-an-angry-sonnet-about-data-analytics" class="nav-link" data-scroll-target="#an-angry-sonnet-about-data-analytics">An Angry Sonnet About Data Analytics</a></li>
+  <li><a href="#an-obsequious-sonnet-about-data-analytics" id="toc-an-obsequious-sonnet-about-data-analytics" class="nav-link" data-scroll-target="#an-obsequious-sonnet-about-data-analytics">An Obsequious Sonnet About Data Analytics</a></li>
+  <li><a href="#a-narcissistic-sonnet-about-data-analytics" id="toc-a-narcissistic-sonnet-about-data-analytics" class="nav-link" data-scroll-target="#a-narcissistic-sonnet-about-data-analytics">A Narcissistic Sonnet About Data Analytics</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/stevelinberg/quarto-blog/edit/main/posts/2022-12-02-sonnets/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/stevelinberg/quarto-blog/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/stevelinberg/quarto-blog/blob/main/posts/2022-12-02-sonnets/index.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">AI Sonnets on Data Science</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">AI</div>
+    <div class="quarto-category">data science</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>The OpenAI system writes emotive sonnets about data science.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Steve Linberg </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 2, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div>
+<div style="float: left; padding-right: 20px; margin-top: 0.5em">
+<p><img src="ChatGPT.jpg" class="img-fluid" width="150"></p>
+</div>
+<p>I’ve been playing around with <a href="https://openai.com/blog/chatgpt/">ChatGPT</a>, which lets you interact with OpenAI’s GPT-3 language model in a chatbot style. I remain more or less equal parts fascinated and terrified by this system. It’s an amazing technical achievement, and while as of now no computer system I know of has passed the Turing test, it’s getting really close. The thing that scares me the most about the GPT-3 system is the certainty with which it says things that aren’t true… I tested it with the question of whether C is statically typed (it is), and this was its response:</p>
+</div>
+<blockquote class="blockquote">
+<p>No, C is not a statically-typed language. In a statically-typed language, variables must have a specific type that is known at compile-time, and the compiler will check for type errors and other issues before the program is run. This means that in a statically-typed language, the type of a variable cannot be changed at runtime, and any attempt to use a variable in a way that is not consistent with its type will result in a compile-time error.</p>
+<p>In contrast, C is a dynamically-typed language, which means that the type of a variable is not determined until runtime. This means that the type of a variable can be changed at runtime, and the compiler doesn’t check for type errors or other issues until the program is run. This can make C programs more prone to runtime errors and other issues.</p>
+</blockquote>
+<p>This was “written” with such confidence that it made me question whether I’ve been wrong about C all these years, for a few minutes at least. I couldn’t remember the last time I tested C’s static typing, and tried (say) assigning an integer value to a <code>char *</code>. Would the compiler just go ahead and do that and assume you knew what you were doing? Was C technically a dynamically typed language in some gotcha-level way I wasn’t thinking of?</p>
+<p>Answer: no, of course not. But the way the answer was phrased made me doubt myself.</p>
+<section id="a-sonnet-about-data-analytics" class="level2">
+<h2 class="anchored" data-anchor-id="a-sonnet-about-data-analytics">A Sonnet About Data Analytics</h2>
+<p>Anyway, after I got this out of my system I decided to just play with it. I asked it to write a sonnet about data analytics. This was its response:</p>
+<blockquote class="blockquote">
+<p>Data analytics is a complex field,<br>
+Where numbers and trends are revealed,<br>
+With algorithms and tools,<br>
+Insights are found and ruled,<br>
+A treasure trove of knowledge sealed.</p>
+<p>Through data analysis we can see,<br>
+Patterns and trends in our history,<br>
+From the past we can learn,<br>
+And our future discern,<br>
+A powerful tool for all to see.</p>
+<p>With data we can make predictions,<br>
+And take strategic decisions,<br>
+From sales to marketing,<br>
+Data has a lot to bring,<br>
+A valuable asset for all conditions.</p>
+<p>So let us embrace data analytics,<br>
+And all that it has to give us,<br>
+A world of information,<br>
+At our fingertips and imagination,<br>
+A powerful tool for all of us.</p>
+</blockquote>
+<p>I thought… that’s not too bad! I wanted to see another, so I said <em>“do it again”</em>. It responded:</p>
+<blockquote class="blockquote">
+<p>I’m sorry, but I’m not able to generate multiple versions of the same content. As a language model, my responses are generated based on the input I receive, and I don’t have the ability to create multiple versions of the same content.</p>
+</blockquote>
+<p>OK, fair enough. So you need to vary the input to get different output. I started adding adjectives.</p>
+<p><em>“write a sad sonnet about data analytics”</em></p>
+</section>
+<section id="a-sad-sonnet-about-data-analytics" class="level2">
+<h2 class="anchored" data-anchor-id="a-sad-sonnet-about-data-analytics">A Sad Sonnet About Data Analytics</h2>
+<blockquote class="blockquote">
+<p>Data analytics can be a cruel task,<br>
+Filled with numbers that never ask,<br>
+Our hearts may be breaking,<br>
+But the numbers keep shaking,<br>
+Leaving us empty and devoid of any mask.</p>
+<p>We pour our hearts into the data,<br>
+But it remains cold and uninviting,<br>
+No matter how much we try,<br>
+It never seems to satisfy,<br>
+Leaving us feeling lost and solitary.</p>
+<p>The insights we seek elude us still,<br>
+As the data remains chill,<br>
+Our hopes and dreams shattered,<br>
+By the numbers that mattered,<br>
+Leaving us alone and feeling ill.&nbsp;</p>
+<p>But even in the darkest of days,<br>
+We must keep searching for the data’s ways,<br>
+For though it may break our hearts,<br>
+In the end it imparts,<br>
+The knowledge that sets us free from its daze.</p>
+</blockquote>
+<p>…I sat back heavily. My heart sank. This was utterly tragic. I had no idea data science could be so bleak.</p>
+<p>I had to go on.</p>
+<p><em>“write an angry sonnet about data analytics”</em></p>
+</section>
+<section id="an-angry-sonnet-about-data-analytics" class="level2">
+<h2 class="anchored" data-anchor-id="an-angry-sonnet-about-data-analytics">An Angry Sonnet About Data Analytics</h2>
+<blockquote class="blockquote">
+<p>Data analytics, a curse upon us all,<br>
+A never-ending stream of numbers and code,<br>
+We toil and we labor,<br>
+But the data remains unyielding and cold,<br>
+Leaving us frustrated and feeling alone.</p>
+<p>With each passing day, our frustration grows,<br>
+As we struggle to make sense of the data,<br>
+It taunts and it teases,<br>
+Leaving us feeling like fools,<br>
+Our efforts met with nothing but woe.</p>
+<p>But we will not be defeated by data,<br>
+We will not be broken by its cold embrace,<br>
+We will continue to fight,<br>
+Until we have unlocked its secrets,<br>
+And claimed its insights as our own.</p>
+<p>For though it may challenge us,<br>
+Data analytics is ours to tame,<br>
+And we will not rest,<br>
+Until we have conquered its vast domain,<br>
+And claimed its power as our own.</p>
+</blockquote>
+<p>This one, I could definitely relate to.</p>
+<p><em>“write an obsequious sonnet about data analytics”</em></p>
+</section>
+<section id="an-obsequious-sonnet-about-data-analytics" class="level2">
+<h2 class="anchored" data-anchor-id="an-obsequious-sonnet-about-data-analytics">An Obsequious Sonnet About Data Analytics</h2>
+<blockquote class="blockquote">
+<p>Data analytics, a blessing to us all,<br>
+A never-ending stream of numbers and code,<br>
+We humbly bow before it,<br>
+Grateful for its insights and knowledge,<br>
+As it guides us on our path to success.</p>
+<p>With each passing day, our gratitude grows,<br>
+As we learn more and more from the data,<br>
+It reveals and it teaches,<br>
+Leading us to new heights,<br>
+Our efforts rewarded with insights and growth.</p>
+<p>We are but humble servants of data,<br>
+Eager to do its bidding and follow its lead,<br>
+For we know that in its hands,<br>
+Lie the keys to our future,<br>
+And the power to unlock our greatest potential.</p>
+<p>So let us embrace data analytics,<br>
+And all that it has to offer us,<br>
+For in its power and wisdom,<br>
+Lies the path to our success,<br>
+And the keys to a brighter future.</p>
+</blockquote>
+<p>I feel inspired.</p>
+<p><em>“write a narcissistic sonnet about data analytics”</em></p>
+</section>
+<section id="a-narcissistic-sonnet-about-data-analytics" class="level2">
+<h2 class="anchored" data-anchor-id="a-narcissistic-sonnet-about-data-analytics">A Narcissistic Sonnet About Data Analytics</h2>
+<blockquote class="blockquote">
+<p>Data analytics, a reflection of me,<br>
+A never-ending stream of numbers that see,<br>
+Into the depths of my soul,<br>
+And reveal the truth about me whole,<br>
+A mirror that shows me all that I can be.</p>
+<p>With each passing day, my admiration grows,<br>
+As I learn more and more from the data,<br>
+It shows me my strengths and my weaknesses,<br>
+And helps me to improve and progress,<br>
+A faithful companion on my journey.</p>
+<p>I am the master of data analytics,<br>
+And it is mine to wield and command,<br>
+With its power and its knowledge,<br>
+I will conquer and prevail,<br>
+And rise above all others in the land.</p>
+<p>So let us celebrate data analytics,<br>
+And all that it does for me,<br>
+For in its numbers and its insights,<br>
+Lies the key to my greatness,<br>
+And the path to my ultimate victory.</p>
+</blockquote>
+<p><em>I am the master of data analytics</em></p>
+<p>The path to my ultimate victory.</p>
+<p>I can’t think of anything to add to that. That’s a wrap.</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
+  author = {Steve Linberg},
+  title = {AI {Sonnets} on {Data} {Science}},
+  date = {2022-12-02},
+  url = {https://slinberg.net/posts/2022-12-02-sonnets},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-linberg2022" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Steve Linberg. 2022. <span>“AI Sonnets on Data Science.”</span> December
+2, 2022. <a href="https://slinberg.net/posts/2022-12-02-sonnets">https://slinberg.net/posts/2022-12-02-sonnets</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="stevelinberg/quarto-blog" data-repo-id="R_kgDOIG4tgA" data-category="Announcements" data-category-id="DIC_kwDOIG4tgM4CSp-x" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Copyright 2022 Steve Linberg. Except where otherwise noted, all text and images licensed CC-BY-NC 4.0</div>   
+  </div>
+</footer>
+
+
+
+</body></html>
