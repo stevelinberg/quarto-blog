@@ -309,28 +309,19 @@ gtag('config', 'G-0ZXRPNMLL7', { 'anonymize_ip': true});
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return a vector of prime numbers</span></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">which</span>(prime))</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Test the function by finding the prime numbers</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># less than or equal to 100</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">sieve</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1]   2   3   5   7   9  11  13  15  17  19  21  23  25  27  29  31  33  35  37
-[20]  39  41  43  45  47  49  51  53  55  57  59  61  63  65  67  69  71  73  75
-[39]  77  79  81  83  85  87  89  91  93  95  97  99 101</code></pre>
-</div>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pretty impressive. Concise, clean, and <em>commented</em> (well, with a caps typo), with a paragraph of explanatory text below it describing how it works, it initially put a chill down my spine.</p>
 <p>Until a few seconds later, when I noticed some obvious issues:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set entries for 0 and 1 to false as</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># they are not prime numbers</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  prime[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  prime[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set entries for 0 and 1 to false as</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># they are not prime numbers</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  prime[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  prime[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>There are at least 2 bugs here. The first is that R vectors are one-based, not zero-based, and the code uses the numbers being tested as primes as the index for the vector; the code is actually OK, but the comment is wrong. The second is even with the off-by-one index, the code doesn’t do what the comment describes (set two values to false). Also, the second line is redundant because the entire vector has already been initialized to TRUE. And finally, of course, when run, this code produces incorrect output:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sieve</span>(<span class="dv">100</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>]   <span class="dv">2</span>   <span class="dv">3</span>   <span class="dv">5</span>   <span class="dv">7</span>   <span class="dv">9</span>  <span class="dv">11</span>  <span class="dv">13</span>  <span class="dv">15</span>  <span class="dv">17</span>  <span class="dv">19</span>  <span class="dv">21</span>  <span class="dv">23</span>  <span class="dv">25</span>  <span class="dv">27</span>  <span class="dv">29</span>  <span class="dv">31</span>  <span class="dv">33</span>  <span class="dv">35</span>  <span class="dv">37</span>  <span class="dv">39</span>  <span class="dv">41</span>  <span class="dv">43</span>  <span class="dv">45</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">24</span>]  <span class="dv">47</span>  <span class="dv">49</span>  <span class="dv">51</span>  <span class="dv">53</span>  <span class="dv">55</span>  <span class="dv">57</span>  <span class="dv">59</span>  <span class="dv">61</span>  <span class="dv">63</span>  <span class="dv">65</span>  <span class="dv">67</span>  <span class="dv">69</span>  <span class="dv">71</span>  <span class="dv">73</span>  <span class="dv">75</span>  <span class="dv">77</span>  <span class="dv">79</span>  <span class="dv">81</span>  <span class="dv">83</span>  <span class="dv">85</span>  <span class="dv">87</span>  <span class="dv">89</span>  <span class="dv">91</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">47</span>]  <span class="dv">93</span>  <span class="dv">95</span>  <span class="dv">97</span>  <span class="dv">99</span> <span class="dv">101</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sieve</span>(<span class="dv">100</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>]   <span class="dv">2</span>   <span class="dv">3</span>   <span class="dv">5</span>   <span class="dv">7</span>   <span class="dv">9</span>  <span class="dv">11</span>  <span class="dv">13</span>  <span class="dv">15</span>  <span class="dv">17</span>  <span class="dv">19</span>  <span class="dv">21</span>  <span class="dv">23</span>  <span class="dv">25</span>  <span class="dv">27</span>  <span class="dv">29</span>  <span class="dv">31</span>  <span class="dv">33</span>  <span class="dv">35</span>  <span class="dv">37</span>  <span class="dv">39</span>  <span class="dv">41</span>  <span class="dv">43</span>  <span class="dv">45</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">24</span>]  <span class="dv">47</span>  <span class="dv">49</span>  <span class="dv">51</span>  <span class="dv">53</span>  <span class="dv">55</span>  <span class="dv">57</span>  <span class="dv">59</span>  <span class="dv">61</span>  <span class="dv">63</span>  <span class="dv">65</span>  <span class="dv">67</span>  <span class="dv">69</span>  <span class="dv">71</span>  <span class="dv">73</span>  <span class="dv">75</span>  <span class="dv">77</span>  <span class="dv">79</span>  <span class="dv">81</span>  <span class="dv">83</span>  <span class="dv">85</span>  <span class="dv">87</span>  <span class="dv">89</span>  <span class="dv">91</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">47</span>]  <span class="dv">93</span>  <span class="dv">95</span>  <span class="dv">97</span>  <span class="dv">99</span> <span class="dv">101</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Starts off OK, but then 9 appears, and it goes downhill rapidly after that.</p>
 <p>It’s easy enough to fix:</p>
 <ul>
@@ -339,58 +330,58 @@ gtag('config', 'G-0ZXRPNMLL7', { 'anonymize_ip': true});
 <li>use a <code>seq</code> function iterating by <code>p</code>, starting at <code>p^2</code>, to mark the composites; the R code <code>for (i in 2 * p:n)</code> doesn’t do that (language error).</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sieve <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a boolean array "prime[1..n]" and</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># initialize all entries it as true, except</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for prime[1] = FALSE.</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># A value in prime[i] will finally be</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># false if i is not a prime, else true.</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1 is not a prime number; initialize it to FALSE.</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  prime <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="fu">rep</span>(<span class="cn">TRUE</span>, n <span class="sc">-</span> <span class="dv">1</span>))</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Loop through the array and set the</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># value of each element to false if</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># it is not a prime number.</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fu">sqrt</span>(n))) {</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (prime[p]) {</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Update all multiples of p not exceeding n, starting at p^2</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(p <span class="sc">^</span> <span class="dv">2</span>, n, <span class="at">by =</span> p)) {</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        prime[i] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return a vector of prime numbers</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">which</span>(prime))</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sieve <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a boolean array "prime[1..n]" and</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># initialize all entries it as true, except</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for prime[1] = FALSE.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># A value in prime[i] will finally be</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># false if i is not a prime, else true.</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1 is not a prime number; initialize it to FALSE.</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  prime <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="fu">rep</span>(<span class="cn">TRUE</span>, n <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Loop through the array and set the</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># value of each element to false if</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># it is not a prime number.</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">floor</span>(<span class="fu">sqrt</span>(n))) {</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (prime[p]) {</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Update all multiples of p not exceeding n, starting at p^2</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(p <span class="sc">^</span> <span class="dv">2</span>, n, <span class="at">by =</span> p)) {</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        prime[i] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return a vector of prime numbers</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">which</span>(prime))</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The point of this isn’t to flex on first-year computer-science R; the point is that the code is presented authoritatively by the AI (even with their general disclaimers that things may be wrong), and since a lot of what passes for programming these days seems to be blindly copying and pasting code fragments from Stackoverflow, this is another vector where that could happen.</p>
 <p>So: it’s impressive that it got as close as it did; what worries me is how authoritatively it presented its buggy code. People are going to trust these systems, even if they shouldn’t, and since it’s likely to be used by people who aren’t experts, errors like those described above aren’t likely to be easily caught. I’m sure the quality will improve in time – these are the early days – but where is this all leading? The bot was so confident in <a href="../../posts/2022-12-02-sonnets/">its assertion that C is a dynamically-typed language</a> the other day that it made me doubt myself after decades of C at the center of my brain’s programming-language orientation. I hadn’t studied it formally in school; had I been wrong about it all along?</p>
 <p>Interestingly, the python code the bot produced for the sieve was just fine (I just changed the limit for output comparison):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MAX_PRIMES = 100000  # maximum number of prime numbers to find</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>MAX_PRIMES <span class="op">=</span> <span class="dv">100</span>  <span class="co"># maximum number of prime numbers to find</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sieve of Eratosthenes</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Finds all prime numbers up to MAX_PRIMES using the Sieve of Eratosthenes algorithm</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sieve_of_eratosthenes():</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  primes <span class="op">=</span> [<span class="va">True</span>] <span class="op">*</span> MAX_PRIMES  <span class="co"># list to store prime numbers</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1 is not a prime number</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  primes[<span class="dv">1</span>] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sieve algorithm</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">int</span>(MAX_PRIMES <span class="op">**</span> <span class="fl">0.5</span>) <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> primes[i]:</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">**</span> <span class="dv">2</span>, MAX_PRIMES, i):</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        primes[j] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print the prime numbers</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, MAX_PRIMES):</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> primes[i]:</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(i)</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>sieve_of_eratosthenes()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MAX_PRIMES = 100000  # maximum number of prime numbers to find</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>MAX_PRIMES <span class="op">=</span> <span class="dv">100</span>  <span class="co"># maximum number of prime numbers to find</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sieve of Eratosthenes</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Finds all prime numbers up to MAX_PRIMES using the Sieve of Eratosthenes algorithm</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sieve_of_eratosthenes():</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  primes <span class="op">=</span> [<span class="va">True</span>] <span class="op">*</span> MAX_PRIMES  <span class="co"># list to store prime numbers</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1 is not a prime number</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  primes[<span class="dv">1</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sieve algorithm</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">int</span>(MAX_PRIMES <span class="op">**</span> <span class="fl">0.5</span>) <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> primes[i]:</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">**</span> <span class="dv">2</span>, MAX_PRIMES, i):</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        primes[j] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print the prime numbers</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, MAX_PRIMES):</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> primes[i]:</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(i)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>sieve_of_eratosthenes()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2
 3

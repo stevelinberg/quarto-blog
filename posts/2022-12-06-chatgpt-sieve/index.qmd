@@ -46,10 +46,6 @@ sieve <- function(n) {
   # Return a vector of prime numbers
   return(which(prime))
 }
-
-# Test the function by finding the prime numbers
-# less than or equal to 100
-sieve(100)
 ```
 
 Pretty impressive. Concise, clean, and *commented* (well, with a caps typo), with a paragraph of explanatory text below it describing how it works, it initially put a chill down my spine. 
