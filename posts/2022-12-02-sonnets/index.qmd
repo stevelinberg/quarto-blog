@@ -3,7 +3,7 @@ title: "AI Sonnets on Data Science"
 description: |
   The OpenAI system writes emotive sonnets about data science.
 date: "2022-12-02"
-categories: [AI, data science]
+categories: [AI, ChatGPT, data science]
 image: ChatGPT.jpg
 ---
 
