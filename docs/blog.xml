@@ -19,10 +19,15 @@
 
 
 
+<div>
+<div style="float: left; padding-right: 20px; margin-top: 0.5em">
+<p><img src="https://slinberg.net/posts/2022-12-06-chatgpt-sieve/badcode.png" class="img-fluid" width="150"></p>
+</div>
 <p>My flirtation with <a href="https://openai.com/blog/chatgpt/">ChatGPT</a> continues.</p>
 <p>A few days ago I had some fun asking it to compose <a href="../../posts/2022-12-02-sonnets/">emotive sonnets about data science</a>. That was entertaining, and I maintain that anyone who isn’t recognizing this moment as a major inflection point for authoring content of any kind isn’t paying attention. And yes, this extends to writing code. Some people are (rightly) fearful that AI will be able to write better code than humans very soon, for approximately a nothingth of the cost, and that we might actually be there now. Stackoverflow has <a href="https://meta.stackoverflow.com/questions/421831/temporary-policy-chatgpt-is-banned">temporarily banned ChatGPT</a>, though how they’re going to police that remains a bit of a mystery to me.</p>
 <p>There may be some divine symmetry to AI systems obsoleting the human programmers that spawned them, but I don’t think we’re quite there yet. I asked ChatGPT to implement a Sieve of Eratosthenes in R, and this was its confident response:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># Function to implement Sieve of Eratosthenes</span></span>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># Function to implement Sieve of Eratosthenes</span></span>
 <span id="cb1-2">sieve <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(n) {</span>
 <span id="cb1-3">  <span class="co" style="color: #5E5E5E;"># Create a boolean array "prime[0..n]" and</span></span>
 <span id="cb1-4">  <span class="co" style="color: #5E5E5E;"># initialize all entries it as true.</span></span>
@@ -54,17 +59,23 @@
 <span id="cb1-30"><span class="co" style="color: #5E5E5E;"># Test the function by finding the prime numbers</span></span>
 <span id="cb1-31"><span class="co" style="color: #5E5E5E;"># less than or equal to 100</span></span>
 <span id="cb1-32"><span class="fu" style="color: #4758AB;">sieve</span>(<span class="dv" style="color: #AD0000;">100</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]   2   3   5   7   9  11  13  15  17  19  21  23  25  27  29  31  33  35  37
+[20]  39  41  43  45  47  49  51  53  55  57  59  61  63  65  67  69  71  73  75
+[39]  77  79  81  83  85  87  89  91  93  95  97  99 101</code></pre>
+</div>
+</div>
 <p>Pretty impressive. Concise, clean, and <em>commented</em> (well, with a caps typo), with a paragraph of explanatory text below it describing how it works, it initially put a chill down my spine.</p>
 <p>Until a few seconds later, when I noticed some obvious issues:</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">  <span class="co" style="color: #5E5E5E;"># Set entries for 0 and 1 to false as</span></span>
-<span id="cb2-2">  <span class="co" style="color: #5E5E5E;"># they are not prime numbers</span></span>
-<span id="cb2-3">  prime[<span class="dv" style="color: #AD0000;">1</span>] <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cn" style="color: #8f5902;">FALSE</span></span>
-<span id="cb2-4">  prime[<span class="dv" style="color: #AD0000;">2</span>] <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cn" style="color: #8f5902;">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">  <span class="co" style="color: #5E5E5E;"># Set entries for 0 and 1 to false as</span></span>
+<span id="cb3-2">  <span class="co" style="color: #5E5E5E;"># they are not prime numbers</span></span>
+<span id="cb3-3">  prime[<span class="dv" style="color: #AD0000;">1</span>] <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cn" style="color: #8f5902;">FALSE</span></span>
+<span id="cb3-4">  prime[<span class="dv" style="color: #AD0000;">2</span>] <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cn" style="color: #8f5902;">TRUE</span></span></code></pre></div>
 <p>There are at least 2 bugs here. The first is that R vectors are one-based, not zero-based, and the code uses the numbers being tested as primes as the index for the vector; the code is actually OK, but the comment is wrong. The second is even with the off-by-one index, the code doesn’t do what the comment describes (set two values to false). Also, the second line is redundant because the entire vector has already been initialized to TRUE. And finally, of course, when run, this code produces incorrect output:</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fu" style="color: #4758AB;">sieve</span>(<span class="dv" style="color: #AD0000;">100</span>)</span>
-<span id="cb3-2"> [<span class="dv" style="color: #AD0000;">1</span>]   <span class="dv" style="color: #AD0000;">2</span>   <span class="dv" style="color: #AD0000;">3</span>   <span class="dv" style="color: #AD0000;">5</span>   <span class="dv" style="color: #AD0000;">7</span>   <span class="dv" style="color: #AD0000;">9</span>  <span class="dv" style="color: #AD0000;">11</span>  <span class="dv" style="color: #AD0000;">13</span>  <span class="dv" style="color: #AD0000;">15</span>  <span class="dv" style="color: #AD0000;">17</span>  <span class="dv" style="color: #AD0000;">19</span>  <span class="dv" style="color: #AD0000;">21</span>  <span class="dv" style="color: #AD0000;">23</span>  <span class="dv" style="color: #AD0000;">25</span>  <span class="dv" style="color: #AD0000;">27</span>  <span class="dv" style="color: #AD0000;">29</span>  <span class="dv" style="color: #AD0000;">31</span>  <span class="dv" style="color: #AD0000;">33</span>  <span class="dv" style="color: #AD0000;">35</span>  <span class="dv" style="color: #AD0000;">37</span>  <span class="dv" style="color: #AD0000;">39</span>  <span class="dv" style="color: #AD0000;">41</span>  <span class="dv" style="color: #AD0000;">43</span>  <span class="dv" style="color: #AD0000;">45</span></span>
-<span id="cb3-3">[<span class="dv" style="color: #AD0000;">24</span>]  <span class="dv" style="color: #AD0000;">47</span>  <span class="dv" style="color: #AD0000;">49</span>  <span class="dv" style="color: #AD0000;">51</span>  <span class="dv" style="color: #AD0000;">53</span>  <span class="dv" style="color: #AD0000;">55</span>  <span class="dv" style="color: #AD0000;">57</span>  <span class="dv" style="color: #AD0000;">59</span>  <span class="dv" style="color: #AD0000;">61</span>  <span class="dv" style="color: #AD0000;">63</span>  <span class="dv" style="color: #AD0000;">65</span>  <span class="dv" style="color: #AD0000;">67</span>  <span class="dv" style="color: #AD0000;">69</span>  <span class="dv" style="color: #AD0000;">71</span>  <span class="dv" style="color: #AD0000;">73</span>  <span class="dv" style="color: #AD0000;">75</span>  <span class="dv" style="color: #AD0000;">77</span>  <span class="dv" style="color: #AD0000;">79</span>  <span class="dv" style="color: #AD0000;">81</span>  <span class="dv" style="color: #AD0000;">83</span>  <span class="dv" style="color: #AD0000;">85</span>  <span class="dv" style="color: #AD0000;">87</span>  <span class="dv" style="color: #AD0000;">89</span>  <span class="dv" style="color: #AD0000;">91</span></span>
-<span id="cb3-4">[<span class="dv" style="color: #AD0000;">47</span>]  <span class="dv" style="color: #AD0000;">93</span>  <span class="dv" style="color: #AD0000;">95</span>  <span class="dv" style="color: #AD0000;">97</span>  <span class="dv" style="color: #AD0000;">99</span> <span class="dv" style="color: #AD0000;">101</span></span></code></pre></div>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="sc" style="color: #5E5E5E;">&gt;</span> <span class="fu" style="color: #4758AB;">sieve</span>(<span class="dv" style="color: #AD0000;">100</span>)</span>
+<span id="cb4-2"> [<span class="dv" style="color: #AD0000;">1</span>]   <span class="dv" style="color: #AD0000;">2</span>   <span class="dv" style="color: #AD0000;">3</span>   <span class="dv" style="color: #AD0000;">5</span>   <span class="dv" style="color: #AD0000;">7</span>   <span class="dv" style="color: #AD0000;">9</span>  <span class="dv" style="color: #AD0000;">11</span>  <span class="dv" style="color: #AD0000;">13</span>  <span class="dv" style="color: #AD0000;">15</span>  <span class="dv" style="color: #AD0000;">17</span>  <span class="dv" style="color: #AD0000;">19</span>  <span class="dv" style="color: #AD0000;">21</span>  <span class="dv" style="color: #AD0000;">23</span>  <span class="dv" style="color: #AD0000;">25</span>  <span class="dv" style="color: #AD0000;">27</span>  <span class="dv" style="color: #AD0000;">29</span>  <span class="dv" style="color: #AD0000;">31</span>  <span class="dv" style="color: #AD0000;">33</span>  <span class="dv" style="color: #AD0000;">35</span>  <span class="dv" style="color: #AD0000;">37</span>  <span class="dv" style="color: #AD0000;">39</span>  <span class="dv" style="color: #AD0000;">41</span>  <span class="dv" style="color: #AD0000;">43</span>  <span class="dv" style="color: #AD0000;">45</span></span>
+<span id="cb4-3">[<span class="dv" style="color: #AD0000;">24</span>]  <span class="dv" style="color: #AD0000;">47</span>  <span class="dv" style="color: #AD0000;">49</span>  <span class="dv" style="color: #AD0000;">51</span>  <span class="dv" style="color: #AD0000;">53</span>  <span class="dv" style="color: #AD0000;">55</span>  <span class="dv" style="color: #AD0000;">57</span>  <span class="dv" style="color: #AD0000;">59</span>  <span class="dv" style="color: #AD0000;">61</span>  <span class="dv" style="color: #AD0000;">63</span>  <span class="dv" style="color: #AD0000;">65</span>  <span class="dv" style="color: #AD0000;">67</span>  <span class="dv" style="color: #AD0000;">69</span>  <span class="dv" style="color: #AD0000;">71</span>  <span class="dv" style="color: #AD0000;">73</span>  <span class="dv" style="color: #AD0000;">75</span>  <span class="dv" style="color: #AD0000;">77</span>  <span class="dv" style="color: #AD0000;">79</span>  <span class="dv" style="color: #AD0000;">81</span>  <span class="dv" style="color: #AD0000;">83</span>  <span class="dv" style="color: #AD0000;">85</span>  <span class="dv" style="color: #AD0000;">87</span>  <span class="dv" style="color: #AD0000;">89</span>  <span class="dv" style="color: #AD0000;">91</span></span>
+<span id="cb4-4">[<span class="dv" style="color: #AD0000;">47</span>]  <span class="dv" style="color: #AD0000;">93</span>  <span class="dv" style="color: #AD0000;">95</span>  <span class="dv" style="color: #AD0000;">97</span>  <span class="dv" style="color: #AD0000;">99</span> <span class="dv" style="color: #AD0000;">101</span></span></code></pre></div>
 <p>Starts off OK, but then 9 appears, and it goes downhill rapidly after that.</p>
 <p>It’s easy enough to fix:</p>
 <ul>
@@ -73,65 +84,65 @@
 <li>use a <code>seq</code> function iterating by <code>p</code>, starting at <code>p^2</code>, to mark the composites; the R code <code>for (i in 2 * p:n)</code> doesn’t do that (language error).</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">sieve <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(n) {</span>
-<span id="cb4-2">  <span class="co" style="color: #5E5E5E;"># Create a boolean array "prime[1..n]" and</span></span>
-<span id="cb4-3">  <span class="co" style="color: #5E5E5E;"># initialize all entries it as true, except</span></span>
-<span id="cb4-4">  <span class="co" style="color: #5E5E5E;"># for prime[1] = FALSE.</span></span>
-<span id="cb4-5">  <span class="co" style="color: #5E5E5E;"># A value in prime[i] will finally be</span></span>
-<span id="cb4-6">  <span class="co" style="color: #5E5E5E;"># false if i is not a prime, else true.</span></span>
-<span id="cb4-7">  <span class="co" style="color: #5E5E5E;"># 1 is not a prime number; initialize it to FALSE.</span></span>
-<span id="cb4-8">  prime <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="cn" style="color: #8f5902;">FALSE</span>, <span class="fu" style="color: #4758AB;">rep</span>(<span class="cn" style="color: #8f5902;">TRUE</span>, n <span class="sc" style="color: #5E5E5E;">-</span> <span class="dv" style="color: #AD0000;">1</span>))</span>
-<span id="cb4-9">  </span>
-<span id="cb4-10">  <span class="co" style="color: #5E5E5E;"># Loop through the array and set the</span></span>
-<span id="cb4-11">  <span class="co" style="color: #5E5E5E;"># value of each element to false if</span></span>
-<span id="cb4-12">  <span class="co" style="color: #5E5E5E;"># it is not a prime number.</span></span>
-<span id="cb4-13">  <span class="cf" style="color: #003B4F;">for</span> (p <span class="cf" style="color: #003B4F;">in</span> <span class="dv" style="color: #AD0000;">2</span><span class="sc" style="color: #5E5E5E;">:</span><span class="fu" style="color: #4758AB;">floor</span>(<span class="fu" style="color: #4758AB;">sqrt</span>(n))) {</span>
-<span id="cb4-14">    <span class="cf" style="color: #003B4F;">if</span> (prime[p]) {</span>
-<span id="cb4-15">      <span class="co" style="color: #5E5E5E;"># Update all multiples of p not exceeding n, starting at p^2</span></span>
-<span id="cb4-16">      <span class="cf" style="color: #003B4F;">for</span> (i <span class="cf" style="color: #003B4F;">in</span> <span class="fu" style="color: #4758AB;">seq</span>(p <span class="sc" style="color: #5E5E5E;">^</span> <span class="dv" style="color: #AD0000;">2</span>, n, <span class="at" style="color: #657422;">by =</span> p)) {</span>
-<span id="cb4-17">        prime[i] <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cn" style="color: #8f5902;">FALSE</span></span>
-<span id="cb4-18">      }</span>
-<span id="cb4-19">    }</span>
-<span id="cb4-20">  }</span>
-<span id="cb4-21">  </span>
-<span id="cb4-22">  <span class="co" style="color: #5E5E5E;"># Return a vector of prime numbers</span></span>
-<span id="cb4-23">  <span class="fu" style="color: #4758AB;">return</span>(<span class="fu" style="color: #4758AB;">which</span>(prime))</span>
-<span id="cb4-24">}</span>
-<span id="cb4-25"></span>
-<span id="cb4-26"><span class="co" style="color: #5E5E5E;"># Test the function by finding the prime numbers</span></span>
-<span id="cb4-27"><span class="co" style="color: #5E5E5E;"># less than or equal to 100</span></span>
-<span id="cb4-28"><span class="fu" style="color: #4758AB;">sieve</span>(<span class="dv" style="color: #AD0000;">100</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">sieve <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(n) {</span>
+<span id="cb5-2">  <span class="co" style="color: #5E5E5E;"># Create a boolean array "prime[1..n]" and</span></span>
+<span id="cb5-3">  <span class="co" style="color: #5E5E5E;"># initialize all entries it as true, except</span></span>
+<span id="cb5-4">  <span class="co" style="color: #5E5E5E;"># for prime[1] = FALSE.</span></span>
+<span id="cb5-5">  <span class="co" style="color: #5E5E5E;"># A value in prime[i] will finally be</span></span>
+<span id="cb5-6">  <span class="co" style="color: #5E5E5E;"># false if i is not a prime, else true.</span></span>
+<span id="cb5-7">  <span class="co" style="color: #5E5E5E;"># 1 is not a prime number; initialize it to FALSE.</span></span>
+<span id="cb5-8">  prime <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="cn" style="color: #8f5902;">FALSE</span>, <span class="fu" style="color: #4758AB;">rep</span>(<span class="cn" style="color: #8f5902;">TRUE</span>, n <span class="sc" style="color: #5E5E5E;">-</span> <span class="dv" style="color: #AD0000;">1</span>))</span>
+<span id="cb5-9">  </span>
+<span id="cb5-10">  <span class="co" style="color: #5E5E5E;"># Loop through the array and set the</span></span>
+<span id="cb5-11">  <span class="co" style="color: #5E5E5E;"># value of each element to false if</span></span>
+<span id="cb5-12">  <span class="co" style="color: #5E5E5E;"># it is not a prime number.</span></span>
+<span id="cb5-13">  <span class="cf" style="color: #003B4F;">for</span> (p <span class="cf" style="color: #003B4F;">in</span> <span class="dv" style="color: #AD0000;">2</span><span class="sc" style="color: #5E5E5E;">:</span><span class="fu" style="color: #4758AB;">floor</span>(<span class="fu" style="color: #4758AB;">sqrt</span>(n))) {</span>
+<span id="cb5-14">    <span class="cf" style="color: #003B4F;">if</span> (prime[p]) {</span>
+<span id="cb5-15">      <span class="co" style="color: #5E5E5E;"># Update all multiples of p not exceeding n, starting at p^2</span></span>
+<span id="cb5-16">      <span class="cf" style="color: #003B4F;">for</span> (i <span class="cf" style="color: #003B4F;">in</span> <span class="fu" style="color: #4758AB;">seq</span>(p <span class="sc" style="color: #5E5E5E;">^</span> <span class="dv" style="color: #AD0000;">2</span>, n, <span class="at" style="color: #657422;">by =</span> p)) {</span>
+<span id="cb5-17">        prime[i] <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cn" style="color: #8f5902;">FALSE</span></span>
+<span id="cb5-18">      }</span>
+<span id="cb5-19">    }</span>
+<span id="cb5-20">  }</span>
+<span id="cb5-21">  </span>
+<span id="cb5-22">  <span class="co" style="color: #5E5E5E;"># Return a vector of prime numbers</span></span>
+<span id="cb5-23">  <span class="fu" style="color: #4758AB;">return</span>(<span class="fu" style="color: #4758AB;">which</span>(prime))</span>
+<span id="cb5-24">}</span>
+<span id="cb5-25"></span>
+<span id="cb5-26"><span class="co" style="color: #5E5E5E;"># Test the function by finding the prime numbers</span></span>
+<span id="cb5-27"><span class="co" style="color: #5E5E5E;"># less than or equal to 100</span></span>
+<span id="cb5-28"><span class="fu" style="color: #4758AB;">sieve</span>(<span class="dv" style="color: #AD0000;">100</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  2  3  5  7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97</code></pre>
 </div>
 </div>
 <p>The point of this isn’t to flex on first-year computer-science R; the point is that the code is presented authoritatively by the AI (even with their general disclaimers that things may be wrong), and since a lot of what passes for programming these days seems to be blindly copying and pasting code fragments from Stackoverflow, this is another vector where that could happen.</p>
 <p>So: it’s impressive that it got as close as it did; what worries me is how authoritatively it presented its buggy code. People are going to trust these systems, even if they shouldn’t, and since it’s likely to be used by people who aren’t experts, errors like those described above aren’t likely to be easily caught. I’m sure the quality will improve in time – these are the early days – but where is this all leading? The bot was so confident in <a href="../../posts/2022-12-02-sonnets/">its assertion that C is a dynamically-typed language</a> the other day that it made me doubt myself after decades of C at the center of my brain’s programming-language orientation. I hadn’t studied it formally in school; had I been wrong about it all along?</p>
-<p>Interestingly, the python code the bot produced for the sieve was just fine:</p>
+<p>Interestingly, the python code the bot produced for the sieve was just fine (I just changed the limit for output comparison):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="co" style="color: #5E5E5E;"># MAX_PRIMES = 100000  # maximum number of prime numbers to find</span></span>
-<span id="cb6-2">MAX_PRIMES <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">100</span>  <span class="co" style="color: #5E5E5E;"># maximum number of prime numbers to find</span></span>
-<span id="cb6-3"></span>
-<span id="cb6-4"><span class="co" style="color: #5E5E5E;"># Sieve of Eratosthenes</span></span>
-<span id="cb6-5"><span class="co" style="color: #5E5E5E;"># Finds all prime numbers up to MAX_PRIMES using the Sieve of Eratosthenes algorithm</span></span>
-<span id="cb6-6"><span class="kw" style="color: #003B4F;">def</span> sieve_of_eratosthenes():</span>
-<span id="cb6-7">  primes <span class="op" style="color: #5E5E5E;">=</span> [<span class="va" style="color: #111111;">True</span>] <span class="op" style="color: #5E5E5E;">*</span> MAX_PRIMES  <span class="co" style="color: #5E5E5E;"># list to store prime numbers</span></span>
-<span id="cb6-8"></span>
-<span id="cb6-9">  <span class="co" style="color: #5E5E5E;"># 1 is not a prime number</span></span>
-<span id="cb6-10">  primes[<span class="dv" style="color: #AD0000;">1</span>] <span class="op" style="color: #5E5E5E;">=</span> <span class="va" style="color: #111111;">False</span></span>
-<span id="cb6-11"></span>
-<span id="cb6-12">  <span class="co" style="color: #5E5E5E;"># sieve algorithm</span></span>
-<span id="cb6-13">  <span class="cf" style="color: #003B4F;">for</span> i <span class="kw" style="color: #003B4F;">in</span> <span class="bu" style="color: null;">range</span>(<span class="dv" style="color: #AD0000;">2</span>, <span class="bu" style="color: null;">int</span>(MAX_PRIMES <span class="op" style="color: #5E5E5E;">**</span> <span class="fl" style="color: #AD0000;">0.5</span>) <span class="op" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">1</span>):</span>
-<span id="cb6-14">    <span class="cf" style="color: #003B4F;">if</span> primes[i]:</span>
-<span id="cb6-15">      <span class="cf" style="color: #003B4F;">for</span> j <span class="kw" style="color: #003B4F;">in</span> <span class="bu" style="color: null;">range</span>(i <span class="op" style="color: #5E5E5E;">**</span> <span class="dv" style="color: #AD0000;">2</span>, MAX_PRIMES, i):</span>
-<span id="cb6-16">        primes[j] <span class="op" style="color: #5E5E5E;">=</span> <span class="va" style="color: #111111;">False</span></span>
-<span id="cb6-17"></span>
-<span id="cb6-18">  <span class="co" style="color: #5E5E5E;"># print the prime numbers</span></span>
-<span id="cb6-19">  <span class="cf" style="color: #003B4F;">for</span> i <span class="kw" style="color: #003B4F;">in</span> <span class="bu" style="color: null;">range</span>(<span class="dv" style="color: #AD0000;">1</span>, MAX_PRIMES):</span>
-<span id="cb6-20">    <span class="cf" style="color: #003B4F;">if</span> primes[i]:</span>
-<span id="cb6-21">      <span class="bu" style="color: null;">print</span>(i)</span>
-<span id="cb6-22"></span>
-<span id="cb6-23">sieve_of_eratosthenes()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="co" style="color: #5E5E5E;"># MAX_PRIMES = 100000  # maximum number of prime numbers to find</span></span>
+<span id="cb7-2">MAX_PRIMES <span class="op" style="color: #5E5E5E;">=</span> <span class="dv" style="color: #AD0000;">100</span>  <span class="co" style="color: #5E5E5E;"># maximum number of prime numbers to find</span></span>
+<span id="cb7-3"></span>
+<span id="cb7-4"><span class="co" style="color: #5E5E5E;"># Sieve of Eratosthenes</span></span>
+<span id="cb7-5"><span class="co" style="color: #5E5E5E;"># Finds all prime numbers up to MAX_PRIMES using the Sieve of Eratosthenes algorithm</span></span>
+<span id="cb7-6"><span class="kw" style="color: #003B4F;">def</span> sieve_of_eratosthenes():</span>
+<span id="cb7-7">  primes <span class="op" style="color: #5E5E5E;">=</span> [<span class="va" style="color: #111111;">True</span>] <span class="op" style="color: #5E5E5E;">*</span> MAX_PRIMES  <span class="co" style="color: #5E5E5E;"># list to store prime numbers</span></span>
+<span id="cb7-8"></span>
+<span id="cb7-9">  <span class="co" style="color: #5E5E5E;"># 1 is not a prime number</span></span>
+<span id="cb7-10">  primes[<span class="dv" style="color: #AD0000;">1</span>] <span class="op" style="color: #5E5E5E;">=</span> <span class="va" style="color: #111111;">False</span></span>
+<span id="cb7-11"></span>
+<span id="cb7-12">  <span class="co" style="color: #5E5E5E;"># sieve algorithm</span></span>
+<span id="cb7-13">  <span class="cf" style="color: #003B4F;">for</span> i <span class="kw" style="color: #003B4F;">in</span> <span class="bu" style="color: null;">range</span>(<span class="dv" style="color: #AD0000;">2</span>, <span class="bu" style="color: null;">int</span>(MAX_PRIMES <span class="op" style="color: #5E5E5E;">**</span> <span class="fl" style="color: #AD0000;">0.5</span>) <span class="op" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">1</span>):</span>
+<span id="cb7-14">    <span class="cf" style="color: #003B4F;">if</span> primes[i]:</span>
+<span id="cb7-15">      <span class="cf" style="color: #003B4F;">for</span> j <span class="kw" style="color: #003B4F;">in</span> <span class="bu" style="color: null;">range</span>(i <span class="op" style="color: #5E5E5E;">**</span> <span class="dv" style="color: #AD0000;">2</span>, MAX_PRIMES, i):</span>
+<span id="cb7-16">        primes[j] <span class="op" style="color: #5E5E5E;">=</span> <span class="va" style="color: #111111;">False</span></span>
+<span id="cb7-17"></span>
+<span id="cb7-18">  <span class="co" style="color: #5E5E5E;"># print the prime numbers</span></span>
+<span id="cb7-19">  <span class="cf" style="color: #003B4F;">for</span> i <span class="kw" style="color: #003B4F;">in</span> <span class="bu" style="color: null;">range</span>(<span class="dv" style="color: #AD0000;">1</span>, MAX_PRIMES):</span>
+<span id="cb7-20">    <span class="cf" style="color: #003B4F;">if</span> primes[i]:</span>
+<span id="cb7-21">      <span class="bu" style="color: null;">print</span>(i)</span>
+<span id="cb7-22"></span>
+<span id="cb7-23">sieve_of_eratosthenes()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2
 3
@@ -164,7 +175,7 @@
 
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
+</div><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
   author = {Steve Linberg},
   editor = {},
   title = {ChatGPT Fail: {Sieve} of {Eratosthenes}},
@@ -182,7 +193,7 @@ December 6, 2022. <a href="https://slinberg.net/posts/2022-12-06-chatgpt-sieve">
   <category>data science</category>
   <guid>https://slinberg.net/posts/2022-12-06-chatgpt-sieve/index.html</guid>
   <pubDate>Tue, 06 Dec 2022 05:00:00 GMT</pubDate>
-  <media:content url="https://slinberg.net/posts/2022-12-06-chatgpt-sieve/ChatGPT.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://slinberg.net/posts/2022-12-06-chatgpt-sieve/badcode.png" medium="image" type="image/png" height="43" width="144"/>
 </item>
 <item>
   <title>AI Sonnets on Data Science</title>

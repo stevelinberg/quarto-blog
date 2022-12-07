@@ -4,16 +4,20 @@ description: |
   ChatGPT writes buggy R in a quick test
 date: "2022-12-06"
 categories: [AI, R, ChatGPT, data science]
-image: ChatGPT.jpg
+image: badcode.png
 ---
 
+<div>
+<div style="float: left; padding-right: 20px; margin-top: 0.5em">
+![](badcode.png){width="150"}
+</div>
 My flirtation with [ChatGPT](https://openai.com/blog/chatgpt/) continues.
 
 A few days ago I had some fun asking it to compose [emotive sonnets about data science](/posts/2022-12-02-sonnets/). That was entertaining, and I maintain that anyone who isn't recognizing this moment as a major inflection point for authoring content of any kind isn't paying attention. And yes, this extends to writing code. Some people are (rightly) fearful that AI will be able to write better code than humans very soon, for approximately a nothingth of the cost, and that we might actually be there now. Stackoverflow has [temporarily banned ChatGPT](https://meta.stackoverflow.com/questions/421831/temporary-policy-chatgpt-is-banned), though how they're going to police that remains a bit of a mystery to me.
 
 There may be some divine symmetry to AI systems obsoleting the human programmers that spawned them, but I don't think we're quite there yet. I asked ChatGPT to implement a Sieve of Eratosthenes in R, and this was its confident response:
 
-```r
+```{r}
 # Function to implement Sieve of Eratosthenes
 sieve <- function(n) {
   # Create a boolean array "prime[0..n]" and
@@ -111,7 +115,7 @@ The point of this isn't to flex on first-year computer-science R; the point is t
 
 So: it's impressive that it got as close as it did; what worries me is how authoritatively it presented its buggy code. People are going to trust these systems, even if they shouldn't, and since it's likely to be used by people who aren't experts, errors like those described above aren't likely to be easily caught. I'm sure the quality will improve in time -- these are the early days -- but where is this all leading? The bot was so confident in [its assertion that C is a dynamically-typed language](/posts/2022-12-02-sonnets/) the other day that it made me doubt myself after decades of C at the center of my brain's programming-language orientation. I hadn't studied it formally in school; had I been wrong about it all along?
 
-Interestingly, the python code the bot produced for the sieve was just fine:
+Interestingly, the python code the bot produced for the sieve was just fine (I just changed the limit for output comparison):
 
 ```{python}
 # MAX_PRIMES = 100000  # maximum number of prime numbers to find
