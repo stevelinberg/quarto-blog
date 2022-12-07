@@ -105,10 +105,6 @@ sieve <- function(n) {
   # Return a vector of prime numbers
   return(which(prime))
 }
-
-# Test the function by finding the prime numbers
-# less than or equal to 100
-sieve(100)
 ```
 
 The point of this isn't to flex on first-year computer-science R; the point is that the code is presented authoritatively by the AI (even with their general disclaimers that things may be wrong), and since a lot of what passes for programming these days seems to be blindly copying and pasting code fragments from Stackoverflow, this is another vector where that could happen.
