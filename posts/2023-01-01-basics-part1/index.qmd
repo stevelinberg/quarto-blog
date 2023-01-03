@@ -1,0 +1,288 @@
+---
+title: "Verifying Basic Stats, Part 1"
+description: |
+  You can never be too solid in your basic stats.
+date: "2023-01-01"
+categories: [statistics, machine learning, tufte]
+image: tufte-anscombe-plots.png
+draft: true
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(pander)
+library(reticulate)
+```
+
+```{python python setup, include=FALSE}
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+```
+
+## On practice and data science
+
+A favorite quote on the subject of data science is:
+
+::: blockquote
+Data is the sword of the 21st century, those who wield it well, the Samurai\
+-- <cite>Jonathan Rosenberg</cite>
+:::
+
+Any samurai worth their salt will tell you that practice is the root of skill, and basics are the root of practice. You never stop practicing your basics; you cannot be too well-grounded in them.
+
+I find it easy to be distracted by the siren call of machine learning and its exciting methods for discovering structure in noise and predicting outcomes... the allure of advanced techniques for extracting meaning from mountains of data is undeniable, and the bleeding edge of knowledge is always an exciting place to be.
+
+I am sometimes prone to skipping ahead too fast, though. Blasting through basic stats in a semester or two of study is fine, and we all want to get on to the cool stuff, but I'm not always convinced that I, at least, have spent enough time in the trenches to have really solid intuition about my basics.
+
+It says here that fundamental data errors, misinformation, and outright disinformation are going to become much bigger problems in the years ahead, as we cede more and more of our trust to social media (and unaccountable algorithm-driven policies), AI systems like [ChatGPT](https://openai.com/blog/chatgpt/) (which I remain a huge fan of, and also hugely terrified by), and generally authoratitive-presenting sources of any kind, whether public or private. It's bad enough that lots of people out there are careless with data and publish or share dumb mistakes and erroneous interpretations and conclusions; add to that the deliberate misinformation of [social media troll farms](https://www.theguardian.com/world/2022/may/01/troll-factory-spreading-russian-pro-war-lies-online-says-uk) skillfully and quickly polluting online information with outright lies and propaganda that spawn faster than fact-checkers can knock them down, and AI systems that [confidently deliver incorrect information](/posts/2022-12-02-sonnets/) in manners that can be utterly convincing, and it's clear that we're going to need to keep our data-samurai basics fresh and regularly practiced.
+
+If we don't know how to quickly check basic statistical claims, we're going to be in trouble. I know we all know how to google this stuff and figure it out when we need to, but that's not good enough. And no, asking an AI system to do it for us isn't going to be the answer. Our data-fu must be sharp.
+
+So let's practice.
+
+## Edward Tufte's outrageous claim
+
+Right on page 1 of "[The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi)", the bible of data visualization, [Edward Tufte](https://www.edwardtufte.com) shows [Anscombe's Quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet), a set of four small sets of data that (supposedly!) share nearly identical summary statistics:
+
+![[The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi), p1](tufte-anscombe-data.png)
+
+<aside>(Careful observers will note that the first three `x` columns are identical, though the `y` columns vary, and that the fourth `x` column contains the same value for all but the 8th row.)</aside>
+
+...but that look quite different when plotted, to illustrate the point that visualizing data is a critical aspect of analysis:
+
+![[The Visual Display of Quantitative Information](https://www.edwardtufte.com/tufte/books_vdqi), p2](tufte-anscombe-plots.png)
+
+Just outrageous. Does he think we're chumps? We're supposed to just buy his claim that this is true? That all of those summary stats above are accurate, and that when plotted they look like this? Not today. We will investigate for ourselves.
+
+(Note: of course we know it's all true and that he's correct; this is basic stats, and he's on our side. But we're going to pretend we don't trust him, and roll up our sleeves and check anyway, using R and Python.)
+
+## The data
+
+Just to really flex on this, we're not going to use the built-in copies of the anscombe data set available in R's `datasets` library, or in Python's `Seaborn`. We'll build the dataframes ourselves in both languages.
+
+::: panel-tabset
+### R
+
+```{r}
+anscombe <- data.frame(
+  x1 = c(10.0, 8.0, 13.0, 9.0, 11.0, 14.0, 6.0, 4.0, 12.0, 7.0, 5.0),
+  y1 = c(8.04, 6.95, 7.58, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.82, 5.68),
+  x2 = c(10.0, 8.0, 13.0, 9.0, 11.0, 14.0, 6.0, 4.0, 12.0, 7.0, 5.0),
+  y2 = c(9.14, 8.14, 8.74, 8.77, 9.26, 8.10, 6.13, 3.10, 9.13, 7.26, 4.74),
+  x3 = c(10.0, 8.0, 13.0, 9.0, 11.0, 14.0, 6.0, 4.0, 12.0, 7.0, 5.0),
+  y3 = c(7.46, 6.77, 12.74, 7.11, 7.81, 8.84, 6.08, 5.39, 8.15, 6.42, 5.73),
+  x4 = c(8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 19.0, 8.0, 8.0, 8.0),
+  y4 = c(6.58, 5.76, 7.71, 8.84, 8.47, 7.04, 5.25, 12.50, 5.56, 7.91, 6.89)
+)
+
+# view the data frame
+print(anscombe)
+```
+
+### Python
+
+```{python}
+anscombe = pd.DataFrame({
+    'x1': [10.0, 8.0, 13.0, 9.0, 11.0, 14.0, 6.0, 4.0, 12.0, 7.0, 5.0],
+    'y1': [8.04, 6.95, 7.58, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.82, 5.68],
+    'x2': [10.0, 8.0, 13.0, 9.0, 11.0, 14.0, 6.0, 4.0, 12.0, 7.0, 5.0],
+    'y2': [9.14, 8.14, 8.74, 8.77, 9.26, 8.10, 6.13, 3.10, 9.13, 7.26, 4.74],
+    'x3': [10.0, 8.0, 13.0, 9.0, 11.0, 14.0, 6.0, 4.0, 12.0, 7.0, 5.0],
+    'y3': [7.46, 6.77, 12.74, 7.11, 7.81, 8.84, 6.08, 5.39, 8.15, 6.42, 5.73],
+    'x4': [8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 19.0, 8.0, 8.0, 8.0],
+    'y4': [6.58, 5.76, 7.71, 8.84, 8.47, 7.04, 5.25, 12.50, 5.56, 7.91, 6.89]
+})
+
+print(anscombe)
+```
+:::
+
+We'll zoom in on the first of the four sets here, and extract the columns as just `x` and `y` into a smaller dataframe. We'll return to the full set later, but we only need one set to test the summary statistics above.
+
+::: panel-tabset
+### R
+
+```{r}
+set_1 <- anscombe |>
+  select(x = x1, y = y1)
+print(set_1)
+```
+
+### Python
+
+```{python}
+set_1 = anscombe[['x1', 'y1']].rename(columns={'x1': 'x', 'y1': 'y'})
+print(set_1)
+```
+:::
+
+`set_1` is now ready for basic analysis.
+
+## The claims
+
+The claim is that all four of the data sets share the following summary statistics:
+
+| Statistic                           | Value          |
+|-------------------------------------|----------------|
+| $N$                                 | 11             |
+| mean of $X$'s                       | 9.0            |
+| mean of $Y$'s                       | 7.5            |
+| equation of regression line         | $Y = 3 + 0.5X$ |
+| standard error of estimate of slope | 0.118          |
+| $t$                                 | 4.24           |
+| sum of squares $X - \bar{X}$        | 110.0          |
+| regression sum of squares           | 27.50          |
+| residual sum of squares of Y        | 13.75          |
+| correlation coefficient             | .82            |
+| $r^2$                               | .67            |
+
+Let's examine each of the claims in turn.
+
+### $N$ = 11, mean of $X$'s = 9, mean of $Y$'s = 7.5
+
+The most basic of all summary statistics: counts and means. Yes, we're even going to check these.
+
+::: panel-tabset
+### R
+
+Simple enough: `nrow()` counts rows, and `mean()` calculates means.
+
+```{r}
+set_1_n <- nrow(set_1)
+set_1_xbar <- mean(set_1[['x']])
+set_1_ybar <- mean(set_1[['y']])
+```
+
+<aside>Note: although `set_1$x` is a little easier to read, I prefer the double-bracket subsetting format `set_1[['x']]` in R, because it allows interpolation</aside>
+
+### Python
+
+In Python, `len` counts rows, and the `mean()` method calculates means.
+
+```{python}
+set_1_n = len(set_1)
+set_1_xbar = set_1['x'].mean()
+set_1_ybar = set_1['y'].mean()
+```
+:::
+
+| Statistic             | \(R\) Value    | (Python) Value    |
+|-----------------------|----------------|-------------------|
+| $N$ (row count)       | `r set_1_n`    | `r py$set_1_n`    |
+| mean of x ($\bar{x}$) | `r set_1_xbar` | `r py$set_1_xbar` |
+| mean of y ($\bar{y}$) | `r set_1_ybar` | `r py$set_1_ybar` |
+
+The mean of `y` is slightly higher than `7.5`, but that's a nit we can disregard; in nearly every real-world situation, there is no practical difference between `7.5` and `7.5009091`, and the purpose of the Anscombe data is to show the importance of visualization, not to achieve perfect mathematical precision.
+
+### equation of regression line: $Y = 3 + 0.5X$
+
+OK, so what is a regression line? In general terms, it's a line of best fit, a straight line that get as close as possible to all of the points in the data set. Looking at the scatterplot of the first set's points:
+
+::: panel-tabset
+### R
+
+```{r}
+set_1_baseplot <- ggplot(set_1, mapping = aes(x = x, y = y)) +
+  geom_point(color = "darkgreen", size = 3) +
+  scale_x_continuous(limits = c(0, 20)) +
+  scale_y_continuous(limits = c(0, 11)) +
+  theme_minimal() +
+  theme(axis.line = element_line(colour = "darkblue",
+                    linewidth = 1, linetype = "solid"))
+
+set_1_baseplot
+```
+
+### Python
+
+(Not going too bananas to make the plot exactly match R; `seaborn` and `ggplot` are different animals)
+
+```{python}
+with sns.axes_style("whitegrid", {'axes.edgecolor': 'darkblue'}):
+    set_1_baseplot = sns.scatterplot(data=set_1, x='x', y='y', color='darkgreen', s=50)
+
+# set the axis limits; XXX capture output to "foo" to prevent weird echoing
+foo = set_1_baseplot.set(xlim=(0, 20), ylim=(0.11))
+
+set_1_baseplot.spines['top'].set_linewidth(0)
+set_1_baseplot.spines['right'].set_linewidth(0)
+set_1_baseplot.spines['left'].set_linewidth(2)
+set_1_baseplot.spines['bottom'].set_linewidth(2)
+
+plt.show()
+```
+:::
+
+A regression line is a straight line through the graph that best represents, to the extent that a straight line can, the overall shape of the data. It consists of an *intercept* (the value of X where the line crosses the X axis, where Y is 0), and a *slope* (the "rise over the run", or how much each unit of increase in X, as we move left to right, increases or decreases the value / height of Y). It is expressed with the equation
+
+$$y = \beta_0 + \beta_1 \times x$$
+
+where $\beta_0$ ("beta zero") is the intercept, and $\beta_1$ ("beta one") is the slope, or the change in $y$ for every change of one unit in $x$. The regression line is the straight line through the points that best fits the overall shape of the data.
+
+Sounds easy enough, but if we did it by eye, how would we do it? We could take some guesses:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the R code"
+set_1_baseplot +
+    geom_abline(slope = 0.5, intercept = 3, color = "red") +
+    geom_abline(slope = 0.58, intercept = 1.9, color = "darkgreen") +
+    geom_abline(slope = 0.66, intercept = 2.1, color = "purple") +
+    annotate("text", x = 4, y = 9.75, label= "Something like one of these,\nmaybe?")
+```
+
+Fortunately, of course, we don't need to guess. Fitting a linear model to the data will give us the slope and the intercept using the [ordinary least squares (OLS)](https://en.wikipedia.org/wiki/Ordinary_least_squares) method, a fine default method for most cases.
+
+::: panel-tabset
+### R
+
+The `lm` method in R is a simple way to get the fit for a linear model - we just have to remember that the intercept is the first coefficient, and the slope is the second.
+
+```{r}
+fit <- lm(set_1$y ~ set_1$x)
+beta_0 <- coef(fit)[1]
+beta_1 <- coef(fit)[2]
+```
+
+### Python
+
+In Python, the `polyfit` method of `numpy` will do what we need - we just have to remember that the slope is the first coefficient, and the intercept is the second.
+
+```{python}
+fit = np.polyfit(set_1['x'], set_1['y'], 1)
+beta_0 = fit[1]
+beta_1 = fit[0]
+```
+:::
+
+| Statistic             | \(R\) Value | (Python) Value |
+|-----------------------|-------------|----------------|
+| intercept ($\beta_0$) | `r beta_0`  | `r py$beta_0`  |
+| slope ($\beta_1$)     | `r beta_1`  | `r py$beta_1`  |
+
+So, once again, there's an inconsequential decimal offset, but it is small enough to disregard, and we can confirm that the equation of the regression line is indeed (basically) $Y = 3 + 0.5X$, and here's our plot:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the R code"
+set_1_baseplot +
+    geom_abline(slope = 0.5, intercept = 3, color = "red")
+```
+
+So far so good; on we go.
+
+### standard error of estimate of slope = 0.118
+
+### $t$ = 4.24
+
+### sum of squares $X - \bar{X}$ = 110.0
+
+### regression sum of squares = 27.50
+
+### residual sum of squares of Y = 13.75
+
+### correlation coefficient = .82
+
+### $r^2$ = .67
