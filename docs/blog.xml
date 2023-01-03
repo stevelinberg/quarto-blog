@@ -9,7 +9,7 @@
 <link>https://slinberg.net/blog.html</link>
 <atom:link href="https://slinberg.net/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Steve Linberg</description>
-<generator>quarto-1.1.251</generator>
+<generator>quarto-1.3.14</generator>
 <lastBuildDate>Tue, 06 Dec 2022 05:00:00 GMT</lastBuildDate>
 <item>
   <title>ChatGPT fail: Sieve of Eratosthenes</title>
@@ -161,7 +161,6 @@
 
 </div><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
   author = {Steve Linberg},
-  editor = {},
   title = {ChatGPT Fail: {Sieve} of {Eratosthenes}},
   date = {2022-12-06},
   url = {https://slinberg.net/posts/2022-12-06-chatgpt-sieve},
@@ -346,7 +345,6 @@ And the path to my ultimate victory.</p>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
   author = {Steve Linberg},
-  editor = {},
   title = {AI {Sonnets} on {Data} {Science}},
   date = {2022-12-02},
   url = {https://slinberg.net/posts/2022-12-02-sonnets},
@@ -371,7 +369,7 @@ Steve Linberg. 2022. <span>“AI Sonnets on Data Science.”</span> December
 
 
 
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="aside"><a href="https://fosstodon.org"><img src="https://slinberg.net/posts/2022-11-18-mastodon/https:/cdn.fosstodon.org/site_uploads/files/000/000/004/@1x/ec7a05be77b5390f.png" class="img-fluid" alt="Fosstodon logo"></a></span></div></div>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="https://fosstodon.org"><img src="https://slinberg.net/posts/2022-11-18-mastodon/https:/cdn.fosstodon.org/site_uploads/files/000/000/004/@1x/ec7a05be77b5390f.png" class="img-fluid" alt="Fosstodon logo"></a></span></div></div>
 <p>I’m less than thrilled with late 2022 Twitter. Not a fan of the new administration; let’s just leave it at that. I’m worried about whether the academic API will survive the present melée, and whether it will be overrun with awfulness with the slashing of content moderators, or turned over to AI moderation systems which I can assert are not ready for the full-time job.</p>
 <p>Anyway, one of the places Twitter refugees like me are flocking to is <a href="https://mastodon.org">Mastodon</a>. Danielle Navarro wrote up <a href="https://blog.djnavarro.net/posts/2022-11-03_what-i-know-about-mastodon/">a nice introduction</a> for data science folks like us, so I won’t go into the hows and whys here. The most important single point is that Mastodon is a federation of lots of servers, and you pick one (or more) to join, and then there are a few modes of viewing where you either see posts from just people you directly follow (“Home”), people on that server (“Local”), or everywhere (“Federated”, the Twitter-like “firehose” of everything all at once).</p>
 <p>“Home” and “Federated” will give you basically the same thing on whichever server(s) you join, so your choice of server only impacts the “Local” view. I set up a personal account on <a href="https://mastodon.social">mastodon.social</a>, the biggest single server, out of some instinct that I should be on the biggest one for some reason. You don’t actually need to do that - and there are so many people on that server that the “Local” view is more or less useless. It’s fine, but there’s no advantage to being on a big server.</p>
@@ -401,7 +399,6 @@ Steve Linberg. 2022. <span>“AI Sonnets on Data Science.”</span> December
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
   author = {Steve Linberg},
-  editor = {},
   title = {Mastodon},
   date = {2022-11-18},
   url = {https://slinberg.net/posts/2022-11-18-mastodon},
@@ -427,7 +424,7 @@ Steve Linberg. 2022. <span>“Mastodon.”</span> November 18, 2022. <a href="ht
 
 
 
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="aside"><a href="https://www.somethingawful.com/hosted/jeffk/computarfunnys/comic-2.htm"><img src="https://slinberg.net/posts/2022-10-31-hacked/lunix.png" class="img-fluid" style="width:70.0%" alt="jeffk (nsfw)"></a></span></div></div>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="https://www.somethingawful.com/hosted/jeffk/computarfunnys/comic-2.htm"><img src="https://slinberg.net/posts/2022-10-31-hacked/lunix.png" class="img-fluid" style="width:70.0%" alt="jeffk (nsfw)"></a></span></div></div>
 <p>I thought this was pretty funny… some spam tonight that <em>this website’s database has been hacked</em>, and I better pay up some bitcoin or they’ll <code>destr0y [my] site's reputati0n</code>! Oh noes!</p>
 <p>It takes some doing to hack the database of a site that <a href="https://quarto.org">doesn’t have a database</a>, let me tell you. Very impressive work guys! They must have fprotted my tarball with lunix.</p>
 <p>Unfortunately my $5 in free bitcoin that I got a while back is only worth about $1.62 last time I looked. Guess they’re gonna keep my database on that <code>0ffsh0re server</code>. So it goes.</p>
@@ -459,7 +456,6 @@ Steve Linberg. 2022. <span>“Mastodon.”</span> November 18, 2022. <a href="ht
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
   author = {Steve Linberg},
-  editor = {},
   title = {Hacked! (Or Not)},
   date = {2022-10-31},
   url = {https://slinberg.net/posts/2022-10-31-hacked},
@@ -614,7 +610,6 @@ academics/697E/</code></pre>
 </ol>
 </section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
   author = {Steve Linberg},
-  editor = {},
   title = {Porting to {Quarto,} Part 2},
   date = {2022-10-20},
   url = {https://slinberg.net/posts/2022-10-20_distill_to_quarto_part_2},
@@ -898,7 +893,6 @@ Note
 </ol>
 </section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
   author = {Steve Linberg},
-  editor = {},
   title = {Porting Slinberg.net from {Distill} to {Quarto}},
   date = {2022-10-01},
   url = {https://slinberg.net/posts/2022-10-01_distill_to_quarto_part_1},
@@ -967,7 +961,6 @@ Quarto.”</span> October 1, 2022. <a href="https://slinberg.net/posts/2022-10-0
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
   author = {Steve Linberg},
-  editor = {},
   title = {Quickie for Importing Tasks to {OmniFocus} 3},
   date = {2022-04-02},
   url = {https://slinberg.net/posts/2022-04-02-quickie-for-importing-tasks-to-omnifocus-3},
@@ -1031,7 +1024,6 @@ Steve Linberg. 2022. <span>“Quickie for Importing Tasks to OmniFocus
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
   author = {Steve Linberg},
-  editor = {},
   title = {Tufte {Takes} {No} {Prisoners}},
   date = {2022-03-05},
   url = {https://slinberg.net/posts/2022-03-05-tufte-takes-no-prisoners},
@@ -1091,7 +1083,6 @@ Roberts, Siobhan. 2020. <span>“Flattening the <span>Coronavirus</span> <span>C
 </div>
 </div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
   author = {Steve Linberg},
-  editor = {},
   title = {Playfair and the “{Flatten} the {Curve}” {Graphic}},
   date = {2022-02-19},
   url = {https://slinberg.net/posts/2022-02-19-playfair-and-the-flatten-the-curve-graphic},
@@ -1143,7 +1134,6 @@ Curve’</span> Graphic.”</span> February 19, 2022. <a href="https://slinberg.
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
   author = {Steve Linberg},
-  editor = {},
   title = {Saturday Mornings with {Tufte}},
   date = {2022-02-05},
   url = {https://slinberg.net/posts/2022-02-05-saturday-mornings-with-tufte},
@@ -1176,7 +1166,6 @@ February 5, 2022. <a href="https://slinberg.net/posts/2022-02-05-saturday-mornin
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
   author = {Steve Linberg},
-  editor = {},
   title = {Pythagorean {Theorem}},
   date = {2022-02-02},
   url = {https://slinberg.net/posts/2022-02-02-pythagorean-theorem},
@@ -1226,32 +1215,32 @@ Note
 <section id="create-new-github-repository" class="level2">
 <h2 class="anchored" data-anchor-id="create-new-github-repository">Create new GitHub repository</h2>
 <p>The first step is to create a new repository for the site. Log into GitHub and create a new repo:</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127115109.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127115109.png" class="img-fluid"></p>
 <p>Call it something sensible like “distill-blog”; make it public (unless you don’t want to) and add a <code>.gitignore</code> file using the <code>R</code> template (just to start things off). Also, if you haven’t already, change your <a href="https://github.com/settings/repositories">github repository settings</a> to use “main” as your default branch name instead of “master”.</p>
 <p>We’ll come back in a bit to set up the Pages part, but for now we just want to get the project built and populated. We now have an empty Git repository sitting on GitHub, waiting to be used for something.</p>
 </section>
 <section id="create-a-new-rstudio-project-using-the-repository" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-new-rstudio-project-using-the-repository">Create a new RStudio project using the repository</h2>
 <p>Now we’ll use our new, empty GitHub repository for our Distill blog. From RStudio, choose “File -&gt; New Project” and choose “Version Control”:</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127124549.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127124549.png" class="img-fluid"></p>
 <p>Choose “Git”:</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127124647.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127124647.png" class="img-fluid"></p>
 <p>Copy in the repository URL from your project (found as shown below):</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127125016.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127125016.png" class="img-fluid"></p>
 <p>Paste it into the <code>Repository URL</code> field in the wizard, choose where you want to store it on your computer, and I recommend checking <code>Open in new session</code> for a clean slate. Click “Create Project” to create it.</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127125055.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127125055.png" class="img-fluid"></p>
 <p>The empty project will open in a new RStudio window. RStudio has added 3 new files (actually three directories) to the skeleton created by Github, which initially only contains the skeleton <code>.gitignore</code> file:</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127130928.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127130928.png" class="img-fluid"></p>
 <p>RStudio adds the <code>.git</code> directory, the <code>.Rproj.user</code> directory, and the <code>distill-blog.Rproj</code> RStudio project file (it will be named with the “Project directory name” field from the final screen of the New Project Wizard).</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127131749.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127131749.png" class="img-fluid"></p>
 <p>The <code>.gitignore</code> file created by Github tells git to ignore the <code>.Rproj.user</code> directory (which contains local settings used by RStudio and which you don’t need to (and shouldn’t) share or publish), and the <code>.git</code> directory is part of every repository and contains the repository settings.</p>
 <p>We want to keep github and RStudio in sync, generally speaking. More precisely, we want to keep <em>the repository</em> in sync between GitHub and RStudio. The local git repository doesn’t yet know about the project file <code>distill-blog.Rproj</code>, since RStudio added that after cloning the repository from GitHub, so a good first task is to add it to the local repository, and push it back up to GitHub to get it in sync, and make sure that that core pipeline is working, since we’ll be using it constantly.</p>
 <p>Although there is a “Git” pane in the Environments panel, which shows that <code>distill-blog.Rproj</code> is ready for staging:</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127133207.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127133207.png" class="img-fluid"></p>
 <p>…I am an old-school curmudgeon and prefer to use the terminal for git commands, since not everything I normally do with git has a representation in this visual UI. In RStudio I have even remapped the shortcut control-backtick to the terminal for quick switching:</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127133440.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127133440.png" class="img-fluid"></p>
 <p>Within the terminal, typing <code>git status</code> will show that git doesn’t yet know about <code>distill-blog.Rpro</code>j:</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127133648.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127133648.png" class="img-fluid"></p>
 <p>This isn’t going to be a git tutorial, so we’re just going to add the file to the repo and push it back to github. If you get stuck in this process, pause here until you’re able to troubleshoot and continue.</p>
 <p>The git commands to update the repository with are:</p>
 <div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="fu" style="color: #4758AB;">git</span> add .</span>
@@ -1274,7 +1263,7 @@ Note
 <span id="cb2-14"><span class="ex" style="color: null;">To</span> github.com:stevelinberg/distill-blog.git</span>
 <span id="cb2-15">   <span class="ex" style="color: null;">54aae63..6c67d2d</span>  main <span class="at" style="color: #657422;">-</span><span class="op" style="color: #5E5E5E;">&gt;</span> main </span></code></pre></div>
 <p>After <code>git push</code> uploads the changes back to the GitHub repository, now if we flip back to GitHub and refresh the page, we’ll see that the project file has been added:</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127135410.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127135410.png" class="img-fluid"></p>
 <p>At this point, we have an empty RStudio project committed to a GitHub repository, but we don’t yet actually have any content. Now it’s time to create the Distill blog skeleton and add it to the repository.</p>
 </section>
 <section id="add-the-distill-skeleton-to-the-repository" class="level2">
@@ -1301,19 +1290,19 @@ Note
 <span id="cb6-2"><span class="fu" style="color: #4758AB;">git</span> commit <span class="at" style="color: #657422;">-m</span> <span class="st" style="color: #20794D;">"Install Distill skeleton"</span></span>
 <span id="cb6-3"><span class="fu" style="color: #4758AB;">git</span> push</span></code></pre></div>
 <p>If we pop back over to GitHub and reload the repository view, we’ll see a lot of new files added:</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127160301.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127160301.png" class="img-fluid"></p>
 </section>
 <section id="build-the-site" class="level2">
 <h2 class="anchored" data-anchor-id="build-the-site">Build the site</h2>
 <p>Before we do any further customizing, we can build the site and get it deploying on GitHub Pages. At this point, there’s nothing to see because the site hasn’t been built yet; doing the first build will construct the first blog post and the basic site skeleton.</p>
 <p>When you create the Distill site in this way, RStudio doesn’t yet know that there is one, and so the Build tab may be missing in the Environment pane:</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127160912.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127160912.png" class="img-fluid"></p>
 <p>If so, quit RStudio and re-open the project file, and it will appear:</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127161112.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127161112.png" class="img-fluid"></p>
 <p>Click the Build tab and then “Build Website”:</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127161335.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127161335.png" class="img-fluid"></p>
 <p>It will grind for a few moments and do the first build, and present you with a glorious preview of your new blog in the Viewer panel:</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127161457.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127161457.png" class="img-fluid"></p>
 <p>Let’s commit this stage too, since a few new files were just created. Switch to the Terminal tab (ctrl + backtick) and issue these git commands:</p>
 <div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="fu" style="color: #4758AB;">git</span> add .</span>
 <span id="cb7-2"><span class="fu" style="color: #4758AB;">git</span> commit <span class="at" style="color: #657422;">-m</span> <span class="st" style="color: #20794D;">"First build of site skeleton"</span></span>
@@ -1333,11 +1322,11 @@ Note
 <li>Click “Save”.</li>
 </ol>
 <p>(Note: ignore the “Choose a theme” button; it doesn’t apply to Distill projects.)</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127162652.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127162652.png" class="img-fluid"></p>
 <p>GitHub will show a success message (hopefully):</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127163030.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127163030.png" class="img-fluid"></p>
 <p>Note the “Custom domain” section at the bottom; we’ll return to that if/when we want to move the site to a custom domain. As it is, GitHub generates a URL for the site based on your GitHub username and the repo name. In this case, the address is <a href="https://stevelinberg.github.io/distill-blog/">https://stevelinberg.github.io/distill-blog/</a>. Click the link, and you should see your site:</p>
-<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted%20image%2020220127163306.png" class="img-fluid"></p>
+<p><img src="https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup/Pasted image 20220127163306.png" class="img-fluid"></p>
 <p>This means it’s live!</p>
 <p>You could just go from here, if you’re content with the URL GitHub chose for you. Your basic workflow will be:</p>
 <ul>
@@ -1353,7 +1342,6 @@ Note
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{linberg2022,
   author = {Steve Linberg},
-  editor = {},
   title = {Distill and {Github} {Pages} {Setup}},
   date = {2022-01-29},
   url = {https://slinberg.net/posts/2022-01-29_distill-and-github-pages-setup},

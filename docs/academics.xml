@@ -9,7 +9,7 @@
 <link>https://slinberg.net/academics.html</link>
 <atom:link href="https://slinberg.net/academics.xml" rel="self" type="application/rss+xml"/>
 <description>Steve Linberg</description>
-<generator>quarto-1.1.251</generator>
+<generator>quarto-1.3.14</generator>
 <lastBuildDate>Sat, 26 Mar 2022 04:00:00 GMT</lastBuildDate>
 <item>
   <title>Homework 6: Clustering and Blockmodels in the Florentine Wedding dataset</title>
@@ -1770,7 +1770,7 @@ Spring 2022
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="r,machine learning" data-listing-date-sort="1643864400000" data-listing-file-modified-sort="1670342849551" data-listing-reading-time-sort="7.76">
+<div class="quarto-post image-right" data-index="0" data-categories="r,machine learning" data-listing-date-sort="1643864400000" data-listing-file-modified-sort="1666298846115" data-listing-reading-time-sort="7.76">
 <div class="thumbnail">
 <p><a href="../../academics/695M/useful-r-tidbits/index.html"> <img src="https://slinberg.net/academics/695M/useful-r-tidbits/ISLR-cover.png" class="thumnail-image"> </a></p>
 </div>
@@ -1808,7 +1808,7 @@ Feb 3, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="machine learning,glossary,math" data-listing-date-sort="1643864400000" data-listing-file-modified-sort="1670342849550" data-listing-reading-time-sort="19.795">
+<div class="quarto-post image-right" data-index="1" data-categories="machine learning,glossary,math" data-listing-date-sort="1643864400000" data-listing-file-modified-sort="1666285999084" data-listing-reading-time-sort="19.795">
 <div class="thumbnail">
 <a href="../../academics/695M/glossary/index.html">
 <div class="thumbnail-image">
@@ -1853,7 +1853,7 @@ Feb 3, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="machine learning" data-listing-date-sort="1643864400000" data-listing-file-modified-sort="1670342849550" data-listing-reading-time-sort="7.245">
+<div class="quarto-post image-right" data-index="2" data-categories="machine learning" data-listing-date-sort="1643864400000" data-listing-file-modified-sort="1666225195418" data-listing-reading-time-sort="7.245">
 <div class="thumbnail">
 <p><a href="../../academics/695M/bigger-concepts/index.html"> <img src="https://slinberg.net/academics/695M/bigger-concepts/disc-gen.png" class="thumnail-image"> </a></p>
 </div>
@@ -2984,7 +2984,7 @@ Spring 2022
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="r,social networks" data-listing-date-sort="1644296400000" data-listing-file-modified-sort="1670342849555" data-listing-reading-time-sort="20.995">
+<div class="quarto-post image-right" data-index="0" data-categories="r,social networks" data-listing-date-sort="1644296400000" data-listing-file-modified-sort="1666298895401" data-listing-reading-time-sort="20.995">
 <div class="thumbnail">
 <a href="../../academics/697E/useful-r-tidbits/index.html">
 <div class="thumbnail-image">
@@ -3026,7 +3026,7 @@ Feb 8, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="r,social networks" data-listing-date-sort="1648267200000" data-listing-file-modified-sort="1670342849552" data-listing-reading-time-sort="6.745">
+<div class="quarto-post image-right" data-index="1" data-categories="r,social networks" data-listing-date-sort="1648267200000" data-listing-file-modified-sort="1666274573044" data-listing-reading-time-sort="6.745">
 <div class="thumbnail">
 <a href="../../academics/697E/697E-hw6/index.html">
 <div class="thumbnail-image">
@@ -3068,7 +3068,7 @@ Mar 26, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="r,social networks" data-listing-date-sort="1644987600000" data-listing-file-modified-sort="1670342849552" data-listing-reading-time-sort="6.05">
+<div class="quarto-post image-right" data-index="2" data-categories="r,social networks" data-listing-date-sort="1644987600000" data-listing-file-modified-sort="1666274244504" data-listing-reading-time-sort="6.05">
 <div class="thumbnail">
 <a href="../../academics/697E/697E-hw5/index.html">
 <div class="thumbnail-image">
@@ -3110,7 +3110,7 @@ Feb 16, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="r,social networks" data-listing-date-sort="1644469200000" data-listing-file-modified-sort="1670342849552" data-listing-reading-time-sort="7.915">
+<div class="quarto-post image-right" data-index="3" data-categories="r,social networks" data-listing-date-sort="1644469200000" data-listing-file-modified-sort="1666289713969" data-listing-reading-time-sort="7.915">
 <div class="thumbnail">
 <a href="../../academics/697E/697E-hw4/index.html">
 <div class="thumbnail-image">
@@ -3152,7 +3152,7 @@ Feb 10, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="r,social networks" data-listing-date-sort="1644382800000" data-listing-file-modified-sort="1670342849552" data-listing-reading-time-sort="3.685">
+<div class="quarto-post image-right" data-index="4" data-categories="r,social networks" data-listing-date-sort="1644382800000" data-listing-file-modified-sort="1666274609641" data-listing-reading-time-sort="3.685">
 <div class="thumbnail">
 <a href="../../academics/697E/697E-hw3/index.html">
 <div class="thumbnail-image">
@@ -3194,7 +3194,7 @@ Feb 9, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="networks,glossary" data-listing-date-sort="1643432400000" data-listing-file-modified-sort="1670342849554" data-listing-reading-time-sort="10.045">
+<div class="quarto-post image-right" data-index="5" data-categories="networks,glossary" data-listing-date-sort="1643432400000" data-listing-file-modified-sort="1666227426948" data-listing-reading-time-sort="10.045">
 <div class="thumbnail">
 <p><a href="../../academics/697E/glossary/index.html"> <img src="https://slinberg.net/academics/697E/glossary/homer.png" class="thumnail-image"> </a></p>
 </div>
