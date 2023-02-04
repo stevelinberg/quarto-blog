@@ -8,6 +8,9 @@ about:
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/slinberg
+    - icon: mastodon
+      text: Mastodon
+      href: https://fosstodon.org/@stevelinberg
     - icon: twitter
       text: Twitter
       href: https://twitter.com/stevelinberg
