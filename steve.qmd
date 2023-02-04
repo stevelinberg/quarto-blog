@@ -24,7 +24,7 @@ about:
 
 ## Bio
 
-In summer 2022, I completed coursework for the [Data Analytics and Computational Social Science (DACSS) Masters program](https://www.umass.edu/sbs/data-analytics-and-computational-social-science-program) at the [University of Massachusetts, Amherst](https://umass.edu) (formally graduating later this year). My present position is Senior Systems and Analytics Engineer at the [Gandara Center](https://www.gandaracenter.org/) in West Springfield, MA.
+In fall 2022, I completed my masters in the [Data Analytics and Computational Social Science (DACSS) program](https://www.umass.edu/sbs/data-analytics-and-computational-social-science-program) at the [University of Massachusetts, Amherst](https://umass.edu) (formally graduating later this year). My present position is Principal Data Engineer at [eClinical Solutions](https://eclinicalsol.com/) in Mansfield, MA.
 
 I've worn many IT hats over the years - sysadmin, DBA, trainer, tech writer - but a day without code is a strange and sad day.
 
@@ -40,7 +40,9 @@ Hampshire College \| Amherst, MA
 
 ## Selected Experience
 
-**Gandara Center**, West Springfield, MA \| Senior Systems and Analytics Engineer / CIO / IT Director \| 2005 - Present
+**eClinical Solutions**, Mansfield, MA \| Principal Data Engineer \| 2023 - Present
+
+**Gandara Center**, West Springfield, MA \| Senior Systems and Analytics Engineer / CIO / IT Director \| 2005 - 2022
 
 **Silicon Goblin Technologies**, Amherst, MA \| Owner / Programmer \| 1999 - 2015
 
